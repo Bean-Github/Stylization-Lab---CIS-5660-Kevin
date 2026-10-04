@@ -16,6 +16,7 @@ public class Billboard : MonoBehaviour
 
         Vector3 toCam = mainCam.transform.position - transform.position;
 
-        transform.LookAt(-toCam.normalized);
+        // Align the positive Z axis away from the camera so the front (-Z) faces it
+        transform.forward = -toCam;
     }
 }
