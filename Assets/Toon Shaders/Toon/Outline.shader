@@ -4,10 +4,19 @@ Shader "Custom/Outline"
     {
         [HDR]_OutlineColor ("Outline Color", Color) = (0,0,0,1)
         _OutlineWidth ("Outline Width", Float) = 0.02
+
+        _StencilRef ("Stencil Reference", Int) = 8
     }
     SubShader
     {
         Tags { "RenderType"="Opaque" }
+
+        Stencil
+        {
+            Ref [_StencilRef]
+            Comp Equal
+            Pass Keep
+        }
 
         // PASS 1: Color Pass (Your original code)
         Pass

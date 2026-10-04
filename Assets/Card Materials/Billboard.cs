@@ -14,7 +14,8 @@ public class Billboard : MonoBehaviour
     {
         if (mainCam == null) return;
 
-        // Makes the sprite face the exact same direction as the camera
-        transform.LookAt(transform.position + mainCam.transform.forward);
+        Vector3 toCam = mainCam.transform.position - transform.position;
+
+        transform.LookAt(-toCam.normalized);
     }
 }

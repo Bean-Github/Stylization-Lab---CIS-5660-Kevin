@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f13e3dc3c0e67148990ffce670c94a6, type: 3}
   m_Name: LayerToStencilFeature
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   settings:
-    renderPassEvent: 500
+    renderPassEvent: 1000
     layerMask:
       serializedVersion: 2
-      m_Bits: 64
+      m_Bits: 256
     stencilValue: 8
 --- !u!114 &-5241822385288238757
 MonoBehaviour:
@@ -117,7 +117,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   m_DefaultStencilState:
     overrideStencilState: 0
-    stencilReference: 8
+    stencilReference: 0
     stencilCompareFunction: 3
     passOperation: 2
     failOperation: 0

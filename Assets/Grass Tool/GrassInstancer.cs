@@ -9,10 +9,12 @@ namespace GrassTool
         public Mesh grassMesh;
         public Material grassMaterial;
 
+        [Tooltip("The layer this grass will render on. Used for Stencil filtering.")]
+        public int grassLayer = 0;
+
         [HideInInspector]
         public List<Matrix4x4> instances = new List<Matrix4x4>();
 
-        // We store reusable arrays here to stop the Garbage Collector from freezing the editor
         private List<Matrix4x4[]> batchPool = new List<Matrix4x4[]>();
         private List<int> batchCounts = new List<int>();
 
@@ -48,7 +50,6 @@ namespace GrassTool
             int total = instances.Count;
             int requiredBatches = Mathf.CeilToInt(total / 1023f);
 
-            // 1. Expand the pool only if we need more arrays
             while (batchPool.Count < requiredBatches)
             {
                 batchPool.Add(new Matrix4x4[1023]);
@@ -56,7 +57,6 @@ namespace GrassTool
 
             batchCounts.Clear();
 
-            // 2. Overwrite the data in the existing arrays instead of creating new ones
             for (int i = 0; i < total; i += 1023)
             {
                 int length = Mathf.Min(1023, total - i);
@@ -68,7 +68,7 @@ namespace GrassTool
                     batch[j] = instances[i + j];
                 }
 
-                batchCounts.Add(length); // Record how many items are actually in this batch
+                batchCounts.Add(length);
             }
         }
 
@@ -76,7 +76,6 @@ namespace GrassTool
         {
             if (grassMesh == null || grassMaterial == null || instances == null || instances.Count == 0) return;
 
-            // Failsafe if data gets desynced
             if (batchCounts.Count != Mathf.CeilToInt(instances.Count / 1023f))
             {
                 UpdateBatches();
@@ -86,8 +85,18 @@ namespace GrassTool
             {
                 if (batchCounts[i] > 0)
                 {
-                    // CRITICAL: We pass the array, but tell Unity exactly how many items (batchCounts[i]) to draw
-                    Graphics.DrawMeshInstanced(grassMesh, 0, grassMaterial, batchPool[i], batchCounts[i]);
+                    // CRITICAL UPDATE: Pass the layer parameter into the draw call
+                    Graphics.DrawMeshInstanced(
+                        grassMesh,
+                        0,
+                        grassMaterial,
+                        batchPool[i],
+                        batchCounts[i],
+                        null,
+                        UnityEngine.Rendering.ShadowCastingMode.On,
+                        true,
+                        grassLayer // <--- Tells Unity which layer to render the instances on
+                    );
                 }
             }
         }
