@@ -68,7 +68,7 @@ Material:
     - _Highlight: {r: 0.93333334, g: 0.8352941, b: 0.6313726, a: 0}
     - _Midtone: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0}
     - _Shadow: {r: 0.5176471, g: 0.19215687, b: 0.023529412, a: 0}
-    - _Shadow_Scale: {r: 3, g: 3, b: 0, a: 0}
+    - _Shadow_Scale: {r: 100.98, g: 446.8, b: 0, a: 0}
     - _Thresholds: {r: 0.12, g: 0.47, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

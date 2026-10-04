@@ -25,6 +25,26 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _PencilSubgraph_5e5f0ce359dc4bcd8ff530ab71efe995_HatchTexture0_758255076_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 28874900a114b314e89240109ac03674, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PencilSubgraph_5e5f0ce359dc4bcd8ff530ab71efe995_HatchTexture1_1276797021_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 8595890bfba3efb4d8de3f3328882cab, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PencilSubgraph_a303ccb0bf5e43eca7d25a7d76633597_HatchTexture0_758255076_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 28874900a114b314e89240109ac03674, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PencilSubgraph_a303ccb0bf5e43eca7d25a7d76633597_HatchTexture1_1276797021_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 8595890bfba3efb4d8de3f3328882cab, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_04fd65e16e684e3eaf9d73db0c6a6bb7_Texture_1_Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Texture:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -45,14 +65,18 @@ Material:
     m_Floats:
     - _Base_Brightness: 0
     - _Full_Dark_Size: 0.2
+    - _HatchingStrength: 0.34
     - _Hatching_Strength: 0.34
     - _MAIN_LIGHT: 1
     - _Max_Brightness: 1
     - _Min_Brightness: 0.2
+    - _PencilSize: 5
+    - _Pencil_Intensity: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SHADOWS_SOFT: 0
     - _Shade_Size: 0.49
+    - _ShadowPencilSize: 2
     - _Shadow_Intensity: 0.2
     - _Smoothness: 0
     - _Texture: 0
