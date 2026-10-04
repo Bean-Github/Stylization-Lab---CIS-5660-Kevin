@@ -14,11 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 0
   settings:
-    renderPassEvent: 300
+    renderPassEvent: 500
     layerMask:
       serializedVersion: 2
-      m_Bits: 128
+      m_Bits: 64
     stencilValue: 8
+--- !u!114 &-5241822385288238757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4be4d2d9f00fc642950a847ac8820f7, type: 3}
+  m_Name: TransparentDepthFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
 --- !u!114 &-1236038612579199342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34,7 +47,7 @@ MonoBehaviour:
   m_Active: 1
   settings:
     passTag: RenderObjects
-    Event: 300
+    Event: 500
     filterSettings:
       RenderQueueType: 0
       LayerMask:
@@ -88,9 +101,10 @@ MonoBehaviour:
   m_RendererFeatures:
   - {fileID: 7833122117494664109}
   - {fileID: -6834326705923020882}
-  - {fileID: 0}
   - {fileID: -1236038612579199342}
-  m_RendererFeatureMap: ad6b866f10d7b46cae277e1e129827a1e2a1041cf5be8aa792d68c406eb5d8ee
+  - {fileID: -5241822385288238757}
+  - {fileID: 7466862965163290753}
+  m_RendererFeatureMap: ad6b866f10d7b46cae277e1e129827a192d68c406eb5d8ee5b29341d504e41b781f013414ea09f67
   m_UseNativeRenderPass: 1
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
@@ -116,6 +130,26 @@ MonoBehaviour:
   m_DepthTextureFormat: 0
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 0
+--- !u!114 &7466862965163290753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b00045f12942b46c698459096c89274e, type: 3}
+  m_Name: FullScreenPassRendererFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  injectionPoint: 450
+  fetchColorBuffer: 1
+  requirements: 0
+  passMaterial: {fileID: -876546973899608171, guid: 1abf3dd6dd66e68459f3d53ca556a488, type: 3}
+  passIndex: 0
+  bindDepthStencilAttachment: 1
+  m_Version: 1
 --- !u!114 &7833122117494664109
 MonoBehaviour:
   m_ObjectHideFlags: 0

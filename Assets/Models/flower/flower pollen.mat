@@ -7,11 +7,12 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material
-  m_Shader: {fileID: -6465566751694194690, guid: 1c7555eb7ee97fd4482a7f229526177e, type: 3}
+  m_Name: flower pollen
+  m_Shader: {fileID: -6465566751694194690, guid: 9d1678eff822d5048a058ae04ca233c1, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _FORWARD_PLUS
   - _MAIN_LIGHT_SHADOWS_CASCADE
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -25,6 +26,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AlphaClipTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -93,6 +98,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -107,6 +116,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _ADDITIONAL_LIGHTS: 0
+    - _ADDITIONAL_LIGHT_SHADOWS: 0
+    - _ADDITIONAL_LIGHT_SHADOWS_1: 0
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
@@ -118,12 +130,13 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
+    - _CutoutEnabled: 0
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _Dither_Value: 500
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
+    - _FORWARD_PLUS: 1
     - _Full_Dark_Size: 0.2
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -131,35 +144,21 @@ Material:
     - _Hatching_Scale: 134.1
     - _Hatching_Strength: 0.34
     - _MAIN_LIGHT: 1
+    - _MAIN_LIGHT_CALCULATE_SHADOWS: 0
     - _Max_Brightness: 1
-    - _Metal_Base_Size: 0.28
-    - _Metal_Highlight_Cutoff: 0.64
-    - _Metal_Highlight_Smoothness: 0.1
-    - _Metal_Rim_Cutoff: 0.46
-    - _Metal_Rim_Power: 2.83
-    - _Metal_Rim_Smoothness: 0.18
-    - _Metal_Specular_Cutoff: 0.6
-    - _Metal_Specular_Smoothness: 0.09
-    - _Metal_Strength: 0.5
     - _Metallic: 0
     - _Min_Brightness: 0.2
-    - _Near_Fade_Cutoff: 0.5
-    - _Near_Fade_Smoothness: 2.89
-    - _Normal_Noise_Scale_Base: 393.1
-    - _Normal_Noise_Scale_Wobble: 2
-    - _Normal_Noise_Strength: 0.46
     - _OcclusionStrength: 1
-    - _Outline_Hatching_Strength: 0.02
-    - _Outline_Strength: 0.4
     - _Parallax: 0.005
     - _PencilSize: 5
-    - _Pencil_Intensity: 0.7
+    - _Pencil_Intensity: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SHADOWS_SOFT: 0
     - _Shade_Size: 0.49
     - _ShadowPencilSize: 6
+    - _Shadow_Smoothness: 1
     - _Shadow_Weakness: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
@@ -168,23 +167,24 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _Use_Smoothness: 0
+    - _Use_Tex_Threshold: 1
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Base_Color: {r: 0.3634389, g: 0.3928193, b: 0.4641509, a: 0}
+    - _Base_Color: {r: 0.92156863, g: 0.85490197, b: 0.54901963, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Metal_Base_Color: {r: 0.38509783, g: 0.40213594, b: 0.4566037, a: 1}
-    - _Metal_Highlight_Color: {r: 0.9037736, g: 0.9174744, b: 1, a: 1}
-    - _Metal_Rim_Color: {r: 0.9037736, g: 0.93074435, b: 1, a: 1}
-    - _Metal_Specular_Color: {r: 0.051285133, g: 0.09921419, b: 0.18490559, a: 1}
-    - _Ramped_Diffuse_Values: {r: 1, g: 1, b: 1, a: 0}
+    - _Highlight: {r: 1, g: 0.9101124, b: 0, a: 0}
+    - _Ignore_Tex_Color: {r: 0.937255, g: 0.8588236, b: 0.46666664, a: 1}
+    - _Midtone: {r: 0.7283019, g: 0.35983267, b: 0.059088584, a: 0}
+    - _Shadow: {r: 0.33942637, g: 0.3509434, b: 0.08144532, a: 0}
+    - _Shadow_Scale: {r: 3, g: 3, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Threshold: {r: 0, g: 0, b: 0, a: 0}
+    - _Thresholds: {r: 0.26, g: 0.43, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &1941732298703353384
+--- !u!114 &705399926790561161
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

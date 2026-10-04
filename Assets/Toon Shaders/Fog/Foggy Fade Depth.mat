@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3008578268108075311
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 10
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Foggy Fade Depth
+  m_Shader: {fileID: -6465566751694194690, guid: c32301c3efb3b804c9229f2856b400b1, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_908207b6acde40cab3f667a34eeb0e92:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_b48b460153d34709884b6438bc6a151e:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_f774defee3a5406a9ceb622cbe7213c0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RippleTex:
+        m_Texture: {fileID: 2800000, guid: 8b904d33a921e1c4b94e3fa6e07a76d0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Ripple_Mask:
+        m_Texture: {fileID: 2800000, guid: 059c3157524007449b39df40428238fd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WaterfallRippleSubgraph_204c09ee38334f81a7cff49c5b21c2b2_RippleMask_2436248826_Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WaterfallRippleSubgraph_61460ad1bb91427a97372397d3e8d9cd_RippleMask_2436248826_Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WaterfallRippleSubgraph_7361ca40dd004bd8ab4ee193d1d2475a_RippleMask_2436248826_Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - Vector1_093ef56d25ee49c1b50e0a3920b868f6: 0.069
+    - Vector1_1d85cf92e649419d9e2d1a0471f15134: 0.6
+    - Vector1_20df93eada1f4070943c50f03f150e81: 1
+    - Vector1_2ba5a5c1bbba4b5b9c9aff9f70921a70: 1
+    - Vector1_2d7e3b4bd51c4910bf99fc7c167bc81b: 0.48
+    - Vector1_4404b753c5fd4ca894e8635bff65f1dc: 5.61
+    - Vector1_4e38f3f045584407ae90461eb6101756: 1
+    - Vector1_6823ce837c7b4e3ba7b8e737fb6cd88d: 0
+    - Vector1_8d990c6cef894c63b678f21eaddce9a4: 0.93
+    - Vector1_9f41615fbe6f47388e5b8b045a045e31: 365.26
+    - Vector1_a47f0c5c6ecf4348843d0e0c51ff2354: 0.48
+    - Vector1_b4651e1c4a334bef8c36a54b0b6c423c: 0.853
+    - Vector1_cb57562c85b847b0b3fc69d44ea9d8f7: 1
+    - Vector1_e2719c30786a4d4b804af8152444e446: 0.303
+    - Vector1_f43f3972eb7941169f3013ad2ece79a8: 1
+    - Vector1_f8914effb3024a26994c7d3939d6cc23: 500
+    - _Falling_Foam_Alpha: 0.3
+    - _Falling_Foam_Existence: 0.67
+    - _Falling_Foam_UV_Distort_Power: 2
+    - _Posterize_Depth: 0.83
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _Reflection_Fresnel_Power: 1.5
+    - _Reflection_Strength: 0.8
+    - _Ripple_Existence: 0.62
+    - _Use_Fog: 1
+    m_Colors:
+    - Color_2e1b98459f464ea7b1383c9594fd91d0: {r: 1, g: 1, b: 1, a: 0}
+    - Color_785d28f280074f10b0a03ab445e73eb8: {r: 0.03995012, g: 0.19325906, b: 0.6830188, a: 0}
+    - Color_d925d3df582c44fb8fb4a7e86c5840e4: {r: 1, g: 1, b: 1, a: 0}
+    - Vector2_1b3bf3e86673452d81551df6f152c93e: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_fd67f1a4adff4db694b79e9cecae58f7: {r: 0, g: 0, b: 0, a: 0}
+    - Vector4_0531145fc8bd4885a11bbfd5e06d8bde: {r: 6, g: 6, b: 0.5, a: 0.5}
+    - Vector4_30ff1b7c168246afafa779c6e55a1329: {r: 5, g: 5, b: 0, a: 0}
+    - _Color: {r: 0.9558443, g: 0.9496974, b: 0.97735846, a: 0}
+    - _Falling_Foam_Color: {r: 0.02133852, g: 0.055791005, b: 0.41886786, a: 1}
+    - _Falling_Foam_Scale: {r: 15.64, g: 45.5, b: 0, a: 0}
+    - _Falling_Foam_Speed: {r: 0, g: 0.47, b: 0, a: 0}
+    - _Falling_Foam_Wave_Speed: {r: 0, g: 0.47, b: 0, a: 0}
+    - _Highlight_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Posterize_Color: {r: 0.81886786, g: 0.72153074, b: 0.72153074, a: 0}
+    - _Ripple_Color: {r: 2.296468, g: 2.463891, b: 2.5623753, a: 0}
+    - _Ripple_Density: {r: 0.44, g: 3.57, b: 0, a: 0}
+    - _Ripple_Scale: {r: 3.57, g: 0.44, b: 0, a: 0}
+    - _Ripple_Speed: {r: 0, g: 0.4, b: 0, a: 0}
+    - _Ripple_Wave_Scale: {r: 0.2, g: 2.85, b: 0, a: 0}
+    - _Ripple_Wave_Speed: {r: 0, g: 2, b: 0, a: 0}
+    - _Super_Highlight_Color: {r: 1.624505, g: 1.624505, b: 1.624505, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
