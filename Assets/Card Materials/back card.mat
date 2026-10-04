@@ -142,15 +142,15 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Hatching_Scale: 134.1
-    - _Hatching_Strength: 0.34
+    - _Hatching_Strength: -0.33
     - _MAIN_LIGHT: 1
     - _Max_Brightness: 1
     - _Metallic: 0
     - _Min_Brightness: 0.2
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _PencilSize: 5
-    - _Pencil_Intensity: 1
+    - _PencilSize: 3.12
+    - _Pencil_Intensity: 0.84
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1

@@ -149,8 +149,8 @@ Material:
     - _Min_Brightness: 0.2
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _PencilSize: 5
-    - _Pencil_Intensity: 1
+    - _PencilSize: 0.21
+    - _Pencil_Intensity: 0.73
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
