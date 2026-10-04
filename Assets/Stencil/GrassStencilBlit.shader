@@ -27,16 +27,13 @@ Shader "Hidden/GrassStencilComposite"
             {
                 Ref 8
                 ReadMask 8
-
                 Comp Equal
-
                 Pass Keep
-                Fail Keep
-                ZFail Keep
             }
 
-            Blend SrcAlpha OneMinusSrcAlpha
-
+            // IMPORTANT:
+            // Grass has ALREADY been blended into TempColor.
+            Blend One Zero
 
             HLSLPROGRAM
 
@@ -46,19 +43,12 @@ Shader "Hidden/GrassStencilComposite"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.core/Runtime/Utilities/Blit.hlsl"
 
-
             half4 FragColor(Varyings input) : SV_Target
             {
-                half4 grass =
-                    SAMPLE_TEXTURE2D_X(
-                        _BlitTexture,
-                        sampler_LinearClamp,
-                        input.texcoord);
-
-                // Temp color was cleared transparent.
-                clip(grass.a - 0.01h);
-
-                return grass;
+                return SAMPLE_TEXTURE2D_X(
+                    _BlitTexture,
+                    sampler_LinearClamp,
+                    input.texcoord);
             }
 
             ENDHLSL

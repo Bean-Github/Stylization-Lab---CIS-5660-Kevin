@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -12,9 +12,15 @@ public class GrassStencilFeature : ScriptableRendererFeature
         private Material compositeMaterial;
         private LayerMask grassLayerMask;
 
+
         // ============================================================
         // PASS DATA
         // ============================================================
+
+        private class ColorCopyData
+        {
+            public TextureHandle source;
+        }
 
         private class DepthCopyData
         {
@@ -32,6 +38,7 @@ public class GrassStencilFeature : ScriptableRendererFeature
             public TextureHandle srcTexture;
             public int materialPass;
         }
+
 
         // ============================================================
         // SETUP
@@ -53,6 +60,7 @@ public class GrassStencilFeature : ScriptableRendererFeature
             grassLayerMask = layerMask;
         }
 
+
         // ============================================================
         // HELPERS
         // ============================================================
@@ -63,6 +71,11 @@ public class GrassStencilFeature : ScriptableRendererFeature
                      in GrassInstancer.ActiveInstancers)
             {
                 if (instancer == null)
+                    continue;
+
+                // Normal rendering and stencil rendering
+                // must be mutually exclusive.
+                if (instancer.renderNormally)
                     continue;
 
                 if (!instancer.HasRenderableInstances)
@@ -77,6 +90,7 @@ public class GrassStencilFeature : ScriptableRendererFeature
             return false;
         }
 
+
         // ============================================================
         // RENDER GRAPH
         // ============================================================
@@ -90,6 +104,7 @@ public class GrassStencilFeature : ScriptableRendererFeature
 
             if (!HasGrassToRender())
                 return;
+
 
             UniversalResourceData resourceData =
                 frameData.Get<UniversalResourceData>();
@@ -107,14 +122,20 @@ public class GrassStencilFeature : ScriptableRendererFeature
 
             colorDescriptor.depthBufferBits = 0;
 
-            // Must contain alpha because alpha == 0 means
-            // "no grass rendered here."
+            // HDR target.
+            //
+            // Important for preserving:
+            // - lighting above 1.0
+            // - emission
+            // - bloom-producing HDR values
+            // - alpha
             colorDescriptor.graphicsFormat =
                 GraphicsFormat.R16G16B16A16_SFloat;
 
             colorDescriptor.bindMS = false;
             colorDescriptor.useMipMap = false;
             colorDescriptor.autoGenerateMips = false;
+
 
             TextureHandle tempColorTarget =
                 UniversalRenderer.CreateRenderGraphTexture(
@@ -126,36 +147,80 @@ public class GrassStencilFeature : ScriptableRendererFeature
 
             // ========================================================
             // CREATE TEMP DEPTH
-            //
-            // IMPORTANT:
-            // Clone the ACTUAL active camera depth target.
-            //
-            // This gives us matching:
-            // - width / height
-            // - depth format
-            // - MSAA
-            // - XR dimensions
             // ========================================================
 
+            // Clone the actual camera depth target so format,
+            // dimensions, MSAA and XR properties match.
             TextureDesc depthDescriptor =
-                resourceData.activeDepthTexture.GetDescriptor(renderGraph);
+                resourceData.activeDepthTexture.GetDescriptor(
+                    renderGraph);
 
-            depthDescriptor.name = "_GrassTempDepth";
-            depthDescriptor.clearBuffer = false;
+            depthDescriptor.name =
+                "_GrassTempDepth";
+
+            depthDescriptor.clearBuffer =
+                false;
+
 
             TextureHandle tempDepthTarget =
-                renderGraph.CreateTexture(depthDescriptor);
+                renderGraph.CreateTexture(
+                    depthDescriptor);
 
 
             // ========================================================
             // PASS 0
             //
+            // CAMERA COLOR -> TEMP COLOR
+            //
+            // THIS IS THE IMPORTANT NEW PASS.
+            //
+            // Instead of starting TempColor transparent, it starts
+            // as an exact copy of the current rendered scene.
+            // ========================================================
+
+            using (
+                var builder =
+                    renderGraph.AddRasterRenderPass<ColorCopyData>(
+                        "Grass - Copy Camera Color",
+                        out var passData))
+            {
+                passData.source =
+                    resourceData.activeColorTexture;
+
+
+                builder.UseTexture(
+                    passData.source,
+                    AccessFlags.Read);
+
+
+                builder.SetRenderAttachment(
+                    tempColorTarget,
+                    0,
+                    AccessFlags.WriteAll);
+
+
+                builder.SetRenderFunc(
+                    (ColorCopyData data,
+                     RasterGraphContext context) =>
+                    {
+                        Blitter.BlitTexture(
+                            context.cmd,
+                            data.source,
+                            new Vector4(
+                                1.0f,
+                                1.0f,
+                                0.0f,
+                                0.0f),
+                            0.0f,
+                            false);
+                    });
+            }
+
+
+            // ========================================================
+            // PASS 1
+            //
             // CAMERA DEPTH -> TEMP DEPTH
-            //
-            // Temp depth needs to begin containing the scene depth.
-            //
-            // Then grass can depth-test against terrain/buildings AND
-            // write its own depth into the temporary depth target.
             // ========================================================
 
             using (
@@ -170,6 +235,7 @@ public class GrassStencilFeature : ScriptableRendererFeature
                 passData.destination =
                     tempDepthTarget;
 
+
                 builder.UseTexture(
                     passData.source,
                     AccessFlags.Read);
@@ -178,15 +244,16 @@ public class GrassStencilFeature : ScriptableRendererFeature
                     passData.destination,
                     AccessFlags.Write);
 
+
                 builder.SetRenderFunc(
                     (DepthCopyData data,
                      UnsafeGraphContext context) =>
                     {
                         CommandBuffer cmd =
                             CommandBufferHelpers
-                                .GetNativeCommandBuffer(context.cmd);
+                                .GetNativeCommandBuffer(
+                                    context.cmd);
 
-                        // Whole-texture copy.
                         cmd.CopyTexture(
                             data.source,
                             data.destination);
@@ -195,20 +262,31 @@ public class GrassStencilFeature : ScriptableRendererFeature
 
 
             // ========================================================
-            // PASS 1
+            // PASS 2
             //
-            // DRAW GRASS INTO:
+            // DRAW GRASS INTO COPIED CAMERA IMAGE
             //
-            // COLOR -> TempColor
-            // DEPTH -> TempDepth
             //
-            // TempDepth already contains scene depth.
+            // BEFORE:
             //
-            // The grass therefore:
-            // 1. depth-tests against the scene
-            // 2. writes its own depth
+            // Transparent black
+            //       ↓
+            // grass alpha blend
+            //       ↓
+            // TempColor
             //
-            // But CAMERA DEPTH remains untouched!
+            //
+            // NOW:
+            //
+            // CameraColor
+            //       ↓
+            // grass alpha blend ONCE
+            //       ↓
+            // TempColor
+            //
+            //
+            // This makes transparent/emissive grass behave much more
+            // like it does during normal rendering.
             // ========================================================
 
             using (
@@ -217,19 +295,26 @@ public class GrassStencilFeature : ScriptableRendererFeature
                         "Grass - Draw Color And Depth",
                         out var passData))
             {
+                // IMPORTANT:
+                //
+                // ReadWrite rather than Write.
+                //
+                // The destination already contains CameraColor,
+                // and transparent grass blending needs to preserve/read
+                // that existing destination.
                 builder.SetRenderAttachment(
                     tempColorTarget,
                     0,
-                    AccessFlags.Write);
+                    AccessFlags.ReadWrite);
 
 
-                // IMPORTANT CHANGE:
+                // TempDepth already contains camera scene depth.
                 //
-                // This is now TEMP depth, not camera depth.
+                // Grass can now:
+                // - test against scene depth
+                // - write its own depth
                 //
-                // ReadWrite:
-                // READ  -> depth-test against existing scene
-                // WRITE -> write grass depth
+                // without modifying CameraDepth yet.
                 builder.SetRenderAttachmentDepth(
                     tempDepthTarget,
                     AccessFlags.ReadWrite);
@@ -239,15 +324,13 @@ public class GrassStencilFeature : ScriptableRendererFeature
                     (GrassDrawData data,
                      RasterGraphContext context) =>
                     {
-                        // Clear ONLY color.
+                        // =================================================
+                        // IMPORTANT:
                         //
-                        // DO NOT clear temp depth because it contains
-                        // our copied scene depth.
-                        context.cmd.ClearRenderTarget(
-                            RTClearFlags.Color,
-                            Color.clear,
-                            1.0f,
-                            0);
+                        // DO NOT CLEAR COLOR HERE.
+                        //
+                        // TempColor already contains CameraColor.
+                        // =================================================
 
 
                         foreach (
@@ -257,11 +340,19 @@ public class GrassStencilFeature : ScriptableRendererFeature
                             if (instancer == null)
                                 continue;
 
+
+                            // Normal rendering and stencil rendering
+                            // are mutually exclusive.
+                            if (instancer.renderNormally)
+                                continue;
+
+
                             if (!instancer.IsInLayerMask(
                                     grassLayerMask))
                             {
                                 continue;
                             }
+
 
                             if (!instancer.HasRenderableInstances)
                                 continue;
@@ -278,6 +369,7 @@ public class GrassStencilFeature : ScriptableRendererFeature
 
                                 if (count <= 0)
                                     continue;
+
 
                                 Matrix4x4[] matrices =
                                     instancer
@@ -301,15 +393,24 @@ public class GrassStencilFeature : ScriptableRendererFeature
 
 
             // ========================================================
-            // PASS 2
+            // PASS 3
             //
-            // STENCIL-COMPOSITE GRASS COLOR
+            // STENCIL COLOR COMPOSITE
             //
-            // Stencil == 8:
-            //     TempColor -> CameraColor
             //
-            // Stencil != 8:
-            //     CameraColor unchanged
+            // TempColor already contains:
+            //
+            //     Original CameraColor
+            //             +
+            //     correctly blended grass
+            //
+            // Therefore this is a straight COPY.
+            //
+            // The shader uses:
+            //
+            //     Blend One Zero
+            //
+            // NOT SrcAlpha OneMinusSrcAlpha.
             // ========================================================
 
             using (
@@ -324,8 +425,8 @@ public class GrassStencilFeature : ScriptableRendererFeature
                 passData.srcTexture =
                     tempColorTarget;
 
-                // Pass 0 of our composite shader = color.
-                passData.materialPass = 0;
+                passData.materialPass =
+                    0;
 
 
                 builder.UseTexture(
@@ -333,14 +434,25 @@ public class GrassStencilFeature : ScriptableRendererFeature
                     AccessFlags.Read);
 
 
+                // ReadWrite is important even though the shader itself
+                // uses Blend One Zero.
+                //
+                // Pixels that FAIL stencil must preserve the existing
+                // camera image.
                 builder.SetRenderAttachment(
                     resourceData.activeColorTexture,
                     0,
                     AccessFlags.ReadWrite);
 
 
-                // Needed because this attachment contains the stencil
-                // being tested by the composite shader.
+                // Supplies stencil buffer for:
+                //
+                // Stencil
+                // {
+                //     Ref 8
+                //     ReadMask 8
+                //     Comp Equal
+                // }
                 builder.SetRenderAttachmentDepth(
                     resourceData.activeDepthTexture,
                     AccessFlags.Read);
@@ -365,17 +477,9 @@ public class GrassStencilFeature : ScriptableRendererFeature
 
 
             // ========================================================
-            // PASS 3
+            // PASS 4
             //
-            // STENCIL-COMPOSITE GRASS DEPTH
-            //
-            // Stencil == 8:
-            //     TempDepth -> CameraDepth
-            //
-            // Stencil != 8:
-            //     CameraDepth unchanged
-            //
-            // This is the critical new part.
+            // STENCIL DEPTH COMPOSITE
             // ========================================================
 
             using (
@@ -390,21 +494,17 @@ public class GrassStencilFeature : ScriptableRendererFeature
                 passData.srcTexture =
                     tempDepthTarget;
 
-                // Pass 1 of our composite shader = depth.
-                passData.materialPass = 1;
+                passData.materialPass =
+                    1;
 
 
-                // Sample temporary depth.
                 builder.UseTexture(
                     tempDepthTarget,
                     AccessFlags.Read);
 
 
-                // READ:
-                // stencil test
-                //
-                // WRITE:
-                // write grass depth into camera depth
+                // Preserve depth outside the stencil while replacing
+                // depth inside the accepted stencil region.
                 builder.SetRenderAttachmentDepth(
                     resourceData.activeDepthTexture,
                     AccessFlags.ReadWrite);
@@ -446,9 +546,6 @@ public class GrassStencilFeature : ScriptableRendererFeature
 
 
         [Header("Render Timing")]
-
-        // This is before normal transparent rendering, so transparent
-        // objects rendered afterward can depth-test against the grass.
         public RenderPassEvent renderPassEvent =
             RenderPassEvent.AfterRenderingOpaques;
     }
@@ -456,6 +553,7 @@ public class GrassStencilFeature : ScriptableRendererFeature
 
     public Settings settings =
         new Settings();
+
 
     private GrassPass grassPass;
 
@@ -487,13 +585,17 @@ public class GrassStencilFeature : ScriptableRendererFeature
         if (settings.compositeMaterial == null)
             return;
 
+
         grassPass.Setup(
             settings.compositeMaterial,
             settings.grassLayerMask);
 
+
         grassPass.renderPassEvent =
             settings.renderPassEvent;
 
-        renderer.EnqueuePass(grassPass);
+
+        renderer.EnqueuePass(
+            grassPass);
     }
 }
