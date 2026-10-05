@@ -29,7 +29,7 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _Fresnel_Color: {r: 0.93146604, g: 1, b: 0.57254905, a: 0}
+    - _Fresnel_Color: {r: 0.69494903, g: 1, b: 0.57254905, a: 0}
     - _Shadow: {r: 0.23773581, g: 0.21755068, b: 0.19332854, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
