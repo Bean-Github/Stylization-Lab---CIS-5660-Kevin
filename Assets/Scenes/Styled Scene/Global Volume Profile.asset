@@ -24,13 +24,13 @@ MonoBehaviour:
     m_Value: 0
   scatter:
     m_OverrideState: 1
-    m_Value: 0.482
+    m_Value: 0.358
   clamp:
     m_OverrideState: 0
     m_Value: 65472
   tint:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    m_Value: {r: 0.7150943, g: 0.925316, b: 1, a: 1}
   highQualityFiltering:
     m_OverrideState: 0
     m_Value: 0
@@ -132,6 +132,7 @@ MonoBehaviour:
   - {fileID: -6980780045854952723}
   - {fileID: 4156476566159976651}
   - {fileID: -5624837750673106160}
+  - {fileID: 5482519374570398008}
 --- !u!114 &4156476566159976651
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -178,3 +179,19 @@ MonoBehaviour:
   bladeRotation:
     m_OverrideState: 0
     m_Value: 0
+--- !u!114 &5482519374570398008
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae21c2c2643bfac40b6b8acb4daf7c71, type: 3}
+  m_Name: CustomVolumeComponent
+  m_EditorClassIdentifier: 
+  active: 1
+  intensity:
+    m_OverrideState: 1
+    m_Value: 1

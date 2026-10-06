@@ -69,7 +69,7 @@ Material:
     - _Fog_Color: {r: 0, g: 0, b: 0, a: 0}
     - _Near_Color: {r: 0.08443119, g: 0.2679245, b: 0.07835524, a: 1}
     - _Player_Position: {r: 0, g: 0, b: 0, a: 0}
-    - _Root_Color: {r: 0.5773585, g: 0.4804483, b: 0.30828762, a: 0}
+    - _Root_Color: {r: 0.6377357, g: 0.5370818, b: 0.35015297, a: 0}
     - _Tall_Color: {r: 0, g: 0, b: 0, a: 0}
     - _Wind_Color: {r: 0.5999999, g: 0.13018857, b: 0.26154095, a: 0}
     - _Wind_Scale: {r: 75, g: 75, b: 0, a: 0}

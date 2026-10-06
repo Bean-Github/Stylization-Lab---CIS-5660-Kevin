@@ -74,6 +74,21 @@ MonoBehaviour:
       m_Bits: 256
     compositeMaterial: {fileID: 2100000, guid: ec814c4e6819f304e8b5a1110ee94327, type: 2}
     renderPassEvent: 500
+--- !u!114 &-692222137901470909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71b27c4817d276a4abe08214ce7d560d, type: 3}
+  m_Name: WatercolorEffectRendererFeature
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  injectionPoint: 1000
+  material: {fileID: 2100000, guid: 08c0e642fea255240a1543b9ac8c2fb0, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,7 +119,8 @@ MonoBehaviour:
   - {fileID: -1095705360204769507}
   - {fileID: -1236038612579199342}
   - {fileID: 7466862965163290753}
-  m_RendererFeatureMap: ad6b866f10d7b46c5b29341d504e41b71dd780bac745cbf092d68c406eb5d8ee81f013414ea09f67
+  - {fileID: -692222137901470909}
+  m_RendererFeatureMap: ad6b866f10d7b46c5b29341d504e41b71dd780bac745cbf092d68c406eb5d8ee81f013414ea09f6743abb814a2bb64f6
   m_UseNativeRenderPass: 1
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}

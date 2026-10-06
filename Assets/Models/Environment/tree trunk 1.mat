@@ -133,7 +133,7 @@ Material:
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
     - _FORWARD_PLUS: 1
-    - _Fresnel_Power: 3.86
+    - _Fresnel_Power: 6.32
     - _Full_Dark_Size: 0.2
     - _GlossMapScale: 0
     - _Glossiness: 0
