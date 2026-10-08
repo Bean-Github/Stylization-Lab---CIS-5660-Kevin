@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_Holographic 2
+  m_Name: Shader Graphs_Holographic main
   m_Shader: {fileID: -6465566751694194690, guid: 2bdf571286977324d8132b98e0b647a2, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
