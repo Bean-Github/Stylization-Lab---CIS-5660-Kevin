@@ -37,6 +37,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Fullscreen_DepthWrite: 0
+    - _Fullscreen_Stencil: 1
+    - _Fullscreen_StencilComparison: 3
+    - _Fullscreen_StencilDepthFail: 0
+    - _Fullscreen_StencilFail: 0
+    - _Fullscreen_StencilPass: 0
+    - _Fullscreen_StencilReadMask: 8
+    - _Fullscreen_StencilReference: 8
+    - _Fullscreen_StencilWriteMask: 255
     - _Max_Distance: 1000
     - _Min_Distance: 50
     m_Colors:

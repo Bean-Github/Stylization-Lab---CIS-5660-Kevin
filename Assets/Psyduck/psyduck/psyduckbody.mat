@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: psyduckbody
-  m_Shader: {fileID: -6465566751694194690, guid: 9d1678eff822d5048a058ae04ca233c1, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 96f24dea42733e542ade4ff73e4b0ece, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -150,12 +150,12 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Highlight: {r: 1, g: 0.9875918, b: 0.68490565, a: 0}
+    - _Highlight: {r: 0.7132075, g: 0.70133674, b: 0.38082585, a: 0}
     - _Ignore_Tex_Color: {r: 0.937255, g: 0.8588236, b: 0.46666664, a: 1}
-    - _Midtone: {r: 1, g: 0.50377357, b: 0.50377357, a: 0}
-    - _Shadow: {r: 0.6679245, g: 0.4104254, b: 0.24574572, a: 0}
+    - _Midtone: {r: 0.6226415, g: 0.4132434, b: 0.21028832, a: 0}
+    - _Shadow: {r: 0.6150943, g: 0.3346495, b: 0.15667489, a: 0}
     - _Shadow_Scale: {r: 3, g: 3, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Thresholds: {r: 0.12, g: 0.36, b: 0, a: 0}
+    - _Thresholds: {r: -0.11, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

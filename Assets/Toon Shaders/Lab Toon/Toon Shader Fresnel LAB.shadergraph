@@ -1415,13 +1415,16 @@
             "m_Id": "cf48ecd796ca4b7fb4481ddfec688db3"
         },
         {
-            "m_Id": "150f62e753f64f9dbc92f8dd1bd98c56"
-        },
-        {
             "m_Id": "6898b6fc7c13461f801b03750afc2cd9"
         },
         {
             "m_Id": "5241b81e0d5b461ca6db7a0dc8458b94"
+        },
+        {
+            "m_Id": "74aca374ce2a44109937fa8f8b000402"
+        },
+        {
+            "m_Id": "cb556ba617b345708faf0a3622a6a496"
         },
         {
             "m_Id": "4fc2233f0d764c198ac0b4053ff89655"
@@ -1441,42 +1444,21 @@
         "7602b953-17a2-45c8-a2e9-1e68d0751b81",
         "9e72ce14-3260-45ad-b6a2-a8711779a52a",
         "d4757a38-3525-42ea-a676-467592766178",
-        "820286d1-0b12-4fdb-87f3-1752574d9c96"
+        "820286d1-0b12-4fdb-87f3-1752574d9c96",
+        "56edf36e-9ff7-4106-8172-58a4dcc825ef",
+        "82cbd5c0-bcd4-4332-81fb-a3eda51d356a"
     ],
     "m_PropertyIds": [
         -1322375787,
         -623955325,
         -2133710891,
         -1682419927,
-        156381971
+        156381971,
+        1553389252,
+        1181716272
     ],
     "m_Dropdowns": [],
     "m_DropdownSelectedEntries": []
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
-    "m_ObjectId": "150f62e753f64f9dbc92f8dd1bd98c56",
-    "m_Id": -2133710891,
-    "m_DisplayName": "Fog Color",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "_Fog_Color",
-    "m_StageCapability": 3,
-    "m_Value": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0,
-        "w": 0.0
-    },
-    "m_DefaultValue": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0,
-        "w": 0.0
-    },
-    "m_Labels": []
 }
 
 {
@@ -2643,31 +2625,31 @@
     "m_SlotType": 0,
     "m_Hidden": false,
     "m_ShaderOutputName": "_Gradient",
-    "m_StageCapability": 3,
+    "m_StageCapability": 2,
     "m_Value": {
         "serializedVersion": "2",
         "key0": {
-            "r": 0.027347741648554803,
-            "g": 0.23384590446949006,
-            "b": 0.6301887035369873,
+            "r": 6.964404106140137,
+            "g": 6.28872537612915,
+            "b": 4.559713363647461,
             "a": 1.0
         },
         "key1": {
-            "r": 0.20551785826683045,
-            "g": 0.40280455350875857,
-            "b": 0.947169840335846,
+            "r": 6.443155288696289,
+            "g": 6.431069374084473,
+            "b": 5.677270889282227,
             "a": 1.0
         },
         "key2": {
-            "r": 0.3029334247112274,
-            "g": 0.504455029964447,
-            "b": 0.592452883720398,
+            "r": 3.2081704139709474,
+            "g": 3.019766092300415,
+            "b": 0.6961119771003723,
             "a": 0.0
         },
         "key3": {
-            "r": 0.32866495847702029,
-            "g": 0.6187078952789307,
-            "b": 0.7811320424079895,
+            "r": 0.2678889036178589,
+            "g": 0.6603773832321167,
+            "b": 0.4351844787597656,
             "a": 0.0
         },
         "key4": {
@@ -2695,9 +2677,9 @@
             "a": 0.0
         },
         "ctime0": 0,
-        "ctime1": 29118,
-        "ctime2": 51774,
-        "ctime3": 65535,
+        "ctime1": 19387,
+        "ctime2": 30487,
+        "ctime3": 44628,
         "ctime4": 0,
         "ctime5": 0,
         "ctime6": 0,
@@ -2981,8 +2963,8 @@
     "m_ObjectId": "59bb1537cdcf491fb7ee2bfdb1f6004b",
     "m_Title": "Shadows",
     "m_Position": {
-        "x": -3440.800048828125,
-        "y": 747.9999389648438
+        "x": -3440.7998046875,
+        "y": 747.9998779296875
     }
 }
 
@@ -3494,12 +3476,27 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "74aca374ce2a44109937fa8f8b000402",
+    "m_Id": 1553389252,
+    "m_DisplayName": "Min Distance",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_Min_Distance",
+    "m_StageCapability": 2,
+    "m_Value": 10.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.GroupData",
     "m_ObjectId": "78c87a041b32473fbda25d067af00607",
     "m_Title": "N DOT L",
     "m_Position": {
         "x": -2887.199951171875,
-        "y": 254.40000915527345
+        "y": 254.39996337890626
     }
 }
 
@@ -3510,7 +3507,7 @@
     "m_Title": "Fog Pass",
     "m_Position": {
         "x": 1499.2001953125,
-        "y": -101.59999084472656
+        "y": -101.60003662109375
     }
 }
 
@@ -5109,6 +5106,21 @@
         "e32": 0.0,
         "e33": 1.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "cb556ba617b345708faf0a3622a6a496",
+    "m_Id": 1181716272,
+    "m_DisplayName": "Max Distance",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_Max_Distance",
+    "m_StageCapability": 2,
+    "m_Value": 75.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
 }
 
 {
