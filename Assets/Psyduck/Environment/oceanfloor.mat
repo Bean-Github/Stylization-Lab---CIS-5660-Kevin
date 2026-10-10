@@ -121,15 +121,15 @@ Material:
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
     - _FORWARD_PLUS: 1
-    - _Far_Pos: 15.9
+    - _Far_Pos: 18.09
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _MAIN_LIGHT: 1
     - _MAIN_LIGHT_CALCULATE_SHADOWS: 0
     - _Metallic: 0
-    - _Mid_Pos: 8.9
-    - _Near_Pos: 1.9
+    - _Mid_Pos: 17.33
+    - _Near_Pos: 5.75
     - _Noise_Scale: 4827.4
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -151,9 +151,10 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color_Far: {r: 0.019501582, g: 0.93962264, b: 0.7221507, a: 0}
-    - _Color_Mid: {r: 0.1256888, g: 0.41037047, b: 0.5245282, a: 0}
-    - _Color_Near: {r: 0.91886795, g: 1, b: 0.95481277, a: 0}
+    - _Color_Far: {r: 0.17628334, g: 0.5689592, b: 0.7132075, a: 0}
+    - _Color_Mid: {r: 0.31694552, g: 0.5471698, b: 0.48845935, a: 0}
+    - _Color_Near: {r: 1, g: 0.9753261, b: 0.8283019, a: 0}
+    - _Color_Near_Mid: {r: 0.7194732, g: 0.8113208, b: 0.71488076, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Highlight: {r: 1, g: 0.9693355, b: 0.54905653, a: 0}
     - _Ignore_Tex_Color: {r: 0.937255, g: 0.8588236, b: 0.46666664, a: 1}

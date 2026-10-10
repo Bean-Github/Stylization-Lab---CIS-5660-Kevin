@@ -5,6 +5,7 @@ Shader "Custom/ThickRefractiveWaterCurved"
         [Header(Overall Volume Tint)]
         [HDR] _OverallTintColor ("Overall Tint Color", Color) = (1,1,1,1)
         _OverallTintStrength ("Overall Tint Strength", Range(0,1)) = 1
+        _FarTintInfluence ("Deep Water Tint Influence", Range(0,1)) = 0
 
         [Header(Water Color)]
         [HDR] _NearColor ("Shallow Color", Color) = (0.05, 0.65, 0.75, 1)
@@ -95,6 +96,7 @@ Shader "Custom/ThickRefractiveWaterCurved"
             CBUFFER_START(UnityPerMaterial)
                 half4 _OverallTintColor;
                 half _OverallTintStrength;
+                half _FarTintInfluence;
                 half4 _NearColor, _FarColor;
                 float _NearFadeDistance, _FarFadeDistance;
                 half _TopNearColorStrength, _DepthColorStrength;
@@ -205,14 +207,18 @@ Shader "Custom/ThickRefractiveWaterCurved"
                 return a + b * 0.65;
             }
 
-            // Multiplicative tint applied AFTER all water rendering, including
-            // near/far colors, both waterlines, Fresnel and specular glimmers.
-            // White or strength 0 = unchanged original shader appearance.
-            half3 ApplyOverallTint(half3 color)
+            // Apply the art-direction tint to shallow water, then smoothly
+            // reduce its influence as view-ray thickness approaches Far Fade Distance.
+            // At depthFactor == 1, _FarTintInfluence == 0 preserves the entire
+            // original deep-water appearance, including the authored _FarColor.
+            half3 ApplyOverallTint(half3 color, float depthFactor)
             {
-                half3 tint = lerp(half3(1.0, 1.0, 1.0),
+                half deepInfluence = saturate(_FarTintInfluence);
+                half depthWeight = lerp(1.0h, deepInfluence, saturate(depthFactor));
+                half tintStrength = saturate(_OverallTintStrength) * depthWeight;
+                half3 tint = lerp(half3(1.0h, 1.0h, 1.0h),
                                   _OverallTintColor.rgb,
-                                  _OverallTintStrength);
+                                  tintStrength);
                 return color * tint;
             }
 
@@ -291,7 +297,7 @@ Shader "Custom/ThickRefractiveWaterCurved"
                                      saturate(darkMask * _SurfaceBandStrength));
                     sideColor = lerp(sideColor, _LightBandColor.rgb,
                                      saturate(lightMask * _LightBandStrength));
-                    return half4(ApplyOverallTint(sideColor), 1);
+                    return half4(ApplyOverallTint(sideColor, depthFactor), 1);
                 }
 
                 // TOP: preserve the original depth/refraction/fresnel/glimmer workflow.
@@ -339,7 +345,7 @@ Shader "Custom/ThickRefractiveWaterCurved"
                 spec *= lerp(1.0, mask, _SpecularTextureStrength);
                 surfaceColor += _SpecularColor.rgb * spec * _SpecularStrength;
 
-                return half4(ApplyOverallTint(surfaceColor), 1);
+                return half4(ApplyOverallTint(surfaceColor, depthFactor), 1);
             }
             ENDHLSL
         }
