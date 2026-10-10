@@ -150,7 +150,7 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Highlight: {r: 0.2603773, g: 0.23274289, b: 0.22353144, a: 0}
+    - _Highlight: {r: 1, g: 1, b: 1, a: 0}
     - _Ignore_Tex_Color: {r: 0.937255, g: 0.8588236, b: 0.46666664, a: 1}
     - _Midtone: {r: 0.335849, g: 0.30959663, b: 0.28071904, a: 0}
     - _Shadow: {r: 0.23018861, g: 0.19721991, b: 0.15765747, a: 0}
