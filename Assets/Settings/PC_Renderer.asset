@@ -1,5 +1,47 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5512062008809867827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
+  m_Name: RenderObjects
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  settings:
+    passTag: RenderObjects
+    Event: 450
+    filterSettings:
+      RenderQueueType: 1
+      LayerMask:
+        serializedVersion: 2
+        m_Bits: 64
+      PassNames: []
+    overrideMaterial: {fileID: 0}
+    overrideMaterialPassIndex: 0
+    overrideShader: {fileID: 0}
+    overrideShaderPassIndex: 0
+    overrideMode: 1
+    overrideDepthState: 0
+    depthCompareFunction: 4
+    enableWrite: 0
+    stencilSettings:
+      overrideStencilState: 1
+      stencilReference: 8
+      stencilCompareFunction: 3
+      passOperation: 0
+      failOperation: 0
+      zFailOperation: 0
+    cameraSettings:
+      overrideCamera: 0
+      restoreCamera: 1
+      offset: {x: 0, y: 0, z: 0, w: 0}
+      cameraFieldOfView: 60
 --- !u!114 &-5241822385288238757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28,7 +70,7 @@ MonoBehaviour:
   m_Active: 1
   settings:
     passTag: RenderObjects
-    Event: 450
+    Event: 350
     filterSettings:
       RenderQueueType: 0
       LayerMask:
@@ -40,9 +82,9 @@ MonoBehaviour:
     overrideShader: {fileID: 0}
     overrideShaderPassIndex: 0
     overrideMode: 1
-    overrideDepthState: 0
-    depthCompareFunction: 7
-    enableWrite: 0
+    overrideDepthState: 1
+    depthCompareFunction: 4
+    enableWrite: 1
     stencilSettings:
       overrideStencilState: 1
       stencilReference: 8
@@ -74,21 +116,6 @@ MonoBehaviour:
       m_Bits: 256
     compositeMaterial: {fileID: 2100000, guid: ec814c4e6819f304e8b5a1110ee94327, type: 2}
     renderPassEvent: 500
---- !u!114 &-692222137901470909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71b27c4817d276a4abe08214ce7d560d, type: 3}
-  m_Name: WatercolorEffectRendererFeature
-  m_EditorClassIdentifier: 
-  m_Active: 0
-  injectionPoint: 1000
-  material: {fileID: 2100000, guid: 08c0e642fea255240a1543b9ac8c2fb0, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,12 +142,13 @@ MonoBehaviour:
     probeVolumeBlendStatesCS: {fileID: 7200000, guid: b9a23f869c4fd45f19c5ada54dd82176, type: 3}
   m_RendererFeatures:
   - {fileID: 7833122117494664109}
+  - {fileID: 7860783880107658837}
   - {fileID: -5241822385288238757}
   - {fileID: -1095705360204769507}
   - {fileID: -1236038612579199342}
   - {fileID: 7466862965163290753}
-  - {fileID: -692222137901470909}
-  m_RendererFeatureMap: ad6b866f10d7b46c5b29341d504e41b71dd780bac745cbf092d68c406eb5d8ee81f013414ea09f6743abb814a2bb64f6
+  - {fileID: -5512062008809867827}
+  m_RendererFeatureMap: ad6b866f10d7b46c550eef6d4a1d176d5b29341d504e41b71dd780bac745cbf092d68c406eb5d8ee81f013414ea09f67cd35f6a0ce3881b3
   m_UseNativeRenderPass: 1
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
@@ -192,3 +220,22 @@ MonoBehaviour:
     BlurQuality: 0
     Falloff: 100
     SampleCount: -1
+--- !u!114 &7860783880107658837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09c39f2cdce1b7f48b26e4b0b0fab8a4, type: 3}
+  m_Name: InsideCardStencilDepthFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    insideCardLayer:
+      serializedVersion: 2
+      m_Bits: 64
+    depthOnlyMaterial: {fileID: 2100000, guid: 08f9732878a42d247950bd223a2f4267, type: 2}
+    passEvent: 350

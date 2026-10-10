@@ -57,8 +57,10 @@ Material:
     - _SpecularTextureScale: 0.2
     - _SpecularTextureSpeed: 0.005
     - _SpecularTextureStrength: 1
+    - _StencilReadMask: 8
+    - _StencilRef: 8
     - _SurfaceBandStrength: 1.67
-    - _SurfaceBandWidth: 0.02
+    - _SurfaceBandWidth: 0.025
     - _TintStrength: 0.25
     - _TopNearColorStrength: 0.2
     - _TopNormalThreshold: 0.75

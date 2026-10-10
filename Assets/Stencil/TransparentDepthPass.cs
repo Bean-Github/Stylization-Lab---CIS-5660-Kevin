@@ -55,7 +55,9 @@ public class TransparentDepthFeature : ScriptableRendererFeature
         m_Pass = new TransparentDepthPass();
 
         // Ensure this executes after all transparent objects are drawn
-        m_Pass.renderPassEvent = RenderPassEvent.AfterRenderingTransparents;
+        m_Pass.renderPassEvent = (RenderPassEvent)(
+    (int)RenderPassEvent.AfterRenderingSkybox + 1
+);
     }
 
     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)

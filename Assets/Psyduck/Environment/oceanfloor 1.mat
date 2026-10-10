@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: oceanfloor
+  m_Name: oceanfloor 1
   m_Shader: {fileID: -6465566751694194690, guid: 7a790e13137d6b445ac7f72c8408fe62, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -121,16 +121,16 @@ Material:
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
     - _FORWARD_PLUS: 1
-    - _Far_Pos: 18.09
+    - _Far_Pos: 10.52
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _MAIN_LIGHT: 1
     - _MAIN_LIGHT_CALCULATE_SHADOWS: 0
     - _Metallic: 0
-    - _Mid_Pos: 17.33
-    - _Near_Pos: 5.75
-    - _Noise_Scale: 4827.4
+    - _Mid_Pos: 4.9
+    - _Near_Pos: -1.52
+    - _Noise_Scale: 3148.8
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -151,10 +151,10 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color_Far: {r: 0.17647056, g: 0.50559056, b: 0.7137255, a: 0}
-    - _Color_Mid: {r: 0.31764707, g: 0.46692154, b: 0.54901963, a: 0}
-    - _Color_Near: {r: 1, g: 0.9753261, b: 0.8283019, a: 0}
-    - _Color_Near_Mid: {r: 0.7137255, g: 0.7964189, b: 0.8117647, a: 0}
+    - _Color_Far: {r: 0.34776068, g: 0.6624757, b: 0.7584905, a: 0}
+    - _Color_Mid: {r: 0.24333921, g: 0.8803657, b: 0.90188676, a: 0}
+    - _Color_Near: {r: 0.9254511, g: 1, b: 0.76037735, a: 0}
+    - _Color_Near_Mid: {r: 0.03364181, g: 0.6603774, b: 0.36790076, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Highlight: {r: 1, g: 0.9693355, b: 0.54905653, a: 0}
     - _Ignore_Tex_Color: {r: 0.937255, g: 0.8588236, b: 0.46666664, a: 1}

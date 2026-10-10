@@ -1,7 +1,13 @@
 Shader "Custom/ThickRefractiveWaterCurved"
 {
+
+
     Properties
     {
+        [Header(Stencil Mask)]
+            _StencilRef ("Stencil Reference", Int) = 8
+            _StencilReadMask ("Stencil Read Mask", Int) = 8
+
         [Header(Overall Volume Tint)]
         [HDR] _OverallTintColor ("Overall Tint Color", Color) = (1,1,1,1)
         _OverallTintStrength ("Overall Tint Strength", Range(0,1)) = 1
@@ -80,6 +86,20 @@ Shader "Custom/ThickRefractiveWaterCurved"
             ZWrite Off
             ZTest LEqual
             Blend One Zero
+
+            
+            Stencil
+            {
+                Ref [_StencilRef]
+                ReadMask [_StencilReadMask]
+                WriteMask 0
+
+                Comp Equal
+
+                Pass Keep
+                Fail Keep
+                ZFail Keep
+            }
 
             HLSLPROGRAM
             #pragma target 3.0

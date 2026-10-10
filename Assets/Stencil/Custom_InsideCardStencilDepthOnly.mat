@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Custom_Outline
-  m_Shader: {fileID: 4800000, guid: c660d722912809f498e27413934ee54a, type: 3}
+  m_Name: Custom_InsideCardStencilDepthOnly
+  m_Shader: {fileID: 4800000, guid: aa5c76f8a2af7ff4d842523a25da0cb6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -25,9 +25,8 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _OutlineWidth: 0.02
+    - _StencilReadMask: 8
     - _StencilRef: 8
-    m_Colors:
-    - _OutlineColor: {r: 0.4641509, g: 0.23956749, b: 0.013136267, a: 1}
+    m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
