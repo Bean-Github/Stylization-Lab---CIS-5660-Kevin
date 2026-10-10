@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Custom_RealtimeCausticsVolume 2
+  m_Name: caustics mini
   m_Shader: {fileID: 4800000, guid: 07d9bbad909ffb144b67ad09af77a708, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -33,12 +33,12 @@ Material:
     - _CausticsFadeRadius: 0.4
     - _CausticsFadeStrength: 0.1
     - _CausticsLuminanceMaskStrength: 1
-    - _CausticsScale: 6.67
+    - _CausticsScale: 8.75
     - _CausticsShadowStrength: 1
-    - _CausticsSpeed: 0.03
-    - _CausticsSplit: 0.0028
-    - _CausticsStrength: 7
+    - _CausticsSpeed: 0.12
+    - _CausticsSplit: 0.0036
+    - _CausticsStrength: 5.98
     m_Colors:
-    - _CausticsTint: {r: 2.4622889, g: 2.4622889, b: 2.4622889, a: 1}
+    - _CausticsTint: {r: 0.4188679, g: 0.4188679, b: 0.4188679, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

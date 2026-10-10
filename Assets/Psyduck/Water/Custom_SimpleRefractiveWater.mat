@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Custom_SimpleRefractiveWater
+  m_Shader: {fileID: 4800000, guid: e1ad0187ba2608b4f9001c5ac7dc357a, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _SpecularTexture:
+        m_Texture: {fileID: 2800000, guid: cffd7fbdbcb30054181850984376dd0d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AbsorptionDensity: 0.28
+    - _BandFeather: 0.04
+    - _DepthColorStrength: 0.83
+    - _DepthDistance: 7.41
+    - _FarFadeDistance: 9.06
+    - _FresnelPower: 0.5
+    - _FresnelStrength: 0.952
+    - _LightBandStrength: 2.53
+    - _LightBandWidth: 0.393
+    - _NearFadeDistance: 3.96
+    - _OverallTintStrength: 0.624
+    - _RefractionStrength: 0.0379
+    - _SideNearTint: 0.18
+    - _SideRefractionStrength: 0.0028
+    - _SideScatterStrength: 1
+    - _SideWaveScale: 8
+    - _Smoothness: 0.98
+    - _SpecWaveScale1: 100
+    - _SpecWaveScale2: 56.2
+    - _SpecWaveSpeed1: 1.4
+    - _SpecWaveSpeed2: 2.15
+    - _SpecWaveStrength: 0.18
+    - _SpecularPower: 62.35
+    - _SpecularStrength: 5.4
+    - _SpecularTextureScale: 0.2
+    - _SpecularTextureSpeed: 0.005
+    - _SpecularTextureStrength: 1
+    - _SurfaceBandStrength: 1.67
+    - _SurfaceBandWidth: 0.02
+    - _TintStrength: 0.25
+    - _TopNearColorStrength: 0.2
+    - _TopNormalThreshold: 0.75
+    - _TopRimStrength: 0
+    - _TopRimWidth: 0.11
+    - _WaveScale: 2.76
+    - _WaveSpeed: 1.42
+    - _WaveStrength: 0.495
+    m_Colors:
+    - _FarColor: {r: 0.12641507, g: 0.4577749, b: 1, a: 1}
+    - _FresnelColor: {r: 0.109803915, g: 0.5646238, b: 1, a: 1}
+    - _LightBandColor: {r: 0.58901805, g: 1.7450639, b: 1.8443025, a: 1}
+    - _NearColor: {r: 0.27058825, g: 0.30879748, b: 0.43529412, a: 1}
+    - _OverallTintColor: {r: 0.45683873, g: 0.78867924, b: 0.6338203, a: 1}
+    - _SpecularColor: {r: 63.25358, g: 63.25358, b: 63.25358, a: 1}
+    - _SpecularDirection: {r: -0.32, g: 0.9, b: 1.2, a: 0}
+    - _SurfaceBandColor: {r: 0.018647179, g: 0.093533665, b: 0.3660378, a: 1}
+    - _VolumeMaxOS: {r: 0.5, g: 0.5, b: 0.5, a: 0}
+    - _VolumeMinOS: {r: -0.5, g: -0.5, b: -0.5, a: 0}
+    - _WaterColor: {r: 0.04, g: 0.34999996, b: 0.47999996, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
