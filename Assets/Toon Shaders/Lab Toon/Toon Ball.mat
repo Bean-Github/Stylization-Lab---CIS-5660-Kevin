@@ -75,12 +75,12 @@ Material:
     - _SHADOWS_SOFT: 0
     - _Shadow_Smoothness: 1
     - _UseFog: 0
-    - _Use_Tex_Threshold: 0.25
+    - _Use_Tex_Threshold: 16.9
     m_Colors:
-    - _Highlight: {r: 0.8, g: 0.8980392, b: 0.6862745, a: 0}
+    - _Highlight: {r: 1, g: 1, b: 1, a: 0}
     - _Ignore_Tex_Color: {r: 0.937255, g: 0.8588236, b: 0.46666664, a: 1}
     - _Midtone: {r: 0.45334494, g: 0.6377357, b: 0.23945165, a: 0}
-    - _Shadow: {r: 0.05490196, g: 0.30980393, b: 0.12156863, a: 0}
+    - _Shadow: {r: 0.29700956, g: 0.3056603, b: 0.29927206, a: 0}
     - _Shadow_Scale: {r: 3, g: 3, b: 0, a: 0}
     - _Thresholds: {r: 0.44, g: 0.73, b: 0, a: 0}
   m_BuildTextureStacks: []

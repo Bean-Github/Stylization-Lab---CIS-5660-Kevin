@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: psyduckeyes
-  m_Shader: {fileID: -6465566751694194690, guid: 9d1678eff822d5048a058ae04ca233c1, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 96f24dea42733e542ade4ff73e4b0ece, type: 3}
   m_Parent: {fileID: 2100000, guid: d858ecb942d6ab647a00ac2ec12ff756, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:

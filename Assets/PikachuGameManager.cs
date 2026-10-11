@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class PikachuGameManager : MonoBehaviour
 {
 
     public GameObject exclamationMark;
