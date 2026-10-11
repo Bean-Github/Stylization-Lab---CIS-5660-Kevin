@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09c39f2cdce1b7f48b26e4b0b0fab8a4, type: 3}
   m_Name: InsideCardStencilDepthFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     insideCardLayer:
       serializedVersion: 2
