@@ -47,7 +47,7 @@ Material:
     - _SideScatterStrength: 1
     - _SideWaveScale: 8
     - _Smoothness: 0.98
-    - _SpecWaveScale1: 100
+    - _SpecWaveScale1: 20.3
     - _SpecWaveScale2: 56.2
     - _SpecWaveSpeed1: 1.4
     - _SpecWaveSpeed2: 2.15
@@ -66,7 +66,7 @@ Material:
     - _TopNormalThreshold: 0.75
     - _TopRimStrength: 0
     - _TopRimWidth: 0.11
-    - _WaveScale: 2.76
+    - _WaveScale: 0.46
     - _WaveSpeed: 1.42
     - _WaveStrength: 0.495
     m_Colors:
