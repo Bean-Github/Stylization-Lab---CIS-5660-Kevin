@@ -19,6 +19,9 @@ Shader "Custom/StylizedTranslucentSlime"
         _ShadowEdge("Shadow Band Threshold", Range(0, 1)) = 0.25
         _LightEdge("Light Band Threshold", Range(0, 1)) = 0.7
         _BandSoftness("Band Softness", Range(0.001, 0.25)) = 0.035
+        
+        _ToonWrapPower("Toon Wrap Power", Range(0, 10)) = 2
+        _ToonWrapAmount("Toon Wrap Amount", Range(0, 1)) = 0.2
 
         [Header(Gloss)]
         [Normal] _NormalMap("Scrolling Normal Map", 2D) = "bump" {}
@@ -30,6 +33,7 @@ Shader "Custom/StylizedTranslucentSlime"
         _SpecPower("Specular Tightness", Range(4, 256)) = 72
         _SpecThreshold("Toon Specular Threshold", Range(0, 1)) = 0.45
         _SpecSoftness("Toon Specular Softness", Range(0.001, 0.3)) = 0.08
+        _SpecDirection("Specular Direction", Vector) = (0, 1, 0)
 
         [Header(Rim and Glow)]
         [HDR] _RimColor("Fresnel Rim HDR", Color) = (0.05, 1.4, 0.35, 1)
@@ -70,6 +74,14 @@ Shader "Custom/StylizedTranslucentSlime"
             Blend One Zero
             ColorMask RGB
 
+            Stencil
+            {
+                Ref 8
+                Comp Equal
+                Pass Keep
+            }
+
+
             HLSLPROGRAM
             #pragma target 3.5
             #pragma vertex Vert
@@ -94,12 +106,16 @@ Shader "Custom/StylizedTranslucentSlime"
                 float4 _Absorption;
                 float _Thickness;
                 float _Refraction;
+
                 float4 _ShadowColor;
                 float4 _MidColor;
                 float4 _LitColor;
                 float _ShadowEdge;
                 float _LightEdge;
                 float _BandSoftness;
+                float _ToonWrapPower;
+                float _ToonWrapAmount;
+
                 float _NormalStrength;
                 float _NormalTiling;
                 float4 _FlowA;
@@ -108,11 +124,14 @@ Shader "Custom/StylizedTranslucentSlime"
                 float _SpecPower;
                 float _SpecThreshold;
                 float _SpecSoftness;
+                float3 _SpecDirection;
+
                 float4 _RimColor;
                 float _FresnelPower;
                 float _RimStrength;
                 float4 _EmissionColor;
                 float _EmissionStrength;
+
                 float4 _ScatterLightColor;
                 float _BackScatterStrength;
                 float _BackScatterPower;
@@ -222,7 +241,7 @@ Shader "Custom/StylizedTranslucentSlime"
 
                 float3 background = SampleSceneColor(refractedUV).rgb;
                 float opaqueEye = SceneEyeDepth(SampleSceneDepth(screenUV));
-                float sceneGap = max(0.0, opaqueEye - frontEye);
+                float sceneGap = max(0.0, opaqueEye - frontEye); // difference between eye depth and frag depth
 
                 // Cheap approximation for a roughly convex blob:
                 // thick when looking straight into the surface, thin near its edge.
@@ -238,18 +257,22 @@ Shader "Custom/StylizedTranslucentSlime"
                 Light mainLight = GetMainLight(TransformWorldToShadowCoord(IN.positionWS));
                 float3 L = normalize(mainLight.direction);
                 float ndl = saturate(dot(N, L));
-                float illumination = ndl * mainLight.shadowAttenuation;
+                
+                float rimWrap = pow(1.0 - saturate(dot(N, V)), _ToonWrapPower) * _ToonWrapAmount;
+                
+                float illumination = (ndl + rimWrap) * mainLight.shadowAttenuation;
+
                 float3 toon = ToonLighting(illumination);
                 float3 body = transmitted + (1.0 - T) * _BodyColor.rgb * toon;
 
-                // Backlit scattering: a stylized approximation, not full SSS.
+                // Backlit scattering
                 float backlight = pow(saturate(dot(-geomN, L)), _BackScatterPower);
-                float scatterOpacity = 1.0 - (T.r + T.g + T.b) / 3.0;
+                float scatterOpacity = 1.0 - (T.r + T.g + T.b) / 3.0;  // how much light is getting through the blob
                 float3 backscatter = _ScatterLightColor.rgb * _BackScatterStrength
                     * backlight * scatterOpacity * mainLight.color;
 
                 // Toon-shaped Blinn-Phong gloss (surface reflection, independent of transmission).
-                float3 H = normalize(L + V);
+                float3 H = normalize(_SpecDirection + V);
                 float specRaw = pow(saturate(dot(N, H)), _SpecPower);
                 float specMask = smoothstep(
                     _SpecThreshold - _SpecSoftness,

@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: duosioneye
-  m_Shader: {fileID: -6465566751694194690, guid: 96f24dea42733e542ade4ff73e4b0ece, type: 3}
+  m_Name: duosionbody mouth
+  m_Shader: {fileID: -6465566751694194690, guid: 770fb6a4e8cf8c8468956ea2734b836b, type: 3}
   m_Parent: {fileID: 2100000, guid: d63768d85639d274c8caaaf5c95a32fe, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -40,11 +40,14 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Texture2D:
-        m_Texture: {fileID: 2800000, guid: 2e500c5eb009c514fa2d4fc1f4fd51ea, type: 3}
+        m_Texture: {fileID: 2800000, guid: e497b8135fdc5bb4ab286f8d33e11057, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats: []
-    m_Colors: []
+    m_Colors:
+    - _Highlight: {r: 1, g: 0.9535336, b: 0.9339622, a: 0}
+    - _Midtone: {r: 1, g: 0.55293334, b: 0.5264151, a: 0}
+    - _Shadow: {r: 0.6313726, g: 0.2235294, b: 0.2599876, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

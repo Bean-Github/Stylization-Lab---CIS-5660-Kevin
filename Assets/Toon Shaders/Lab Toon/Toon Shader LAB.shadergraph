@@ -1440,15 +1440,6 @@
             "m_Id": "6898b6fc7c13461f801b03750afc2cd9"
         },
         {
-            "m_Id": "5241b81e0d5b461ca6db7a0dc8458b94"
-        },
-        {
-            "m_Id": "6980c8f01e244e03bdd6b7d7c5fe5773"
-        },
-        {
-            "m_Id": "d6cf813c501a4a7c88815b406dbbdd0a"
-        },
-        {
             "m_Id": "4fc2233f0d764c198ac0b4053ff89655"
         }
     ],
@@ -1589,10 +1580,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -3415.199951171875,
-            "y": 808.0000610351563,
+            "x": -3314.39990234375,
+            "y": 753.5999755859375,
             "width": 208.0,
-            "height": 301.60003662109377
+            "height": 301.599853515625
         }
     },
     "m_Slots": [
@@ -2588,160 +2579,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.GradientInputMaterialSlot",
-    "m_ObjectId": "5241b81e0d5b461ca6db7a0dc8458b94",
-    "m_Id": 156381971,
-    "m_DisplayName": "Gradient",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "_Gradient",
-    "m_StageCapability": 2,
-    "m_Value": {
-        "serializedVersion": "2",
-        "key0": {
-            "r": 6.964404106140137,
-            "g": 6.28872537612915,
-            "b": 4.559713363647461,
-            "a": 1.0
-        },
-        "key1": {
-            "r": 6.443155288696289,
-            "g": 6.431069374084473,
-            "b": 5.677270889282227,
-            "a": 1.0
-        },
-        "key2": {
-            "r": 3.2081704139709474,
-            "g": 3.019766092300415,
-            "b": 0.6961119771003723,
-            "a": 0.0
-        },
-        "key3": {
-            "r": 0.2678889036178589,
-            "g": 0.6603773832321167,
-            "b": 0.4351844787597656,
-            "a": 0.0
-        },
-        "key4": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0,
-            "a": 0.0
-        },
-        "key5": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0,
-            "a": 0.0
-        },
-        "key6": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0,
-            "a": 0.0
-        },
-        "key7": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0,
-            "a": 0.0
-        },
-        "ctime0": 0,
-        "ctime1": 19387,
-        "ctime2": 30487,
-        "ctime3": 44628,
-        "ctime4": 0,
-        "ctime5": 0,
-        "ctime6": 0,
-        "ctime7": 0,
-        "atime0": 0,
-        "atime1": 65535,
-        "atime2": 0,
-        "atime3": 0,
-        "atime4": 0,
-        "atime5": 0,
-        "atime6": 0,
-        "atime7": 0,
-        "m_Mode": 0,
-        "m_ColorSpace": -1,
-        "m_NumColorKeys": 4,
-        "m_NumAlphaKeys": 2
-    },
-    "m_DefaultValue": {
-        "serializedVersion": "2",
-        "key0": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0,
-            "a": 1.0
-        },
-        "key1": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0,
-            "a": 1.0
-        },
-        "key2": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0,
-            "a": 0.0
-        },
-        "key3": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0,
-            "a": 0.0
-        },
-        "key4": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0,
-            "a": 0.0
-        },
-        "key5": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0,
-            "a": 0.0
-        },
-        "key6": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0,
-            "a": 0.0
-        },
-        "key7": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.0,
-            "a": 0.0
-        },
-        "ctime0": 0,
-        "ctime1": 65535,
-        "ctime2": 0,
-        "ctime3": 0,
-        "ctime4": 0,
-        "ctime5": 0,
-        "ctime6": 0,
-        "ctime7": 0,
-        "atime0": 0,
-        "atime1": 65535,
-        "atime2": 0,
-        "atime3": 0,
-        "atime4": 0,
-        "atime5": 0,
-        "atime6": 0,
-        "atime7": 0,
-        "m_Mode": 0,
-        "m_ColorSpace": -1,
-        "m_NumColorKeys": 2,
-        "m_NumAlphaKeys": 2
-    }
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
     "m_ObjectId": "52acf1461943443ab861d5af7e7f5578",
     "m_Id": 3,
@@ -2909,8 +2746,8 @@
     "m_ObjectId": "59bb1537cdcf491fb7ee2bfdb1f6004b",
     "m_Title": "Shadows",
     "m_Position": {
-        "x": -3440.7998046875,
-        "y": 748.0
+        "x": -3340.0,
+        "y": 693.60009765625
     }
 }
 
@@ -3344,21 +3181,6 @@
 {
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
-    "m_ObjectId": "6980c8f01e244e03bdd6b7d7c5fe5773",
-    "m_Id": 1553389252,
-    "m_DisplayName": "Min Distance",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "_Min_Distance",
-    "m_StageCapability": 2,
-    "m_Value": 10.0,
-    "m_DefaultValue": 0.0,
-    "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "6b99a4912db6488c88eb88f1adb0aecc",
     "m_Id": 5,
     "m_DisplayName": "G",
@@ -3540,8 +3362,8 @@
     "m_ObjectId": "7905f9482af0497793866e4f36042c28",
     "m_Title": "Fog Pass",
     "m_Position": {
-        "x": -27.199951171875,
-        "y": -7.9999847412109379
+        "x": -27.199960708618165,
+        "y": -7.999996185302734
     }
 }
 
@@ -5255,21 +5077,6 @@
     "m_Property": {
         "m_Id": "5f398a97180b4f7296669ab147aee83b"
     }
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
-    "m_ObjectId": "d6cf813c501a4a7c88815b406dbbdd0a",
-    "m_Id": 1181716272,
-    "m_DisplayName": "Max Distance",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "_Max_Distance",
-    "m_StageCapability": 2,
-    "m_Value": 75.0,
-    "m_DefaultValue": 0.0,
-    "m_Labels": []
 }
 
 {

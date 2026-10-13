@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: reuniclusbody green
-  m_Shader: {fileID: -6465566751694194690, guid: 96f24dea42733e542ade4ff73e4b0ece, type: 3}
+  m_Name: reuniclusbody mouth
+  m_Shader: {fileID: -6465566751694194690, guid: 770fb6a4e8cf8c8468956ea2734b836b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -150,10 +150,11 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Highlight: {r: 0.85490197, g: 0.90588236, b: 0.5764706, a: 0}
+    - _Emissive_Color: {r: 5.6926746, g: 1.1063119, b: 1.1063119, a: 0}
+    - _Highlight: {r: 1, g: 0.050943315, b: 0.050943315, a: 0}
     - _Ignore_Tex_Color: {r: 0.937255, g: 0.8588236, b: 0.46666664, a: 1}
-    - _Midtone: {r: 0.66326433, g: 0.735849, b: 0.53730863, a: 0}
-    - _Shadow: {r: 0.44211522, g: 0.5698112, b: 0.28705582, a: 0}
+    - _Midtone: {r: 1, g: 0.5419077, b: 0.28490567, a: 0}
+    - _Shadow: {r: 0.6150943, g: 0.047896367, b: 0.026692703, a: 0}
     - _Shadow_Scale: {r: 3, g: 3, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Thresholds: {r: 0.38, g: 1.41, b: 0, a: 0}

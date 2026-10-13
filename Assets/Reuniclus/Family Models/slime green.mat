@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: slime green front
+  m_Name: slime green
   m_Shader: {fileID: 4800000, guid: d979533d87b9a3f45bfd939cb3653660, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -28,39 +28,42 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ReflectionCube:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 8900000, guid: 392a38cbf7e3a764b8ade0a58226b9f7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BackScatterPower: 2
+    - _BackScatterPower: 2.67
     - _BackScatterStrength: 0.5
-    - _BandSoftness: 0.035
-    - _Cull: 1
+    - _BandSoftness: 0.108
+    - _Cull: 2
     - _EmissionStrength: 0
-    - _FresnelPower: 3
-    - _LightEdge: 0.7
-    - _NormalStrength: 0.5
+    - _FresnelPower: 1.9
+    - _LightEdge: 0.99
+    - _NormalStrength: 0.17
     - _NormalTiling: 3
-    - _ReflectionStrength: 0
+    - _ReflectionStrength: 0.51
     - _Refraction: 0.015
     - _RimStrength: 0.7
-    - _ShadowEdge: 0.25
-    - _SpecPower: 72
-    - _SpecSoftness: 0.08
-    - _SpecThreshold: 0.45
+    - _ShadowEdge: 0.91
+    - _SpecPower: 256
+    - _SpecSoftness: 0.166
+    - _SpecThreshold: 0.84
     - _Thickness: 1.5
+    - _ToonWrapAmount: 1
+    - _ToonWrapPower: 7.78
     m_Colors:
-    - _Absorption: {r: 2.5, g: 0.25, b: 1.8, a: 0}
-    - _BodyColor: {r: 0.12, g: 0.8, b: 0.24, a: 1}
+    - _Absorption: {r: 7.16, g: 0.18, b: 0.75, a: 0}
+    - _BodyColor: {r: 4.471677, g: 4.471677, b: 4.471677, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FlowA: {r: 0.06, g: 0.02, b: 0, a: 0}
     - _FlowB: {r: -0.04, g: 0.05, b: 0, a: 0}
-    - _LitColor: {r: 1.15, g: 1.1, b: 0.8, a: 1}
-    - _MidColor: {r: 0.65, g: 0.95, b: 0.65, a: 1}
+    - _LitColor: {r: 0, g: 6.097514, b: 6.422235, a: 1}
+    - _MidColor: {r: 0.025677329, g: 0.51493907, b: 0.9072711, a: 1}
     - _RimColor: {r: 0.05, g: 1.4, b: 0.35, a: 1}
-    - _ScatterLightColor: {r: 0.5, g: 1.5, b: 0.35, a: 1}
-    - _ShadowColor: {r: 0.2, g: 0.35, b: 0.28, a: 1}
-    - _SpecColor: {r: 3, g: 3, b: 2, a: 1}
+    - _ScatterLightColor: {r: 0.7010109, g: 1.0806577, b: 0.12447366, a: 1}
+    - _ShadowColor: {r: 0, g: 0.12452829, b: 0.06554122, a: 1}
+    - _SpecColor: {r: 166.67072, g: 165.71532, b: 115.411606, a: 1}
+    - _SpecDirection: {r: -0.29, g: 1.26, b: 0.65, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

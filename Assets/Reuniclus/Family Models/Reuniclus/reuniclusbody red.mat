@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: reuniclusbody yellow
-  m_Shader: {fileID: -6465566751694194690, guid: 96f24dea42733e542ade4ff73e4b0ece, type: 3}
+  m_Name: reuniclusbody red
+  m_Shader: {fileID: -6465566751694194690, guid: 770fb6a4e8cf8c8468956ea2734b836b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -88,7 +88,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D:
-        m_Texture: {fileID: 2800000, guid: 9334d622bc45ccc4d930025c95cffc3e, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -147,15 +147,18 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - _Backlit_Color: {r: 0.83396226, g: 0.16339538, b: 0.0424848, a: 0}
+    - _Backlit_Threshold: {r: 0.45, g: 0.96, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Highlight: {r: 0.99215686, g: 0.80784315, b: 0.40784314, a: 0}
+    - _Emissive_Color: {r: 2.861804, g: 0.12419118, b: 0.1534712, a: 0}
+    - _Highlight: {r: 1, g: 0.67785066, b: 0.64716977, a: 0}
     - _Ignore_Tex_Color: {r: 0.937255, g: 0.8588236, b: 0.46666664, a: 1}
-    - _Midtone: {r: 0.6862745, g: 0.62352943, b: 0.22352941, a: 0}
-    - _Shadow: {r: 0.5471698, g: 0.4974748, b: 0.18066922, a: 0}
+    - _Midtone: {r: 0.7207546, g: 0.25974366, b: 0.2774749, a: 0}
+    - _Shadow: {r: 0.7132075, g: 0.23011033, b: 0.25676396, a: 0}
     - _Shadow_Scale: {r: 3, g: 3, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Thresholds: {r: 0.21, g: 1.68, b: 0, a: 0}
+    - _Thresholds: {r: 0.19, g: 1.43, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

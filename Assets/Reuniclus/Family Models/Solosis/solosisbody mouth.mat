@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: solosisbody green
-  m_Shader: {fileID: -6465566751694194690, guid: 96f24dea42733e542ade4ff73e4b0ece, type: 3}
+  m_Name: solosisbody mouth
+  m_Shader: {fileID: -6465566751694194690, guid: 770fb6a4e8cf8c8468956ea2734b836b, type: 3}
   m_Parent: {fileID: 2100000, guid: d63768d85639d274c8caaaf5c95a32fe, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -45,6 +45,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats: []
-    m_Colors: []
+    m_Colors:
+    - _Highlight: {r: 1, g: 0.8325991, b: 0.8207547, a: 0}
+    - _Midtone: {r: 1, g: 0.5862264, b: 0.51886785, a: 0}
+    - _Shadow: {r: 0.97735846, g: 0.28499648, b: 0.19731575, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
