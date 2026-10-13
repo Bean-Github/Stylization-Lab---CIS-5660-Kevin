@@ -507275,6 +507275,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6486476352645785941, guid: 9951633370265af4aa59a5ba719de92c, type: 3}
+      propertyPath: m_text
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6524864648561868407, guid: 9951633370265af4aa59a5ba719de92c, type: 3}
       propertyPath: m_Name
       value: Pokemon Card

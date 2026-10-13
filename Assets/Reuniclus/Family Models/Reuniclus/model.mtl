@@ -1,0 +1,60 @@
+newmtl Body
+ illum 2
+ Ka 1 1 1
+ Kd 0.8 0.8 0.8
+ Ks 0.4470588 0.5019608 0.4
+ Ns 20
+ d 1
+ Tr 0
+ map_Kd Lanculus_bodyCl_ctr.png
+newmtl Eye
+ illum 2
+ Ka 1 1 1
+ Kd 0.8 0.8 0.8
+ Ks 0.4470588 0.5019608 0.4
+ Ns 20
+ d 1
+ Tr 0
+ map_Kd Lanculus_eyeCl_ctr.png
+newmtl Shell_in
+ illum 2
+ Ka 0.4313726 0.627451 0.3490196
+ Kd 0.8 0.8 0.8
+ Ks 1 0.9529412 1
+ Ns 20
+ d 1
+ Tr 0
+ map_Kd Lanculus_bodyCl_ctr.png
+newmtl Shell_in_shadow
+ illum 2
+ Ka 0 0 0
+ Kd 0 0 0
+ Ks 0 0 0
+ Ns 20
+ d 1
+ Tr 0
+newmtl Shell_out
+ illum 2
+ Ka 0.3411765 0.5019608 0.2862745
+ Kd 1 1 1
+ Ks 0.4117647 0.4313726 0.4862745
+ Ns 20
+ d 1
+ Tr 0
+ map_Kd Lanculus_bodyCl_ctr.png
+newmtl Shell_out_shadow
+ illum 2
+ Ka 0 0 0
+ Kd 0 0 0
+ Ks 0 0 0
+ Ns 20
+ d 1
+ Tr 0
+newmtl shadow_w
+ illum 2
+ Ka 0 0 0
+ Kd 0 0 0
+ Ks 0 0 0
+ Ns 20
+ d 1
+ Tr 0

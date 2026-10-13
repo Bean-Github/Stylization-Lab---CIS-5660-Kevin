@@ -13,6 +13,9 @@ Shader "Custom/RealtimeCausticsVolume"
         _CausticsEdgeFade ("Box Edge Fade (object units)", Range(0, 0.5)) = 0.08
         _CausticsShadowStrength ("Main Light Shadow Mask", Range(0, 1)) = 1.0
         _CausticsLuminanceMaskStrength ("Scene Luminance Mask", Range(0, 1)) = 0.0
+
+        [Toggle] _UseCustomLightDir ("Use Custom Light Direction", Float) = 0
+        _CustomLightDir ("Custom Light Direction (optional)", Vector) = (0, 0, 0, 0)
     }
 
     SubShader
@@ -62,6 +65,9 @@ Shader "Custom/RealtimeCausticsVolume"
                 float _CausticsEdgeFade;
                 float _CausticsShadowStrength;
                 float _CausticsLuminanceMaskStrength;
+
+                float _UseCustomLightDir;
+                float3 _CustomLightDir;
             CBUFFER_END
 
             struct Attributes
@@ -150,6 +156,9 @@ Shader "Custom/RealtimeCausticsVolume"
 
                 // No custom C# light matrix required; URP supplies this.
                 Light mainLight = GetMainLight();
+
+                float3 lightDir = (_UseCustomLightDir > 0.5) ? normalize(_CustomLightDir) : mainLight.direction;
+
                 float2 projectedUV = GetLightProjectedUV(positionWS, mainLight.direction);
 
                 float inverseScale = rcp(max(abs(_CausticsScale), 0.001));
