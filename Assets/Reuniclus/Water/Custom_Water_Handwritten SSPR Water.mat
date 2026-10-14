@@ -86,8 +86,8 @@ Material:
     - Vector1_f43f3972eb7941169f3013ad2ece79a8: 1
     - Vector1_f8914effb3024a26994c7d3939d6cc23: 500
     - _AbsorptionDensity: 1.5
-    - _AfterFarEdgeWidth: 2.24
-    - _AfterFarEndDistance: 11.96
+    - _AfterFarEdgeWidth: 3.26
+    - _AfterFarEndDistance: 8.35
     - _AfterFarNoiseScale: 2
     - _AfterFarNoiseStrength: 0.49
     - _AfterFarStartDistance: 7.29
@@ -101,7 +101,7 @@ Material:
     - _BeyondFarEndDistance: 10000
     - _BeyondFarNoiseScale: 53.38
     - _BeyondFarNoiseStrength: 0.83
-    - _BeyondFarStartDistance: 12.7
+    - _BeyondFarStartDistance: 13.17
     - _ColorEdgeDiffusion: 0.62
     - _ColorNoiseContrast: 1.5
     - _ColorNoiseEvolution: 0
@@ -113,7 +113,7 @@ Material:
     - _DepthColorStrength: 0.8
     - _FarDistance: 8.1
     - _FarEdgeWidth: 1.86
-    - _FarEndDistance: 11.81
+    - _FarEndDistance: 9.28
     - _FarFadeDistance: 2.05
     - _FarNoiseScale: 20.72
     - _FarNoiseStrength: 2.33
@@ -125,13 +125,13 @@ Material:
     - _LightBandStrength: 0.85
     - _LightBandWidth: 0.06
     - _Mid1Distance: 3.33
-    - _Mid1EdgeWidth: 1
+    - _Mid1EdgeWidth: 1.1
     - _Mid1EndDistance: 6.06
     - _Mid1NoiseScale: 8.95
     - _Mid1NoiseStrength: 0.43
     - _Mid1StartDistance: 3.49
     - _Mid2Distance: 6.8
-    - _Mid2EdgeWidth: 2.79
+    - _Mid2EdgeWidth: 1.2
     - _Mid2EndDistance: 4.64
     - _Mid2NoiseScale: 4.93
     - _Mid2NoiseStrength: 0.32
@@ -149,6 +149,7 @@ Material:
     - _NearNoiseStrength: 0.68
     - _NearOpacity: 0.25
     - _NearStartDistance: 0.96
+    - _NoiseTime: 102.45
     - _NormalDetailScale: 6.24
     - _NormalDetailWeight: 0.45
     - _NormalMapStrengthA: 0.78
@@ -223,7 +224,7 @@ Material:
     - _AfterNearColor: {r: 0.10196079, g: 0.9019608, b: 0.47754902, a: 0.5568628}
     - _AfterNearNoiseStretch: {r: 5, g: 1, b: 0, a: 0}
     - _AfterNearStretch: {r: 5, g: 1, b: 0, a: 0}
-    - _BeyondFarColor: {r: 0.35283017, g: 1, b: 0.741132, a: 1}
+    - _BeyondFarColor: {r: 0, g: 0.6603774, b: 0.39622638, a: 1}
     - _BeyondFarNoiseStretch: {r: 5, g: 1, b: 0, a: 0}
     - _DarkSpotColor: {r: 0, g: 0, b: 0, a: 1}
     - _DarkSpotDirection: {r: 0.15, g: 1.32, b: 0.49, a: 0}
@@ -251,7 +252,7 @@ Material:
     - _SpecularColor: {r: 0.11621551, g: 1.1094844, b: 1.7598387, a: 1}
     - _SpecularDirection: {r: -1.67, g: 1.5, b: 0.49, a: 0}
     - _SuperSpecularColor: {r: 98.4328, g: 131.83112, b: 145.31862, a: 1}
-    - _SuperSpecularDir: {r: -0.53, g: 0.91, b: 2.19, a: 0}
+    - _SuperSpecularDir: {r: -0.6, g: 1.11, b: 2.19, a: 0}
     - _SurfaceBandColor: {r: 0.005, g: 0.025, b: 0.045, a: 1}
     - _VolumeMaxOS: {r: 0.5, g: 0.5, b: 0.5, a: 0}
     - _VolumeMinOS: {r: -0.5, g: -0.5, b: -0.5, a: 0}

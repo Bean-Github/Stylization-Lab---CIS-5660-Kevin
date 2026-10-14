@@ -116,6 +116,8 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
         [Header(Noise Movement)]
         _NoiseScroll ("Noise Scroll Speed XZ (Units per Second)", Vector) = (0, 0, 0, 0)
 
+        _NoiseTime ("Set time for noise scroll", Float) = 20.0
+
         [Header(Painted Color Boundaries)]
         _ColorNoiseWarpStrength ("Color Noise Warp Strength (World Units)", Range(0, 8)) = 2
         _ColorNoiseWarpSize ("Color Noise Warp Size (World Units)", Float) = 3
@@ -249,6 +251,7 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
                 float _BeyondFarNoiseStrength, _BeyondFarNoiseScale;
                 float4 _BeyondFarNoiseStretch;
                 float4 _NoiseScroll;
+                float _NoiseTime;
 
                 float _ColorNoiseWarpStrength, _ColorNoiseWarpSize, _ColorNoiseEvolution;
                 float _ColorNoiseContrast, _ColorEdgeDiffusion;
@@ -423,13 +426,13 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
 
             float4 EvaluateGradient(float cameraDistance, float2 worldXZ)
             {
-                float2 noisePos = worldXZ + _NoiseScroll.xy * _Time.y;
+                float2 noisePos = worldXZ + _NoiseScroll.xy * _NoiseTime;
 
                 // Shared animated domain warp.
                 float2 warpUV =
                     noisePos / max(abs(_ColorNoiseWarpSize), 0.01);
 
-                float evolution = _Time.y * _ColorNoiseEvolution;
+                float evolution = _NoiseTime * _ColorNoiseEvolution;
 
                 float2 warp = float2(
                     OrganicNoise(

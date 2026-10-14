@@ -36,7 +36,7 @@ Material:
     - _CausticsScale: 9.9
     - _CausticsShadowStrength: 1
     - _CausticsSpeed: 0.03
-    - _CausticsSplit: 0.0028
+    - _CausticsSplit: 0.0074
     - _CausticsStrength: 5.51
     - _UseCustomLightDir: 0
     m_Colors:

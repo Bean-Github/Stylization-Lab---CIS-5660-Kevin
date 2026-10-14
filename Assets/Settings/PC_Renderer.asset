@@ -15,7 +15,7 @@ MonoBehaviour:
   m_Active: 0
   settings:
     passTag: RenderObjects
-    Event: 450
+    Event: 1000
     filterSettings:
       RenderQueueType: 1
       LayerMask:
@@ -162,7 +162,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   m_DefaultStencilState:
     overrideStencilState: 0
-    stencilReference: 0
+    stencilReference: 10
     stencilCompareFunction: 3
     passOperation: 2
     failOperation: 0
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Name: FullScreenPassRendererFeature
   m_EditorClassIdentifier: 
   m_Active: 1
-  injectionPoint: 550
+  injectionPoint: 450
   fetchColorBuffer: 1
   requirements: 0
   passMaterial: {fileID: 2100000, guid: 1a871e4ec7b94204ca8d2bdda213f940, type: 2}
