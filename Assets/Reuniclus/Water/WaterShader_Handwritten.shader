@@ -36,13 +36,14 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
 {
     Properties
     {
-        [Header(Six Color Gradient)]
+        [Header(Seven Color Gradient)]
         // Alpha of each HDR color controls its opacity.
         [HDR] _NearColor ("Near Color + Opacity (Alpha)", Color) = (0.12, 0.70, 0.80, 1)
         [HDR] _AfterNearColor ("After Near Color + Opacity (Alpha)", Color) = (0.06, 0.51, 0.68, 1)
         [HDR] _Mid1Color ("Mid 1 Color + Opacity (Alpha)", Color) = (0.06, 0.51, 0.68, 1)
         [HDR] _Mid2Color ("Mid 2 Color + Opacity (Alpha)", Color) = (0.03, 0.35, 0.55, 1)
         [HDR] _FarColor ("Far Color + Opacity (Alpha)", Color) = (0.01, 0.07, 0.20, 1)
+        [HDR] _AfterFarColor ("After Far Color + Opacity (Alpha)", Color) = (0.008, 0.04, 0.12, 1)
         [HDR] _BeyondFarColor ("Beyond Far Color + Opacity (Alpha)", Color) = (0.005, 0.02, 0.08, 1)
 
         [Header(Color Distance Bands)]
@@ -68,9 +69,14 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
         _FarEndDistance ("Far End Distance", Float) = 40
         _FarEdgeWidth ("Far Edge Width", Float) = 3
 
-        _BeyondFarStartDistance ("Beyond Far Start Distance", Float) = 35
+        _AfterFarStartDistance ("After Far Start Distance", Float) = 32
+        _AfterFarEndDistance ("After Far End Distance", Float) = 43
+        _AfterFarEdgeWidth ("After Far Edge Width", Float) = 3
+
+        _BeyondFarStartDistance ("Beyond Far Start Distance", Float) = 45
         _BeyondFarEndDistance ("Beyond Far End Distance", Float) = 10000
         _BeyondFarEdgeWidth ("Beyond Far Edge Width", Float) = 3
+
 
         [Header(Near Color Boundary Noise)]
         _NearNoiseStrength ("Near Noise Displacement (World Units)", Range(0, 5)) = 1.2
@@ -96,6 +102,11 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
         _FarNoiseStrength ("Far Noise Displacement (World Units)", Range(0, 5)) = 1.2
         _FarNoiseScale ("Far Noise Size (World Units)", Float) = 2
         _FarNoiseStretch ("Far Noise Stretch (X Z)", Vector) = (5, 1, 0, 0)
+
+        [Header(After Far Color Boundary Noise)]
+        _AfterFarNoiseStrength ("After Far Noise Displacement (World Units)", Range(0, 5)) = 1.2
+        _AfterFarNoiseScale ("After Far Noise Size (World Units)", Float) = 2
+        _AfterFarNoiseStretch ("After Far Noise Stretch (X Z)", Vector) = (5, 1, 0, 0)
 
         [Header(Beyond Far Color Boundary Noise)]
         _BeyondFarNoiseStrength ("Beyond Far Noise Displacement (World Units)", Range(0, 5)) = 1.2
@@ -202,12 +213,14 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
             SAMPLER(sampler_MobileSSPR_ColorRT);
 
             CBUFFER_START(UnityPerMaterial)
-                float4 _NearColor, _AfterNearColor, _Mid1Color, _Mid2Color, _FarColor, _BeyondFarColor;
+                float4 _NearColor, _AfterNearColor, _Mid1Color, _Mid2Color;
+                float4 _FarColor, _AfterFarColor, _BeyondFarColor;
                 float _NearStartDistance, _NearEndDistance, _NearEdgeWidth;
                 float _AfterNearStartDistance, _AfterNearEndDistance, _AfterNearEdgeWidth;
                 float _Mid1StartDistance, _Mid1EndDistance, _Mid1EdgeWidth;
                 float _Mid2StartDistance, _Mid2EndDistance, _Mid2EdgeWidth;
                 float _FarStartDistance, _FarEndDistance, _FarEdgeWidth;
+                float _AfterFarStartDistance, _AfterFarEndDistance, _AfterFarEdgeWidth;
                 float _BeyondFarStartDistance, _BeyondFarEndDistance, _BeyondFarEdgeWidth;
 
                 float _NearNoiseStrength, _NearNoiseScale;
@@ -220,6 +233,8 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
                 float4 _Mid2NoiseStretch;
                 float _FarNoiseStrength, _FarNoiseScale;
                 float4 _FarNoiseStretch;
+                float _AfterFarNoiseStrength, _AfterFarNoiseScale;
+                float4 _AfterFarNoiseStretch;
                 float _BeyondFarNoiseStrength, _BeyondFarNoiseScale;
                 float4 _BeyondFarNoiseStretch;
                 float4 _NoiseScroll;
@@ -439,6 +454,12 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
 
                 float n5 = StopNoise(
                     noisePos,
+                    _AfterFarNoiseScale,
+                    _AfterFarNoiseStretch.xy,
+                    float2(26.8, -37.1));
+
+                float n6 = StopNoise(
+                    noisePos,
                     _BeyondFarNoiseScale,
                     _BeyondFarNoiseStretch.xy,
                     float2(-31.7, 14.6));
@@ -485,11 +506,19 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
 
                 float w5 = ColorBandWeight(
                     cameraDistance,
+                    _AfterFarStartDistance,
+                    _AfterFarEndDistance,
+                    _AfterFarEdgeWidth,
+                    n5 * _AfterFarNoiseStrength,
+                    n5);
+
+                float w6 = ColorBandWeight(
+                    cameraDistance,
                     _BeyondFarStartDistance,
                     _BeyondFarEndDistance,
                     _BeyondFarEdgeWidth,
-                    n5 * _BeyondFarNoiseStrength,
-                    n5);
+                    n6 * _BeyondFarNoiseStrength,
+                    n6);
 
                 // Process near to far. Each later band is composited on top,
                 // so farther colors take priority in overlaps.
@@ -499,7 +528,8 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
                 color = CompositeColorBand(color, _Mid1Color, w2);
                 color = CompositeColorBand(color, _Mid2Color, w3);
                 color = CompositeColorBand(color, _FarColor, w4);
-                color = CompositeColorBand(color, _BeyondFarColor, w5);
+                color = CompositeColorBand(color, _AfterFarColor, w5);
+                color = CompositeColorBand(color, _BeyondFarColor, w6);
 
                 return color;
             }
