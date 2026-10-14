@@ -1,29 +1,86 @@
+// Flat URP water: painted gradient boundaries + independent scrolling normals.
+// Built from the newly supplied handwritten shader. Vert() is unchanged.
+// No vertex displacement, Gerstner geometry, or tessellation.
+//
+// COLOR: original per-stop noise shifts the gradient's transition thresholds.
+// Domain warping bends that noise into irregular patches; varying transition
+// softness suggests paint bleeding. This is animated shading, not fluid simulation.
+// _NoiseScroll translates the color pattern. _ColorNoiseEvolution also changes
+// its shape, even when _NoiseScroll is zero. All color controls are independent
+// of the normal controls below. Alpha still interpolates with the four colors.
+//
+// NORMALS: two scrolling procedural height gradients tilt the shading normal.
+// Optional normal maps add texture detail, using the same two independent flows.
+// No texture is required. Import optional maps as Normal Map, Repeat, with mipmaps.
+// XZ mapping follows the existing horizontal-water/ripple convention.
+// Scrolling is samplePosition + velocity*time, matching the supplied shader;
+// visible features travel opposite that sampling velocity.
+//
+// Keep the project's existing ripple renderer and Mobile SSPR renderer.
+// Normal noise affects specular and optionally reflection UVs, not gradient masks
+// or the existing ripple brightness effect. Reflection strength can obscure the
+// color pattern; try 0.3-0.5 if you want the painted bands to dominate.
+//
+// QUICK CONTROLS
+// - More irregular edges: raise each color's Noise Displacement.
+// - More swirled/painted patches: raise Color Noise Warp Strength.
+// - Softer bleeding: raise original Blend Widths + Color Edge Diffusion.
+// - Crisper patches: lower Blend Widths and raise Color Noise Contrast.
+// - Surface movement: adjust Normal Noise Strength and the two Normal Scrolls.
+// - Exact original color logic: Warp Strength=0, Contrast=1, Edge Diffusion=0.
+// - Original shading: Normal Noise Strength=0 and both Normal Map Strengths=0.
+// Keep only one shader asset with the ShaderLab name below in your project.
+// Unity compilation and visual validation must be performed in the target project.
+
 Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
 {
     Properties
     {
-        [Header(Four Color Gradient)]
+        [Header(Six Color Gradient)]
         // Alpha of each HDR color controls its opacity.
         [HDR] _NearColor ("Near Color + Opacity (Alpha)", Color) = (0.12, 0.70, 0.80, 1)
+        [HDR] _AfterNearColor ("After Near Color + Opacity (Alpha)", Color) = (0.06, 0.51, 0.68, 1)
         [HDR] _Mid1Color ("Mid 1 Color + Opacity (Alpha)", Color) = (0.06, 0.51, 0.68, 1)
         [HDR] _Mid2Color ("Mid 2 Color + Opacity (Alpha)", Color) = (0.03, 0.35, 0.55, 1)
         [HDR] _FarColor ("Far Color + Opacity (Alpha)", Color) = (0.01, 0.07, 0.20, 1)
+        [HDR] _BeyondFarColor ("Beyond Far Color + Opacity (Alpha)", Color) = (0.005, 0.02, 0.08, 1)
 
-        _NearDistance ("Near Distance (World Units)", Float) = 0
-        _Mid1Distance ("Mid 1 Distance (World Units)", Float) = 4
-        _Mid2Distance ("Mid 2 Distance (World Units)", Float) = 9
-        _FarDistance ("Far Distance (World Units)", Float) = 16
+        [Header(Color Distance Bands)]
+        // Colors are fully active between Start and End.
+        // Edge Width creates a fading tail outside each end.
+        _NearStartDistance ("Near Start Distance", Float) = 0
+        _NearEndDistance ("Near End Distance", Float) = 6
+        _NearEdgeWidth ("Near Edge Width", Float) = 1.5
 
-        [Header(Transition Widths)]
-        // 1 = smooth over the full distance interval; smaller = narrow noisy borders.
-        _NearMidBlendWidth ("Near to Mid 1 Blend Width", Range(0.01, 1)) = 0.30
-        _MidMidBlendWidth ("Mid 1 to Mid 2 Blend Width", Range(0.01, 1)) = 0.30
-        _MidFarBlendWidth ("Mid 2 to Far Blend Width", Range(0.01, 1)) = 0.30
+        _AfterNearStartDistance ("After Near Start Distance", Float) = 4    
+        _AfterNearEndDistance ("After Near End Distance", Float) = 10
+        _AfterNearEdgeWidth ("After Near Edge Width", Float) = 1.5
+
+        _Mid1StartDistance ("Mid 1 Start Distance", Float) = 3
+        _Mid1EndDistance ("Mid 1 End Distance", Float) = 10
+        _Mid1EdgeWidth ("Mid 1 Edge Width", Float) = 1.5
+
+        _Mid2StartDistance ("Mid 2 Start Distance", Float) = 7
+        _Mid2EndDistance ("Mid 2 End Distance", Float) = 16
+        _Mid2EdgeWidth ("Mid 2 Edge Width", Float) = 2
+
+        _FarStartDistance ("Far Start Distance", Float) = 12
+        _FarEndDistance ("Far End Distance", Float) = 40
+        _FarEdgeWidth ("Far Edge Width", Float) = 3
+
+        _BeyondFarStartDistance ("Beyond Far Start Distance", Float) = 35
+        _BeyondFarEndDistance ("Beyond Far End Distance", Float) = 10000
+        _BeyondFarEdgeWidth ("Beyond Far Edge Width", Float) = 3
 
         [Header(Near Color Boundary Noise)]
         _NearNoiseStrength ("Near Noise Displacement (World Units)", Range(0, 5)) = 1.2
         _NearNoiseScale ("Near Noise Size (World Units)", Float) = 2
         _NearNoiseStretch ("Near Noise Stretch (X Z)", Vector) = (5, 1, 0, 0)
+
+        [Header(After Near Color Boundary Noise)]
+        _AfterNearNoiseStrength ("After Near Noise Displacement (World Units)", Range(0, 5)) = 1.2
+        _AfterNearNoiseScale ("After Near Noise Size (World Units)", Float) = 2
+        _AfterNearNoiseStretch ("After Near Noise Stretch (X Z)", Vector) = (5, 1, 0, 0)
 
         [Header(Mid 1 Color Boundary Noise)]
         _Mid1NoiseStrength ("Mid 1 Noise Displacement (World Units)", Range(0, 5)) = 1.2
@@ -40,8 +97,34 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
         _FarNoiseScale ("Far Noise Size (World Units)", Float) = 2
         _FarNoiseStretch ("Far Noise Stretch (X Z)", Vector) = (5, 1, 0, 0)
 
+        [Header(Beyond Far Color Boundary Noise)]
+        _BeyondFarNoiseStrength ("Beyond Far Noise Displacement (World Units)", Range(0, 5)) = 1.2
+        _BeyondFarNoiseScale ("Beyond Far Noise Size (World Units)", Float) = 2
+        _BeyondFarNoiseStretch ("Beyond Far Noise Stretch (X Z)", Vector) = (5, 1, 0, 0)
+
         [Header(Noise Movement)]
         _NoiseScroll ("Noise Scroll Speed XZ (Units per Second)", Vector) = (0, 0, 0, 0)
+
+        [Header(Painted Color Boundaries)]
+        _ColorNoiseWarpStrength ("Color Noise Warp Strength (World Units)", Range(0, 8)) = 2
+        _ColorNoiseWarpSize ("Color Noise Warp Size (World Units)", Float) = 3
+        _ColorNoiseEvolution ("Color Noise Shape Evolution Speed", Range(0, 1)) = 0.08
+        _ColorNoiseContrast ("Color Noise Contrast", Range(0.25, 4)) = 1.8
+        _ColorEdgeDiffusion ("Color Edge Diffusion Variation", Range(0, 1)) = 0.5
+
+        [Header(Independent Scrolling Normals)]
+        _NormalNoiseStrength ("Procedural Normal Noise Strength", Range(0, 2)) = 0.22
+        _NormalNoiseSize ("Normal Noise Size (World Units)", Float) = 1.2
+        _NormalNoiseStretch ("Normal Noise Stretch XZ", Vector) = (2, 1, 0, 0)
+        _NormalScrollA ("Normal A Sampling Velocity XZ", Vector) = (0.12, 0.04, 0, 0)
+        _NormalScrollB ("Normal B Sampling Velocity XZ", Vector) = (-0.06, 0.09, 0, 0)
+        _NormalDetailScale ("Normal B Relative Frequency", Range(0.25, 8)) = 2.17
+        _NormalDetailWeight ("Procedural Normal B Weight", Range(0, 1)) = 0.45
+        [Normal] [NoScaleOffset] _NormalMapA ("Optional Normal Map A", 2D) = "bump" {}
+        [Normal] [NoScaleOffset] _NormalMapB ("Optional Normal Map B", 2D) = "bump" {}
+        _NormalMapStrengthA ("Normal Map A Strength", Range(0, 2)) = 0.3
+        _NormalMapStrengthB ("Normal Map B Strength", Range(0, 2)) = 0.18
+        _NormalReflectionInfluence ("Normal Noise Influence On Reflections", Range(0, 2)) = 0.6
 
         [Header(Ripples)]
         [NoScaleOffset] _RippleTex ("Ripple Texture", 2D) = "black" {}
@@ -53,7 +136,7 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
 
         [Header(Planar Reflections)]
         _ReflectionStrength ("Reflection Strength", Range(0, 1)) = 0.65
-        _ReflectionDistortion ("Ripple Reflection Distortion", Range(0, 0.1)) = 0.012
+        _ReflectionDistortion ("Ripple and Normal Reflection Distortion", Range(0, 0.1)) = 0.012
 
         [Header(Surface Brightness and Specular)]
         _SurfaceBrightness ("Overall Water Brightness", Range(0, 4)) = 1
@@ -62,6 +145,11 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
         _SpecularPower ("Specular Sharpness", Range(1, 512)) = 96
         _SpecularDirection ("Direction To Highlight Source (World)", Vector) = (0.3, 1, 0.2, 0)
         _SpecularRippleInfluence ("Ripple Influence On Specular", Range(0, 3)) = 1
+
+        _UseStencil ("Use Stencil Mask", Float) = 0
+        [HideInInspector] _RippleCameraRight ("Ripple Camera Right", Vector) = (1, 0, 0, 0)
+        [HideInInspector] _RippleCameraUp ("Ripple Camera Up", Vector) = (0, 0, 1, 0)
+        [HideInInspector] _RippleCameraAspect ("Ripple Camera Aspect", Float) = 1.0
     }
 
     SubShader
@@ -83,6 +171,15 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
             ZTest LEqual
             Blend SrcAlpha OneMinusSrcAlpha
 
+            
+            Stencil
+            {
+                Ref 8
+                Comp Equal
+                Pass Keep
+            }
+
+
             HLSLPROGRAM
             #pragma target 3.0
             #pragma vertex Vert
@@ -90,6 +187,11 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
             #pragma multi_compile_instancing
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+
+            #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Packing.hlsl"
+
+            TEXTURE2D(_NormalMapA); SAMPLER(sampler_NormalMapA);
+            TEXTURE2D(_NormalMapB); SAMPLER(sampler_NormalMapB);
 
             TEXTURE2D(_RippleTex);
             SAMPLER(sampler_RippleTex);
@@ -100,19 +202,34 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
             SAMPLER(sampler_MobileSSPR_ColorRT);
 
             CBUFFER_START(UnityPerMaterial)
-                float4 _NearColor, _Mid1Color, _Mid2Color, _FarColor;
-                float _NearDistance, _Mid1Distance, _Mid2Distance, _FarDistance;
-                float _NearMidBlendWidth, _MidMidBlendWidth, _MidFarBlendWidth;
+                float4 _NearColor, _AfterNearColor, _Mid1Color, _Mid2Color, _FarColor, _BeyondFarColor;
+                float _NearStartDistance, _NearEndDistance, _NearEdgeWidth;
+                float _AfterNearStartDistance, _AfterNearEndDistance, _AfterNearEdgeWidth;
+                float _Mid1StartDistance, _Mid1EndDistance, _Mid1EdgeWidth;
+                float _Mid2StartDistance, _Mid2EndDistance, _Mid2EdgeWidth;
+                float _FarStartDistance, _FarEndDistance, _FarEdgeWidth;
+                float _BeyondFarStartDistance, _BeyondFarEndDistance, _BeyondFarEdgeWidth;
 
                 float _NearNoiseStrength, _NearNoiseScale;
                 float4 _NearNoiseStretch;
+                float _AfterNearNoiseStrength, _AfterNearNoiseScale;
+                float4 _AfterNearNoiseStretch;
                 float _Mid1NoiseStrength, _Mid1NoiseScale;
                 float4 _Mid1NoiseStretch;
                 float _Mid2NoiseStrength, _Mid2NoiseScale;
                 float4 _Mid2NoiseStretch;
                 float _FarNoiseStrength, _FarNoiseScale;
                 float4 _FarNoiseStretch;
+                float _BeyondFarNoiseStrength, _BeyondFarNoiseScale;
+                float4 _BeyondFarNoiseStretch;
                 float4 _NoiseScroll;
+
+                float _ColorNoiseWarpStrength, _ColorNoiseWarpSize, _ColorNoiseEvolution;
+                float _ColorNoiseContrast, _ColorEdgeDiffusion;
+                float _NormalNoiseStrength, _NormalNoiseSize;
+                float4 _NormalNoiseStretch, _NormalScrollA, _NormalScrollB;
+                float _NormalDetailScale, _NormalDetailWeight;
+                float _NormalMapStrengthA, _NormalMapStrengthB, _NormalReflectionInfluence;
 
                 float _RippleCameraSize;
                 float4 _RippleCameraPos;
@@ -124,6 +241,10 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
                 float _SpecularStrength, _SpecularPower;
                 float4 _SpecularDirection;
                 float _SpecularRippleInfluence;
+
+                float4 _RippleCameraRight;
+                float4 _RippleCameraUp;
+                float _RippleCameraAspect;
             CBUFFER_END
 
             struct Attributes
@@ -155,6 +276,24 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
             }
 
             // Smooth procedural value noise, returning approximately [-1, 1].
+
+            float2 GetRippleUV(float3 worldPos)
+            {
+                float3 delta = worldPos - _RippleCameraPos.xyz;
+
+                float3 camRight = normalize(_RippleCameraRight.xyz);
+                float3 camUp = normalize(_RippleCameraUp.xyz);
+
+                float halfHeight = max(_RippleCameraSize, 0.0001);
+                float halfWidth = halfHeight * max(_RippleCameraAspect, 0.0001);
+
+                float u = dot(delta, camRight) / (2.0 * halfWidth) + 0.5;
+                float v = dot(delta, camUp) / (2.0 * halfHeight) + 0.5;
+
+                return float2(u, v);
+            }
+
+
             float Hash(float2 p)
             {
                 return frac(sin(dot(p, float2(127.1, 311.7))) * 43758.5453123);
@@ -188,52 +327,230 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
             float StopNoise(float2 worldXZ, float size, float2 stretch, float2 seed)
             {
                 float2 worldSize = max(abs(stretch), float2(0.01, 0.01)) * max(abs(size), 0.01);
-                return OrganicNoise(worldXZ / worldSize + seed);
+                float n = OrganicNoise(worldXZ / worldSize + seed);
+                return clamp(n * _ColorNoiseContrast, -1.0, 1.0);
             }
 
             // One transition between two color stops. Width is a fraction of
             // their distance separation; noise offsets the border in world units.
-            float Transition(float distanceToCamera, float startDist, float endDist,
-                             float relativeWidth, float noiseOffset)
+            float ColorBandWeight(
+                float cameraDistance,
+                float startDistance,
+                float endDistance,
+                float edgeWidth,
+                float noiseOffset,
+                float diffusionNoise)
             {
-                float interval = max(endDist - startDist, 0.0001);
-                float center = 0.5 * (startDist + endDist);
-                float halfWidth = 0.5 * interval * max(relativeWidth, 0.01);
-                // Prevent extremely high noise values from displacing borders
-                // beyond the neighboring stop distances.
-                float displacement = clamp(noiseOffset, -interval * 0.49, interval * 0.49);
-                return smoothstep(center - halfWidth, center + halfWidth,
-                                  distanceToCamera + displacement);
+                // Allow Start and End to be entered in either order.
+                float bandStart = min(startDistance, endDistance);
+                float bandEnd = max(startDistance, endDistance);
+
+                float diffusion = saturate(diffusionNoise * 0.5 + 0.5);
+                float diffusionMultiplier =
+                    lerp(1.0, lerp(0.4, 1.8, diffusion), _ColorEdgeDiffusion);
+
+                float softness = max(abs(edgeWidth) * diffusionMultiplier, 0.0001);
+
+                // Using the same displacement for both boundaries preserves the band's
+                // local thickness while still giving it an irregular painted outline.
+                float displacedDistance = cameraDistance + noiseOffset;
+
+                // Full strength from bandStart through bandEnd, with soft tails outside.
+                float fadeIn = smoothstep(
+                    bandStart - softness,
+                    bandStart,
+                    displacedDistance);
+
+                float fadeOut = 1.0 - smoothstep(
+                    bandEnd,
+                    bandEnd + softness,
+                    displacedDistance);
+
+                return saturate(fadeIn * fadeOut);
+            }
+
+            // Alpha-composite a farther band over the bands already evaluated.
+            // The returned RGB is straight-alpha, matching the pass blend mode.
+            float4 CompositeColorBand(float4 underColor, float4 overColor, float coverage)
+            {
+                float overAlpha = saturate(overColor.a * coverage);
+                float outAlpha = overAlpha + underColor.a * (1.0 - overAlpha);
+                float3 outPremultiplied =
+                      overColor.rgb * overAlpha
+                    + underColor.rgb * underColor.a * (1.0 - overAlpha);
+
+                return float4(
+                    outPremultiplied / max(outAlpha, 0.0001),
+                    outAlpha);
             }
 
             float4 EvaluateGradient(float cameraDistance, float2 worldXZ)
             {
-                // Ensure ordered stops even if sliders are set inconsistently.
-                float d0 = max(0.0, _NearDistance);
-                float d1 = max(d0 + 0.0001, _Mid1Distance);
-                float d2 = max(d1 + 0.0001, _Mid2Distance);
-                float d3 = max(d2 + 0.0001, _FarDistance);
-
                 float2 noisePos = worldXZ + _NoiseScroll.xy * _Time.y;
-                float n0 = StopNoise(noisePos, _NearNoiseScale, _NearNoiseStretch.xy, float2(13.1, 3.6));
-                float n1 = StopNoise(noisePos, _Mid1NoiseScale, _Mid1NoiseStretch.xy, float2(-5.7, 29.4));
-                float n2 = StopNoise(noisePos, _Mid2NoiseScale, _Mid2NoiseStretch.xy, float2(41.3, -10.8));
-                float n3 = StopNoise(noisePos, _FarNoiseScale, _FarNoiseStretch.xy, float2(8.5, 52.1));
 
-                // Each color controls the two boundaries touching that color.
-                float warp01 = 0.5 * (n0 * _NearNoiseStrength + n1 * _Mid1NoiseStrength);
-                float warp12 = 0.5 * (n1 * _Mid1NoiseStrength + n2 * _Mid2NoiseStrength);
-                float warp23 = 0.5 * (n2 * _Mid2NoiseStrength + n3 * _FarNoiseStrength);
+                // Shared animated domain warp.
+                float2 warpUV =
+                    noisePos / max(abs(_ColorNoiseWarpSize), 0.01);
 
-                float t01 = Transition(cameraDistance, d0, d1, _NearMidBlendWidth, warp01);
-                float t12 = Transition(cameraDistance, d1, d2, _MidMidBlendWidth, warp12);
-                float t23 = Transition(cameraDistance, d2, d3, _MidFarBlendWidth, warp23);
+                float evolution = _Time.y * _ColorNoiseEvolution;
 
-                // RGBA is interpolated together: each stop's alpha = its opacity.
-                float4 color = lerp(_NearColor, _Mid1Color, t01);
-                color = lerp(color, _Mid2Color, t12);
-                color = lerp(color, _FarColor, t23);
+                float2 warp = float2(
+                    OrganicNoise(
+                        warpUV
+                        + float2(0.31, 0.19) * evolution
+                        + float2(7.3, 19.8)),
+                    OrganicNoise(
+                        warpUV
+                        + float2(-0.23, 0.27) * evolution
+                        + float2(-23.4, 3.9))
+                );
+
+                noisePos += warp * _ColorNoiseWarpStrength;
+
+                float n0 = StopNoise(
+                    noisePos,
+                    _NearNoiseScale,
+                    _NearNoiseStretch.xy,
+                    float2(13.1, 3.6));
+
+                float n1 = StopNoise(
+                    noisePos,
+                    _AfterNearNoiseScale,
+                    _AfterNearNoiseStretch.xy,
+                    float2(18.0f, -8.2f));
+
+                float n2 = StopNoise(
+                    noisePos,
+                    _Mid1NoiseScale,
+                    _Mid1NoiseStretch.xy,
+                    float2(-5.7, 29.4));
+
+                float n3 = StopNoise(
+                    noisePos,
+                    _Mid2NoiseScale,
+                    _Mid2NoiseStretch.xy,
+                    float2(41.3, -10.8));
+
+                float n4 = StopNoise(
+                    noisePos,
+                    _FarNoiseScale,
+                    _FarNoiseStretch.xy,
+                    float2(8.5, 52.1));
+
+                float n5 = StopNoise(
+                    noisePos,
+                    _BeyondFarNoiseScale,
+                    _BeyondFarNoiseStretch.xy,
+                    float2(-31.7, 14.6));
+
+                float w0 = ColorBandWeight(
+                    cameraDistance,
+                    _NearStartDistance,
+                    _NearEndDistance,
+                    _NearEdgeWidth,
+                    n0 * _NearNoiseStrength,
+                    n0);
+
+                float w1 = ColorBandWeight(
+                    cameraDistance,
+                    _AfterNearStartDistance,
+                    _AfterNearEndDistance,
+                    _AfterNearEdgeWidth,
+                    n1 * _AfterNearNoiseStrength,
+                    n1);
+
+                float w2 = ColorBandWeight(
+                    cameraDistance,
+                    _Mid1StartDistance,
+                    _Mid1EndDistance,
+                    _Mid1EdgeWidth,
+                    n2 * _Mid1NoiseStrength,
+                    n2);
+
+                float w3 = ColorBandWeight(
+                    cameraDistance,
+                    _Mid2StartDistance,
+                    _Mid2EndDistance,
+                    _Mid2EdgeWidth,
+                    n3 * _Mid2NoiseStrength,
+                    n3);
+
+                float w4 = ColorBandWeight(
+                    cameraDistance,
+                    _FarStartDistance,
+                    _FarEndDistance,
+                    _FarEdgeWidth,
+                    n4 * _FarNoiseStrength,
+                    n4);
+
+                float w5 = ColorBandWeight(
+                    cameraDistance,
+                    _BeyondFarStartDistance,
+                    _BeyondFarEndDistance,
+                    _BeyondFarEdgeWidth,
+                    n5 * _BeyondFarNoiseStrength,
+                    n5);
+
+                // Process near to far. Each later band is composited on top,
+                // so farther colors take priority in overlaps.
+                float4 color = float4(0, 0, 0, 0);
+                color = CompositeColorBand(color, _NearColor, w0);
+                color = CompositeColorBand(color, _AfterNearColor, w1);
+                color = CompositeColorBand(color, _Mid1Color, w2);
+                color = CompositeColorBand(color, _Mid2Color, w3);
+                color = CompositeColorBand(color, _FarColor, w4);
+                color = CompositeColorBand(color, _BeyondFarColor, w5);
+
                 return color;
+            }
+
+            // Analytic derivative of ValueNoise; XY is the height-field slope.
+            // Only the normal layer uses this function.
+            float2 ValueNoiseGradient(float2 p)
+            {
+                float2 cell = floor(p);
+                float2 f = frac(p);
+                float2 u = f * f * (3.0 - 2.0 * f);
+                float2 du = 6.0 * f * (1.0 - f);
+                float a = Hash(cell);
+                float b = Hash(cell + float2(1, 0));
+                float c = Hash(cell + float2(0, 1));
+                float d = Hash(cell + float2(1, 1));
+                float mixed = a - b - c + d;
+                return 2.0 * du * float2(b - a + mixed * u.y,
+                                         c - a + mixed * u.x);
+            }
+
+            float ProceduralDetailVisibility(float2 uv)
+            {
+                float footprint = max(length(ddx(uv)), length(ddy(uv)));
+                return 1.0 - smoothstep(0.15, 0.6, footprint);
+            }
+
+            float3 GetNormalNoiseTilt(float2 worldXZ)
+            {
+                float2 stretch = max(abs(_NormalNoiseStretch.xy), float2(0.01, 0.01));
+                float size = max(abs(_NormalNoiseSize), 0.01);
+                float frequencyB = max(_NormalDetailScale, 0.01);
+                float2 uvA = (worldXZ + _NormalScrollA.xy * _Time.y) / (size * stretch);
+                float2 uvB = (worldXZ + _NormalScrollB.xy * _Time.y)
+                    / (size * stretch) * frequencyB + float2(17.2, -9.7);
+
+                float2 slopeA = ValueNoiseGradient(uvA) * ProceduralDetailVisibility(uvA);
+                float2 slopeB = ValueNoiseGradient(uvB) * ProceduralDetailVisibility(uvB);
+                // Derivatives of a virtual height field. Height scales with tile size
+                // so the strength remains an angular art control when size changes.
+                float2 slope = (slopeA + slopeB * frequencyB * _NormalDetailWeight)
+                    / ((1.0 + _NormalDetailWeight) * stretch);
+                float2 tilt = -slope * _NormalNoiseStrength;
+
+                // Decode Unity normal-map packing, then combine their tilts.
+                // Flat default maps contribute zero; procedural noise needs no asset.
+                float3 a = UnpackNormal(SAMPLE_TEXTURE2D(_NormalMapA, sampler_NormalMapA, uvA));
+                float3 b = UnpackNormal(SAMPLE_TEXTURE2D(_NormalMapB, sampler_NormalMapB, uvB));
+                tilt += a.xy / max(a.z, 0.2) * _NormalMapStrengthA;
+                tilt += b.xy / max(b.z, 0.2) * _NormalMapStrengthB;
+                return float3(tilt.x, 0.0, tilt.y);
             }
 
             // Same ripple RT mapping as your existing handwritten water shader.
@@ -242,8 +559,7 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
                 if (_RippleCameraSize <= 0.00001)
                     return float2(0.0, 0.0);
 
-                float2 uv = (worldPos.xz - _RippleCameraPos.xz) /
-                            max(2.0 * abs(_RippleCameraSize), 0.00001) + 0.5;
+                float2 uv = GetRippleUV(worldPos);
 
                 float pixel = 1.0 / max(_RippleTextureSize, 1.0);
                 float edge = min(min(uv.x, uv.y), min(1.0 - uv.x, 1.0 - uv.y));
@@ -272,8 +588,13 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
                 float cameraDistance = distance(GetCameraPositionWS(), input.positionWS);
                 float4 gradient = EvaluateGradient(cameraDistance, input.positionWS.xz);
 
+                float3 normalNoiseTiltWS = GetNormalNoiseTilt(input.positionWS.xz);
                 float2 slope = GetRippleSlope(input.positionWS);
-                float3 rippleTiltWS = float3(-slope.x, 0.0, -slope.y) * _RippleStrength;
+                float3 rippleTiltWS =
+                    (
+                        -normalize(_RippleCameraRight.xyz) * slope.x
+                        -normalize(_RippleCameraUp.xyz) * slope.y
+                    ) * _RippleStrength;
 
                 // Preserve the existing ripple brightness/shading behavior.
                 float lightDark = dot(rippleTiltWS.xz, normalize(float2(0.8, 0.6)));
@@ -282,7 +603,9 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
 
                 // Keep the original Mobile SSPR reflection texture and blending.
                 float2 screenUV = GetNormalizedScreenSpaceUV(input.positionCS);
-                float2 rippleTiltVS = TransformWorldToViewDir(rippleTiltWS).xy;
+                float3 reflectionTiltWS = rippleTiltWS
+                    + normalNoiseTiltWS * _NormalReflectionInfluence;
+                float2 rippleTiltVS = TransformWorldToViewDir(reflectionTiltWS, false).xy;
                 float2 reflectionUV = saturate(screenUV + rippleTiltVS * _ReflectionDistortion);
                 half4 reflection = SAMPLE_TEXTURE2D(
                     _MobileSSPR_ColorRT, sampler_MobileSSPR_ColorRT, reflectionUV);
@@ -291,7 +614,9 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
 
                 // Simple Blinn-Phong highlight. Direction is art-directable and
                 // does not require a particular main light or lighting setup.
-                float3 normalWS = normalize(input.normalWS + rippleTiltWS * _SpecularRippleInfluence);
+                float3 normalWS = normalize(input.normalWS
+                    + rippleTiltWS * _SpecularRippleInfluence + normalNoiseTiltWS);
+
                 float3 viewDirWS = GetWorldSpaceNormalizeViewDir(input.positionWS);
                 float3 lightDirWS = normalize(_SpecularDirection.xyz + float3(0.0, 0.00001, 0.0));
                 float3 halfDirWS = normalize(lightDirWS + viewDirWS + float3(0.0, 0.00001, 0.0));

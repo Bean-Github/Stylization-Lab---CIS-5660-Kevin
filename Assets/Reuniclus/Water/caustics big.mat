@@ -33,12 +33,14 @@ Material:
     - _CausticsFadeRadius: 0.4
     - _CausticsFadeStrength: 0.1
     - _CausticsLuminanceMaskStrength: 1
-    - _CausticsScale: 42.88
+    - _CausticsScale: 9.9
     - _CausticsShadowStrength: 1
     - _CausticsSpeed: 0.03
     - _CausticsSplit: 0.0028
     - _CausticsStrength: 5.51
+    - _UseCustomLightDir: 0
     m_Colors:
-    - _CausticsTint: {r: 1, g: 1, b: 1, a: 1}
+    - _CausticsTint: {r: 12.125731, g: 12.125731, b: 12.125731, a: 1}
+    - _CustomLightDir: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

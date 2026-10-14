@@ -103,7 +103,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FlowA: {r: 0.06, g: 0.02, b: 0, a: 0}
     - _FlowB: {r: -0.04, g: 0.05, b: 0, a: 0}
-    - _Highlight: {r: 0.7660377, g: 0.647622, b: 0.08527584, a: 0}
+    - _Highlight: {r: 1, g: 0.8430818, b: 0.058490515, a: 0}
     - _Ignore_Tex_Color: {r: 0.937255, g: 0.8588236, b: 0.46666664, a: 1}
     - _LitColor: {r: 1.15, g: 1.1, b: 0.8, a: 1}
     - _MidColor: {r: 0.65, g: 0.95, b: 0.65, a: 1}
@@ -114,6 +114,6 @@ Material:
     - _ShadowColor: {r: 0.2, g: 0.35, b: 0.28, a: 1}
     - _Shadow_Scale: {r: 3, g: 3, b: 0, a: 0}
     - _SpecColor: {r: 3, g: 3, b: 2, a: 1}
-    - _Thresholds: {r: 0.66, g: 1.46, b: 0, a: 0}
+    - _Thresholds: {r: 0.86, g: 0.98, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

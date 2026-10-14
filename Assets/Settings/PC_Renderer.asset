@@ -141,6 +141,7 @@ MonoBehaviour:
     probeSamplingDebugTexture: {fileID: 2800000, guid: 24ec0e140fb444a44ab96ee80844e18e, type: 3}
     probeVolumeBlendStatesCS: {fileID: 7200000, guid: b9a23f869c4fd45f19c5ada54dd82176, type: 3}
   m_RendererFeatures:
+  - {fileID: 976014045933988906}
   - {fileID: 7833122117494664109}
   - {fileID: 7860783880107658837}
   - {fileID: -5241822385288238757}
@@ -148,7 +149,7 @@ MonoBehaviour:
   - {fileID: -1236038612579199342}
   - {fileID: 7466862965163290753}
   - {fileID: -5512062008809867827}
-  m_RendererFeatureMap: ad6b866f10d7b46c550eef6d4a1d176d5b29341d504e41b71dd780bac745cbf092d68c406eb5d8ee81f013414ea09f67cd35f6a0ce3881b3
+  m_RendererFeatureMap: 2aecaf879a7f8b0dad6b866f10d7b46c550eef6d4a1d176d5b29341d504e41b71dd780bac745cbf092d68c406eb5d8ee81f013414ea09f67cd35f6a0ce3881b3
   m_UseNativeRenderPass: 1
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
@@ -174,6 +175,28 @@ MonoBehaviour:
   m_DepthTextureFormat: 0
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 0
+--- !u!114 &976014045933988906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ac8727bfe0a0b46b00f38559e63a45, type: 3}
+  m_Name: StreakRenderFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  shader: {fileID: 4800000, guid: 535e7b77bcb9a554e9c650fd2f6bf897, type: 3}
+  settings:
+    enabled: 1
+    threshold: 160.6
+    stretch: 0.12
+    intensity: 0.46
+    tint: {r: 0.9312838, g: 1, b: 0.5264151, a: 1}
+    showInSceneView: 1
+    targetCameraTag: MainCamera
 --- !u!114 &7466862965163290753
 MonoBehaviour:
   m_ObjectHideFlags: 0

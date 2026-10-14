@@ -19,7 +19,7 @@ Material:
   m_CustomRenderQueue: 3000
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: _DepthColorStrength
+  m_LockedProperties: _DepthColorStrength _Mid1EndDistance
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -35,8 +35,16 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NormalMapA:
+        m_Texture: {fileID: 2800000, guid: 291e1fa5faf0ab046b2bd410beef1508, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMapB:
+        m_Texture: {fileID: 2800000, guid: f36aa2239f45d6c42beb49f25f36715a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _RippleTex:
-        m_Texture: {fileID: 2800000, guid: 8b904d33a921e1c4b94e3fa6e07a76d0, type: 3}
+        m_Texture: {fileID: 2800000, guid: cffd7fbdbcb30054181850984376dd0d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecularTexture:
@@ -74,50 +82,85 @@ Material:
     - Vector1_f43f3972eb7941169f3013ad2ece79a8: 1
     - Vector1_f8914effb3024a26994c7d3939d6cc23: 500
     - _AbsorptionDensity: 1.5
+    - _AfterNearEdgeWidth: 1.27
+    - _AfterNearEndDistance: 4.07
+    - _AfterNearNoiseScale: 6.26
+    - _AfterNearNoiseStrength: 0.49
+    - _AfterNearStartDistance: 2.86
     - _BandFeather: 0.012
+    - _BeyondFarEdgeWidth: 3
+    - _BeyondFarEndDistance: 10000
+    - _BeyondFarNoiseScale: 53.38
+    - _BeyondFarNoiseStrength: 0.83
+    - _BeyondFarStartDistance: 12.7
+    - _ColorEdgeDiffusion: 0.62
+    - _ColorNoiseContrast: 1.8
+    - _ColorNoiseEvolution: 0.81
+    - _ColorNoiseWarpSize: -0.28
+    - _ColorNoiseWarpStrength: 6.29
     - _DepthColorStrength: 0.8
-    - _FarDistance: 11.64
+    - _FarDistance: 8.1
+    - _FarEdgeWidth: 2.38
+    - _FarEndDistance: 11.81
     - _FarFadeDistance: 2.05
-    - _FarNoiseScale: 2
-    - _FarNoiseStrength: 1.2
+    - _FarNoiseScale: 20.72
+    - _FarNoiseStrength: 3.71
     - _FarOpacity: 0.52
+    - _FarStartDistance: 6.22
     - _FarTintInfluence: 0
     - _FresnelPower: 4
     - _FresnelStrength: 0.4
     - _LightBandStrength: 0.85
     - _LightBandWidth: 0.06
-    - _Mid1Distance: 4.11
-    - _Mid1NoiseScale: 2
-    - _Mid1NoiseStrength: 1.2
-    - _Mid2Distance: 7.36
-    - _Mid2NoiseScale: 2
-    - _Mid2NoiseStrength: 1.2
+    - _Mid1Distance: 3.33
+    - _Mid1EdgeWidth: 1
+    - _Mid1EndDistance: 5.33
+    - _Mid1NoiseScale: 8.95
+    - _Mid1NoiseStrength: 0.43
+    - _Mid1StartDistance: 3.22
+    - _Mid2Distance: 6.8
+    - _Mid2EdgeWidth: 0.33
+    - _Mid2EndDistance: 6.58
+    - _Mid2NoiseScale: 4.93
+    - _Mid2NoiseStrength: 0.32
+    - _Mid2StartDistance: 3.8
     - _MidDistance: 4.46
-    - _MidFarBlendWidth: 0.497
-    - _MidMidBlendWidth: 0.543
+    - _MidFarBlendWidth: 0.524
+    - _MidMidBlendWidth: 0.714
     - _MidOpacity: 0.71
-    - _NearDistance: 3.53
+    - _NearDistance: 1.73
+    - _NearEdgeWidth: 1.18
+    - _NearEndDistance: 1.48
     - _NearFadeDistance: 0.95
-    - _NearMidBlendWidth: 1
+    - _NearMidBlendWidth: 0.653
     - _NearNoiseScale: 2
-    - _NearNoiseStrength: 0
+    - _NearNoiseStrength: 0.39
     - _NearOpacity: 0.25
+    - _NearStartDistance: 0
+    - _NormalDetailScale: 6.24
+    - _NormalDetailWeight: 0.45
+    - _NormalMapStrengthA: 0.78
+    - _NormalMapStrengthB: 0.95
+    - _NormalNoiseSize: 1.2
+    - _NormalNoiseStrength: 0.04
+    - _NormalReflectionInfluence: 0.6
     - _OverallTintStrength: 1
     - _Posterize_Depth: 0.74
     - _QueueControl: 1
     - _QueueOffset: 0
-    - _ReflectionDistortion: 0.012
+    - _ReflectionDistortion: 0.0116
     - _ReflectionStrength: 0.26
     - _Reflection_Fresnel_Power: 1.5
     - _Reflection_MinStrength: 0.22
     - _Reflection_Strength: 0.8
     - _RefractionStrength: 0.015
+    - _RippleCameraAspect: 1
     - _RippleCameraSize: 0
     - _RippleReflection: 1
     - _RippleRefraction: 1
     - _RippleShading: 0.03
     - _RippleSlopeScale: 8
-    - _RippleStrength: 42.2
+    - _RippleStrength: 42.54
     - _RippleTexResolution: 512
     - _RippleTextureSize: 512
     - _SSPRDistortion: 0.01
@@ -133,9 +176,9 @@ Material:
     - _SpecWaveSpeed1: 1.2
     - _SpecWaveSpeed2: 1.7
     - _SpecWaveStrength: 0.12
-    - _SpecularPower: 595
+    - _SpecularPower: 186
     - _SpecularRippleInfluence: 1
-    - _SpecularStrength: 8.2
+    - _SpecularStrength: 0
     - _SpecularTextureScale: 0.45
     - _SpecularTextureSpeed: 0.2
     - _SpecularTextureStrength: 0.81
@@ -148,6 +191,7 @@ Material:
     - _TopNormalThreshold: 0.75
     - _TopRimStrength: 0.35
     - _TopRimWidth: 0.1
+    - _UseStencil: 0
     - _Use_Fog: 1
     - _WaveScale: 1.31
     - _WaveSpeed: 0.8
@@ -160,23 +204,33 @@ Material:
     - Vector2_fd67f1a4adff4db694b79e9cecae58f7: {r: 0, g: 0, b: 0, a: 0}
     - Vector4_0531145fc8bd4885a11bbfd5e06d8bde: {r: 6, g: 6, b: 0.5, a: 0.5}
     - Vector4_30ff1b7c168246afafa779c6e55a1329: {r: 5, g: 5, b: 0, a: 0}
-    - _FarColor: {r: 0, g: 0.045100387, b: 0.14716971, a: 0.5058824}
+    - _AfterNearColor: {r: 0.100398645, g: 0.90188676, b: 0.5220345, a: 0.41960785}
+    - _AfterNearNoiseStretch: {r: 5, g: 1, b: 0, a: 0}
+    - _AfterNearStretch: {r: 5, g: 1, b: 0, a: 0}
+    - _BeyondFarColor: {r: 0.35283017, g: 1, b: 0.741132, a: 1}
+    - _BeyondFarNoiseStretch: {r: 5, g: 1, b: 0, a: 0}
+    - _FarColor: {r: 0, g: 0.08661176, b: 0.2528302, a: 0.8352941}
     - _FarNoiseStretch: {r: 5, g: 1, b: 0, a: 0}
     - _FresnelColor: {r: 0, g: 1.6730715, b: 2.7594807, a: 1}
     - _LightBandColor: {r: 0.25, g: 0.85, b: 1.5, a: 1}
-    - _Mid1Color: {r: 0, g: 0.36751223, b: 0.8627451, a: 0.36862746}
+    - _Mid1Color: {r: 0.2117647, g: 0.9490196, b: 0.9351854, a: 0.43137255}
     - _Mid1NoiseStretch: {r: 5, g: 1, b: 0, a: 0}
-    - _Mid2Color: {r: 0, g: 0.030316712, b: 0.5320754, a: 0.2901961}
-    - _Mid2NoiseStretch: {r: 5, g: 1, b: 0, a: 0}
+    - _Mid2Color: {r: 0.21176471, g: 0.2627451, b: 0.9490196, a: 0.43137255}
+    - _Mid2NoiseStretch: {r: 79.52, g: 1, b: 0, a: 0}
     - _MidColor: {r: 0, g: 1, b: 0.34848475, a: 0.26666668}
-    - _NearColor: {r: 0.1490565, g: 0.57166886, b: 1, a: 0.22745098}
+    - _NearColor: {r: 1, g: 0.86058694, b: 0.390566, a: 0.15294118}
     - _NearNoiseStretch: {r: 5, g: 1, b: 0, a: 0}
-    - _NoiseScroll: {r: 0, g: 0, b: 0, a: 0}
+    - _NoiseScroll: {r: 0.12, g: 0, b: 0, a: 0}
+    - _NormalNoiseStretch: {r: 2, g: 1, b: 0, a: 0}
+    - _NormalScrollA: {r: 0.12, g: 0.04, b: 0, a: 0}
+    - _NormalScrollB: {r: -0.06, g: 0.09, b: 0, a: 0}
     - _OverallTintColor: {r: 0.08726944, g: 0.15558892, b: 0.3886792, a: 1}
     - _Posterize_Color: {r: 0.76037735, g: 0.876558, b: 1, a: 0}
     - _RippleCameraPos: {r: 0, g: 0, b: 0, a: 0}
-    - _SpecularColor: {r: 8.474189, g: 7.2750106, b: 7.2750106, a: 1}
-    - _SpecularDirection: {r: -0.92, g: 5.4, b: 5.54, a: 0}
+    - _RippleCameraRight: {r: 1, g: 0, b: 0, a: 0}
+    - _RippleCameraUp: {r: 0, g: 0, b: 1, a: 0}
+    - _SpecularColor: {r: 82.85292, g: 112.69172, b: 131.08075, a: 1}
+    - _SpecularDirection: {r: -1, g: 3.4, b: 1.25, a: 0}
     - _SurfaceBandColor: {r: 0.005, g: 0.025, b: 0.045, a: 1}
     - _VolumeMaxOS: {r: 0.5, g: 0.5, b: 0.5, a: 0}
     - _VolumeMinOS: {r: -0.5, g: -0.5, b: -0.5, a: 0}

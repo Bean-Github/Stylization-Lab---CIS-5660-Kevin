@@ -24,7 +24,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _NormalMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 165ea446cea29864997069cea68eb09b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ReflectionCube:
@@ -40,7 +40,7 @@ Material:
     - _EmissionStrength: 0
     - _FresnelPower: 1.9
     - _LightEdge: 0.99
-    - _NormalStrength: 0.17
+    - _NormalStrength: 0.19
     - _NormalTiling: 3
     - _ReflectionStrength: 0.51
     - _Refraction: 0.015
@@ -56,7 +56,7 @@ Material:
     - _Absorption: {r: 7.16, g: 0.18, b: 0.75, a: 0}
     - _BodyColor: {r: 4.471677, g: 4.471677, b: 4.471677, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FlowA: {r: 0.06, g: 0.02, b: 0, a: 0}
+    - _FlowA: {r: 0.08, g: 0.02, b: 0, a: 0}
     - _FlowB: {r: -0.04, g: 0.05, b: 0, a: 0}
     - _LitColor: {r: 0, g: 6.097514, b: 6.422235, a: 1}
     - _MidColor: {r: 0.025677329, g: 0.51493907, b: 0.9072711, a: 1}

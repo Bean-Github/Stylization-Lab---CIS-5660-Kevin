@@ -7,6 +7,8 @@ public class RippleEffect : MonoBehaviour
     public int TextureSize = 512;
     public RenderTexture ObjectsRT;
 
+    public float rippleSpeed = 0.2f;
+
     [Header("Debug")]
     public RenderTexture CurrRT;
     public RenderTexture PrevRT;
@@ -175,25 +177,49 @@ public class RippleEffect : MonoBehaviour
         if (waterMaterial == null || RippleCamera == null)
             return;
 
+        RippleMat.SetFloat(
+            "_RippleSpeed",
+            rippleSpeed
+        );
 
-        // Your water shader uses this to convert:
-        //
-        // world position -> ripple UV
+        // Water's LOCAL up is the surface normal.
+        Vector3 waterNormal = transform.up;
+
+        // Orient the ripple camera perpendicular to the water.
+        // Assumes the mesh uses local +Y as its surface normal.
+
+        Transform cam = RippleCamera.transform;
 
         waterMaterial.SetVector(
             "_RippleCameraPos",
-            RippleCamera.transform.position
+            cam.position
         );
 
+        waterMaterial.SetVector(
+            "_RippleCameraRight",
+            cam.right
+        );
 
-        // OrthographicSize is HALF the width/height
-        // of a square orthographic camera.
+        waterMaterial.SetVector(
+            "_RippleCameraUp",
+            cam.up
+        );
+
         waterMaterial.SetFloat(
             "_RippleCameraSize",
             RippleCamera.orthographicSize
         );
-    }
 
+        waterMaterial.SetFloat(
+            "_RippleCameraAspect",
+            RippleCamera.aspect
+        );
+
+        waterMaterial.SetFloat(
+            "_RippleTextureSize",
+            TextureSize
+        );
+    }
 
     IEnumerator RipplesRoutine()
     {

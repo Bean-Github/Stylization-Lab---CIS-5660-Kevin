@@ -32,6 +32,8 @@ Shader "Unlit/RippleShader"
             sampler2D _CurrentRT;
             float4 _CurrentRT_TexelSize;
 
+            float _RippleSpeed;
+
             v2f vert (appdata v)
             {
                 v2f o;
@@ -44,12 +46,11 @@ Shader "Unlit/RippleShader"
             {
                 float3 e = float3(_CurrentRT_TexelSize.xy,0);
                 float2 uv = i.uv;
-                float speed = 1.0f;
 
-                float p10 = tex2D(_CurrentRT, uv - e.zy * speed).x;
-                float p01 = tex2D(_CurrentRT, uv - e.xz * speed).x;
-                float p21 = tex2D(_CurrentRT, uv + e.xz * speed).x;
-                float p12 = tex2D(_CurrentRT, uv + e.zy * speed).x;
+                float p10 = tex2D(_CurrentRT, uv - e.zy * _RippleSpeed).x;
+                float p01 = tex2D(_CurrentRT, uv - e.xz * _RippleSpeed).x;
+                float p21 = tex2D(_CurrentRT, uv + e.xz * _RippleSpeed).x;
+                float p12 = tex2D(_CurrentRT, uv + e.zy * _RippleSpeed).x;
 
                 float p11 = tex2D(_PrevRT, uv).x;
 
