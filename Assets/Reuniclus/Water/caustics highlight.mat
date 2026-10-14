@@ -33,11 +33,11 @@ Material:
     - _CausticsFadeRadius: 0.4
     - _CausticsFadeStrength: 0.1
     - _CausticsLuminanceMaskStrength: 1
-    - _CausticsScale: 9.9
+    - _CausticsScale: 1.02
     - _CausticsShadowStrength: 1
     - _CausticsSpeed: 0.03
     - _CausticsSplit: 0.0028
-    - _CausticsStrength: 5.51
+    - _CausticsStrength: 6.51
     - _UseCustomLightDir: 0
     m_Colors:
     - _CausticsTint: {r: 12.125731, g: 12.125731, b: 12.125731, a: 1}

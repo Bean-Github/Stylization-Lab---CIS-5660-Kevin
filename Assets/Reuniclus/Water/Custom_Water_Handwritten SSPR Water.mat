@@ -86,12 +86,12 @@ Material:
     - _AfterFarEndDistance: 11.96
     - _AfterFarNoiseScale: 2
     - _AfterFarNoiseStrength: 0.49
-    - _AfterFarStartDistance: 9.8
+    - _AfterFarStartDistance: 8.37
     - _AfterNearEdgeWidth: 1.27
     - _AfterNearEndDistance: 4.07
     - _AfterNearNoiseScale: 6.26
     - _AfterNearNoiseStrength: 0.49
-    - _AfterNearStartDistance: 2.86
+    - _AfterNearStartDistance: 3.98
     - _BandFeather: 0.012
     - _BeyondFarEdgeWidth: 3
     - _BeyondFarEndDistance: 10000
@@ -105,13 +105,13 @@ Material:
     - _ColorNoiseWarpStrength: 6.29
     - _DepthColorStrength: 0.8
     - _FarDistance: 8.1
-    - _FarEdgeWidth: 2.38
+    - _FarEdgeWidth: 3.15
     - _FarEndDistance: 11.81
     - _FarFadeDistance: 2.05
     - _FarNoiseScale: 20.72
     - _FarNoiseStrength: 2.33
     - _FarOpacity: 0.52
-    - _FarStartDistance: 4.51
+    - _FarStartDistance: 3.69
     - _FarTintInfluence: 0
     - _FresnelPower: 4
     - _FresnelStrength: 0.4
@@ -128,7 +128,7 @@ Material:
     - _Mid2EndDistance: 5.33
     - _Mid2NoiseScale: 4.93
     - _Mid2NoiseStrength: 0.32
-    - _Mid2StartDistance: 3.87
+    - _Mid2StartDistance: 4.24
     - _MidDistance: 4.46
     - _MidFarBlendWidth: 0.524
     - _MidMidBlendWidth: 0.714
@@ -209,14 +209,14 @@ Material:
     - Vector2_fd67f1a4adff4db694b79e9cecae58f7: {r: 0, g: 0, b: 0, a: 0}
     - Vector4_0531145fc8bd4885a11bbfd5e06d8bde: {r: 6, g: 6, b: 0.5, a: 0.5}
     - Vector4_30ff1b7c168246afafa779c6e55a1329: {r: 5, g: 5, b: 0, a: 0}
-    - _AfterFarColor: {r: 0, g: 0.2579127, b: 1.0139645, a: 1}
+    - _AfterFarColor: {r: 0.027490165, g: 0.15693025, b: 0.5396226, a: 1}
     - _AfterFarNoiseStretch: {r: 5, g: 1, b: 0, a: 0}
     - _AfterNearColor: {r: 0.10196079, g: 0.9019608, b: 0.47754902, a: 0.41960785}
     - _AfterNearNoiseStretch: {r: 5, g: 1, b: 0, a: 0}
     - _AfterNearStretch: {r: 5, g: 1, b: 0, a: 0}
     - _BeyondFarColor: {r: 0.35283017, g: 1, b: 0.741132, a: 1}
     - _BeyondFarNoiseStretch: {r: 5, g: 1, b: 0, a: 0}
-    - _FarColor: {r: 0, g: 0.032352332, b: 0.21509439, a: 0.8352941}
+    - _FarColor: {r: 0.023175487, g: 0.07646845, b: 0.3962264, a: 0.8352941}
     - _FarNoiseStretch: {r: 5, g: 1, b: 0, a: 0}
     - _FresnelColor: {r: 0, g: 1.6730715, b: 2.7594807, a: 1}
     - _LightBandColor: {r: 0.25, g: 0.85, b: 1.5, a: 1}
