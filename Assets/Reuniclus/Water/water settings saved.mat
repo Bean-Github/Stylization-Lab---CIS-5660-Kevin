@@ -103,6 +103,8 @@ Material:
     - _ColorNoiseEvolution: 0.81
     - _ColorNoiseWarpSize: -0.28
     - _ColorNoiseWarpStrength: 6.29
+    - _DarkSpotPower: 96
+    - _DarkSpotStrength: 8.2
     - _DepthColorStrength: 0.8
     - _FarDistance: 8.1
     - _FarEdgeWidth: 3.6
@@ -189,6 +191,8 @@ Material:
     - _SpecularTextureStrength: 0.81
     - _StencilReadMask: 8
     - _StencilRef: 8
+    - _SuperSpecularPower: 96
+    - _SuperSpecularStrength: 2
     - _SurfaceBandStrength: 0.8
     - _SurfaceBandWidth: 0.18
     - _SurfaceBrightness: 1.35
@@ -216,6 +220,8 @@ Material:
     - _AfterNearStretch: {r: 5, g: 1, b: 0, a: 0}
     - _BeyondFarColor: {r: 0.35283017, g: 1, b: 0.741132, a: 1}
     - _BeyondFarNoiseStretch: {r: 5, g: 1, b: 0, a: 0}
+    - _DarkSpotColor: {r: 0, g: 0, b: 0, a: 1}
+    - _DarkSpotDirection: {r: -1, g: 3.4, b: 1.25, a: 0}
     - _FarColor: {r: 0, g: 0.05628585, b: 0.4113207, a: 0.8352941}
     - _FarNoiseStretch: {r: 5, g: 1, b: 0, a: 0}
     - _FresnelColor: {r: 0, g: 1.6730715, b: 2.7594807, a: 1}
@@ -238,6 +244,7 @@ Material:
     - _RippleCameraUp: {r: 0, g: 0, b: 1, a: 0}
     - _SpecularColor: {r: 82.85292, g: 112.69172, b: 131.08075, a: 1}
     - _SpecularDirection: {r: -1, g: 3.4, b: 1.25, a: 0}
+    - _SuperSpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _SurfaceBandColor: {r: 0.005, g: 0.025, b: 0.045, a: 1}
     - _VolumeMaxOS: {r: 0.5, g: 0.5, b: 0.5, a: 0}
     - _VolumeMinOS: {r: -0.5, g: -0.5, b: -0.5, a: 0}

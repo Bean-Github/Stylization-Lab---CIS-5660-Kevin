@@ -191,9 +191,9 @@ MonoBehaviour:
   shader: {fileID: 4800000, guid: 535e7b77bcb9a554e9c650fd2f6bf897, type: 3}
   settings:
     enabled: 1
-    threshold: 160.6
-    stretch: 0.12
-    intensity: 0.46
+    threshold: 158.06
+    stretch: 0.347
+    intensity: 0.48
     tint: {r: 0.9312838, g: 1, b: 0.5264151, a: 1}
     showInSceneView: 1
     targetCameraTag: MainCamera

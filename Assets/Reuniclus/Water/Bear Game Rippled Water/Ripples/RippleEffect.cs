@@ -294,25 +294,39 @@ public class RippleEffect : MonoBehaviour
 
     void OnDestroy()
     {
+        // 1. Release the dynamic simulation textures
         Release(ref CurrRT);
         Release(ref PrevRT);
         Release(ref TempRT);
 
-
+        // 2. Destroy the simulation materials
         if (RippleMat != null)
         {
             Destroy(RippleMat);
             RippleMat = null;
         }
-
-
         if (AddMat != null)
         {
             Destroy(AddMat);
             AddMat = null;
         }
-    }
 
+        // 3. Destroy the cloned water material to prevent memory leaks
+        if (waterMaterial != null)
+        {
+            Destroy(waterMaterial);
+            waterMaterial = null;
+        }
+
+        // 4. Wipe the physical ObjectsRT asset clean so it doesn't permanently alter Edit Mode
+        if (ObjectsRT != null)
+        {
+            RenderTexture oldActive = RenderTexture.active;
+            RenderTexture.active = ObjectsRT;
+            GL.Clear(false, true, Color.black);
+            RenderTexture.active = oldActive;
+        }
+    }
 
     void Release(ref RenderTexture rt)
     {

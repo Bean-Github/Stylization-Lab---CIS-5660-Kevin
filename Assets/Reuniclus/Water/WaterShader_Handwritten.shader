@@ -153,9 +153,20 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
         _SurfaceBrightness ("Overall Water Brightness", Range(0, 4)) = 1
         [HDR] _SpecularColor ("Specular Highlight Color", Color) = (1, 1, 1, 1)
         _SpecularStrength ("Specular Brightness", Range(0, 20)) = 2
-        _SpecularPower ("Specular Sharpness", Range(1, 512)) = 96
+        _SpecularPower ("Specular Sharpness", Range(1, 1024)) = 96
         _SpecularDirection ("Direction To Highlight Source (World)", Vector) = (0.3, 1, 0.2, 0)
         _SpecularRippleInfluence ("Ripple Influence On Specular", Range(0, 3)) = 1
+
+        [Header(Dark Spots)]
+        [HDR] _DarkSpotColor ("Dark Spot Color", Color) = (0.01, 0.02, 0.05, 1)
+        _DarkSpotStrength ("Dark Spot Strength", Range(0, 20)) = 2
+        _DarkSpotPower ("Dark Spot Sharpness", Range(1, 1024)) = 96
+        _DarkSpotDirection ("Direction To Dark Spot Source (World)", Vector) = (-0.3, 1, -0.2, 0)
+
+        [HDR] _SuperSpecularColor ("Super Specular Highlight Color", Color) = (1, 1, 1, 1)
+        _SuperSpecularStrength ("Super Specular Brightness", Range(0, 20)) = 2
+        _SuperSpecularPower ("Super Specular Sharpness", Range(1, 8000)) = 96
+        _SuperSpecularDir ("Specular Direction", Vector) = (0.5, 0.8, 0.2, 0)
 
         _UseStencil ("Use Stencil Mask", Float) = 0
         [HideInInspector] _RippleCameraRight ("Ripple Camera Right", Vector) = (1, 0, 0, 0)
@@ -256,6 +267,13 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
                 float _SpecularStrength, _SpecularPower;
                 float4 _SpecularDirection;
                 float _SpecularRippleInfluence;
+                float4 _SuperSpecularDir;
+                float4 _SuperSpecularColor;
+                float _SuperSpecularStrength, _SuperSpecularPower;
+
+                float4 _DarkSpotColor;
+                float _DarkSpotStrength, _DarkSpotPower;
+                float4 _DarkSpotDirection;
 
                 float4 _RippleCameraRight;
                 float4 _RippleCameraUp;
@@ -328,6 +346,10 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
                 float a = lerp(n00, n10, f.x);
                 float b = lerp(n01, n11, f.x);
                 return lerp(a, b, f.y) * 2.0 - 1.0;
+            }
+
+            float remap(float v, float minOld, float maxOld, float minNew, float maxNew) {
+                return minNew + (v - minOld) * (maxNew - minNew) / (maxOld - minOld);
             }
 
             // Two scales give the border a broad shape with finer breakup.
@@ -579,7 +601,7 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
                 float3 a = UnpackNormal(SAMPLE_TEXTURE2D(_NormalMapA, sampler_NormalMapA, uvA));
                 float3 b = UnpackNormal(SAMPLE_TEXTURE2D(_NormalMapB, sampler_NormalMapB, uvB));
                 tilt += a.xy / max(a.z, 0.2) * _NormalMapStrengthA;
-                tilt += b.xy / max(b.z, 0.2) * _NormalMapStrengthB;
+                tilt -= b.xy / max(b.z, 0.2) * _NormalMapStrengthB;
                 return float3(tilt.x, 0.0, tilt.y);
             }
 
@@ -651,8 +673,42 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
                 float3 lightDirWS = normalize(_SpecularDirection.xyz + float3(0.0, 0.00001, 0.0));
                 float3 halfDirWS = normalize(lightDirWS + viewDirWS + float3(0.0, 0.00001, 0.0));
                 float ndotl = saturate(dot(normalWS, lightDirWS));
-                float highlight = pow(saturate(dot(normalWS, halfDirWS)), _SpecularPower) * ndotl;
+
+                float restrictedLambert = ndotl * pow(1.0f - saturate(dot(normalWS, viewDirWS)), 3.0f); // optional Fresnel effect
+
+                float highlight = pow(saturate(dot(normalWS, halfDirWS)), _SpecularPower) * restrictedLambert;
+                highlight *= gradient.a; // fade highlight with water opacity
                 gradient.rgb += _SpecularColor.rgb * (highlight * _SpecularStrength);
+
+                // super specular highlight
+                float superLambert = ndotl;
+
+                // depth value
+                float dist = cameraDistance; 
+                dist = remap(dist, 0.0f, 20.0f, 0.0f, 1.0f);
+                dist = clamp(dist, 0.0f, 1.0f);
+
+                float3 superHalfVector = normalize(normalize(_SuperSpecularDir) + viewDirWS);
+
+                superLambert *= pow(dist, 2.0f); // fade highlight with distance
+
+                float superHighlight = pow(saturate(dot(normalWS, superHalfVector)), _SuperSpecularPower) * superLambert;
+                superHighlight *= gradient.a; // fade highlight with water opacity
+                gradient.rgb += _SuperSpecularColor.rgb * (superHighlight * _SuperSpecularStrength);
+
+                // --- Dark Spots ---
+                float3 darkLightDirWS = normalize(_DarkSpotDirection.xyz + float3(0.0, 0.00001, 0.0));
+                float3 darkHalfDirWS = normalize(darkLightDirWS + viewDirWS + float3(0.0, 0.00001, 0.0));
+                float darkNdotl = saturate(dot(normalWS, darkLightDirWS));
+                darkNdotl *= pow(dist, 2.0f);
+
+                float darkRestrictedLambert = darkNdotl * pow(1.0f - saturate(dot(normalWS, viewDirWS)), 3.0f);
+
+                float darkSpot = pow(saturate(dot(normalWS, darkHalfDirWS)), _DarkSpotPower) * darkRestrictedLambert;
+                darkSpot *= gradient.a; // fade with water opacity
+                
+                // Lerp towards the dark color based on the dark spot intensity and strength, mirroring the specular implementation.
+                gradient.rgb = lerp(gradient.rgb, _DarkSpotColor.rgb * (darkSpot * _DarkSpotStrength), saturate(darkSpot * _DarkSpotStrength));
 
                 return half4(gradient.rgb, saturate(gradient.a));
             }
