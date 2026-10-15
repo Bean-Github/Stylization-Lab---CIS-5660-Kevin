@@ -147,6 +147,14 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
         _RippleStrength ("Ripple Normal Strength", Range(0, 100)) = 15
         _RippleShading ("Ripple Light-Dark Contrast", Range(0, 2)) = 0.5
 
+        
+        [Header(Ripple Peak Color)]
+        [HDR] _RipplePeakColor ("Ripple Peak Color HDR", Color) = (0.25, 0.8, 1.0, 1)
+        _RipplePeakStrength ("Ripple Peak Tint Strength", Range(0, 2)) = 0.15
+        _RipplePeakSharpness ("Ripple Peak Sharpness", Range(1, 8)) = 2
+        _RippleRestHeight ("Ripple Texture Rest Height", Float) = 0
+        _RipplePeakHeight ("Ripple Height For Full Tint", Float) = 0.1
+
         [Header(Planar Reflections)]
         _ReflectionStrength ("Reflection Strength", Range(0, 1)) = 0.65
         _ReflectionDistortion ("Ripple and Normal Reflection Distortion", Range(0, 0.1)) = 0.012
@@ -263,6 +271,9 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
                 float _RippleCameraSize;
                 float4 _RippleCameraPos;
                 float _RippleTextureSize, _RippleStrength, _RippleShading;
+                float4 _RipplePeakColor;
+                float _RipplePeakStrength, _RipplePeakSharpness;
+                float _RippleRestHeight, _RipplePeakHeight;
                 float _ReflectionStrength, _ReflectionDistortion;
 
                 float _SurfaceBrightness;
@@ -609,8 +620,9 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
             }
 
             // Same ripple RT mapping as your existing handwritten water shader.
-            float2 GetRippleSlope(float3 worldPos) // calculates the gradient
+            float2 GetRippleSlope(float3 worldPos, out float peakMask)
             {
+                peakMask = 0.0;
                 if (_RippleCameraSize <= 0.00001)
                     return float2(0.0, 0.0);
 
@@ -623,6 +635,11 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
                     return float2(0.0, 0.0);
 
                 float fade = smoothstep(pixel, pixel * 5.0, edge);
+
+                float height = SAMPLE_TEXTURE2D(_RippleTex, sampler_RippleTex, uv).r;
+                float crest = saturate((height - _RippleRestHeight)
+                    / max(_RipplePeakHeight, 0.00001));
+                peakMask = pow(crest, max(_RipplePeakSharpness, 1.0)) * fade;
 
                 float right = SAMPLE_TEXTURE2D(_RippleTex, sampler_RippleTex,
                                                uv + float2(pixel, 0)).r;
@@ -644,7 +661,8 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
                 float4 gradient = EvaluateGradient(cameraDistance, input.positionWS.xz);
 
                 float3 normalNoiseTiltWS = GetNormalNoiseTilt(input.positionWS.xz);
-                float2 slope = GetRippleSlope(input.positionWS);
+                float ripplePeakMask;
+                float2 slope = GetRippleSlope(input.positionWS, ripplePeakMask);
                 float3 rippleTiltWS =
                     (
                         -normalize(_RippleCameraRight.xyz) * slope.x
@@ -712,6 +730,10 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
                 
                 // Lerp towards the dark color based on the dark spot intensity and strength, mirroring the specular implementation.
                 gradient.rgb = lerp(gradient.rgb, _DarkSpotColor.rgb * (darkSpot * _DarkSpotStrength), saturate(darkSpot * _DarkSpotStrength));
+
+
+                gradient.rgb += _RipplePeakColor.rgb
+                    * (_RipplePeakStrength * ripplePeakMask);
 
                 return half4(gradient.rgb, saturate(gradient.a));
             }
