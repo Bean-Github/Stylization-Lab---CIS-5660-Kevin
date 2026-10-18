@@ -135,6 +135,193 @@ public class ShaderLightDirections : MonoBehaviour
 
 #if UNITY_EDITOR
 
+// One shared mode for every ShaderLightDirections component.
+// This exists independently of the currently selected object's editor.
+[InitializeOnLoad]
+public static class ShaderLightDirectionsSceneMode
+{
+    private const string PreferenceKey =
+        "ShaderLightDirections.GlobalEditMode";
+
+    private const string MenuPath =
+        "Tools/Shader Light Directions/Edit Light Directions";
+
+    private static bool editingLights;
+    private static bool ownsToolVisibility;
+    private static bool previousToolsHidden;
+
+    public static event System.Action ModeChanged;
+
+    public static bool EditingLights
+    {
+        get => editingLights;
+        set
+        {
+            if (editingLights == value)
+                return;
+
+            editingLights = value;
+            EditorPrefs.SetBool(PreferenceKey, value);
+
+            UpdateToolVisibility();
+            ModeChanged?.Invoke();
+            SceneView.RepaintAll();
+        }
+    }
+
+    static ShaderLightDirectionsSceneMode()
+    {
+        // Start in Object mode unless the user previously chose otherwise.
+        editingLights = EditorPrefs.GetBool(PreferenceKey, false);
+
+        SceneView.duringSceneGui += DrawSceneToolbar;
+        Selection.selectionChanged += OnSelectionChanged;
+        EditorApplication.update += UpdateToolVisibility;
+
+        AssemblyReloadEvents.beforeAssemblyReload += RestoreTools;
+        EditorApplication.quitting += RestoreTools;
+    }
+
+    public static ShaderLightDirections SelectedComponent()
+    {
+        // Use standard Transform tools for multi-object selections.
+        if (Selection.gameObjects.Length != 1)
+            return null;
+
+        GameObject selected = Selection.activeGameObject;
+
+        if (selected == null || EditorUtility.IsPersistent(selected))
+            return null;
+
+        var component = selected.GetComponent<ShaderLightDirections>();
+
+        return component != null && component.isActiveAndEnabled
+            ? component
+            : null;
+    }
+
+    private static void OnSelectionChanged()
+    {
+        UpdateToolVisibility();
+        SceneView.RepaintAll();
+    }
+
+    private static void UpdateToolVisibility()
+    {
+        bool shouldHide =
+            editingLights && SelectedComponent() != null;
+
+        if (shouldHide && !ownsToolVisibility)
+        {
+            previousToolsHidden = Tools.hidden;
+            Tools.hidden = true;
+            ownsToolVisibility = true;
+            SceneView.RepaintAll();
+        }
+        else if (!shouldHide && ownsToolVisibility)
+        {
+            RestoreTools();
+            SceneView.RepaintAll();
+        }
+    }
+
+    private static void RestoreTools()
+    {
+        if (!ownsToolVisibility)
+            return;
+
+        Tools.hidden = previousToolsHidden;
+        ownsToolVisibility = false;
+    }
+
+    [MenuItem(MenuPath)]
+    private static void ToggleFromMenu()
+    {
+        EditingLights = !EditingLights;
+    }
+
+    [MenuItem(MenuPath, true)]
+    private static bool ValidateMenu()
+    {
+        Menu.SetChecked(MenuPath, EditingLights);
+        return true;
+    }
+
+    private static void DrawSceneToolbar(SceneView sceneView)
+    {
+        Event evt = Event.current;
+
+        // Avoid changing modes halfway through a handle drag.
+        if (evt.type == EventType.KeyDown &&
+            evt.keyCode == KeyCode.L &&
+            evt.shift &&
+            !evt.control &&
+            !evt.command &&
+            !evt.alt &&
+            !EditorGUIUtility.editingTextField &&
+            GUIUtility.hotControl == 0)
+        {
+            EditingLights = !EditingLights;
+            evt.Use();
+        }
+
+        Rect panel = new Rect(
+            12f,
+            Mathf.Max(12f, sceneView.position.height - 110f),
+            280f,
+            74f);
+
+        // Prevent clicking through the panel into scene objects.
+        int panelControl = GUIUtility.GetControlID(
+            734812,
+            FocusType.Passive);
+
+        if (evt.type == EventType.Layout &&
+            panel.Contains(evt.mousePosition))
+        {
+            HandleUtility.AddControl(panelControl, 0f);
+        }
+
+        Handles.BeginGUI();
+
+        GUI.Box(panel, GUIContent.none, EditorStyles.helpBox);
+        GUI.BeginGroup(panel);
+
+        GUI.Label(
+            new Rect(10f, 5f, 260f, 18f),
+            "Shader Light Controls   |   Shift + L",
+            EditorStyles.boldLabel);
+
+        int mode = GUI.Toolbar(
+            new Rect(10f, 27f, 260f, 22f),
+            EditingLights ? 1 : 0,
+            new[] { "Object", "Light Directions" });
+
+        if (mode != (EditingLights ? 1 : 0))
+            EditingLights = mode == 1;
+
+        string hint = !EditingLights
+            ? "Normal Move / Rotate / Scale controls"
+            : SelectedComponent() != null
+                ? "Select an endpoint, then rotate its rings"
+                : "Select an object with ShaderLightDirections";
+
+        GUI.Label(
+            new Rect(10f, 51f, 260f, 18f),
+            hint,
+            EditorStyles.miniLabel);
+
+        GUI.EndGroup();
+        Handles.EndGUI();
+
+        if (evt.type == EventType.MouseDown &&
+            panel.Contains(evt.mousePosition))
+        {
+            evt.Use();
+        }
+    }
+}
+
 [CustomEditor(typeof(ShaderLightDirections))]
 public class ShaderLightDirectionsEditor : Editor
 {
@@ -151,8 +338,8 @@ public class ShaderLightDirectionsEditor : Editor
         new Color(0.65f, 0.4f, 1f)
     };
 
-    // Retain full rotations, including roll, across redraws.
-    // Rebuilding these using LookRotation every frame causes jumps.
+    // Preserve the full orientation instead of rebuilding LookRotation
+    // every redraw, which would discard roll and cause snapping.
     private readonly Quaternion[] handleRotations =
     {
         Quaternion.identity,
@@ -164,24 +351,27 @@ public class ShaderLightDirectionsEditor : Editor
     private readonly int[] endpointIds = new int[4];
 
     private int selectedDirection;
-    private bool showRotation = true;
     private bool rotating;
-
     private int draggingControl;
     private Vector3 dragPoint;
-
-    private bool hidTransformTools;
-    private bool previousToolsHidden;
 
     private void OnEnable()
     {
         Undo.undoRedoPerformed += RefreshPreview;
+        ShaderLightDirectionsSceneMode.ModeChanged += OnModeChanged;
     }
 
     private void OnDisable()
     {
         Undo.undoRedoPerformed -= RefreshPreview;
-        RestoreTransformTools();
+        ShaderLightDirectionsSceneMode.ModeChanged -= OnModeChanged;
+    }
+
+    private void OnModeChanged()
+    {
+        rotating = false;
+        draggingControl = 0;
+        Repaint();
     }
 
     public override void OnInspectorGUI()
@@ -190,37 +380,32 @@ public class ShaderLightDirectionsEditor : Editor
             RefreshPreview();
 
         EditorGUILayout.Space();
-        EditorGUILayout.LabelField(
-            "Direction Controls",
-            EditorStyles.boldLabel);
 
-        EditorGUI.BeginChangeCheck();
+        bool editLights = EditorGUILayout.Toggle(
+            "Edit Light Directions",
+            ShaderLightDirectionsSceneMode.EditingLights);
 
-        showRotation = EditorGUILayout.Toggle(
-            "Show Rotation Rings",
-            showRotation);
+        if (editLights != ShaderLightDirectionsSceneMode.EditingLights)
+            ShaderLightDirectionsSceneMode.EditingLights = editLights;
 
-        selectedDirection = GUILayout.Toolbar(
-            selectedDirection,
-            DirectionNames);
+        if (ShaderLightDirectionsSceneMode.EditingLights)
+        {
+            EditorGUI.BeginChangeCheck();
 
-        if (EditorGUI.EndChangeCheck())
-            RefreshPreview();
+            selectedDirection = GUILayout.Toolbar(
+                selectedDirection,
+                DirectionNames);
+
+            if (EditorGUI.EndChangeCheck())
+                SceneView.RepaintAll();
+        }
 
         EditorGUILayout.HelpBox(
-            "Click or drag an endpoint to select its direction.\n" +
-            "Use the rotation rings to rotate the selected direction.\n\n" +
-            "Yellow = Light\n" +
-            "Cyan = Backlight\n" +
-            "Pink = Midtone\n" +
-            "Purple = Shadow\n\n" +
-            "All four endpoints remain draggable. " +
-            "Shader vectors always have length 1.\n\n" +
-            "Turn off Show Rotation Rings to use the object's " +
-            "normal Transform tools.",
+            "Switch modes using the Scene-view panel or Shift + L.\n\n" +
+            "Object: normal Transform controls.\n" +
+            "Light Directions: drag endpoints or rotation rings.\n\n" +
+            "The mode is shared by all objects and remembered.",
             MessageType.Info);
-
-        UpdateTransformTools();
     }
 
     private void RefreshPreview()
@@ -237,46 +422,18 @@ public class ShaderLightDirectionsEditor : Editor
         SceneView.RepaintAll();
     }
 
-    private void UpdateTransformTools()
-    {
-        var component = target as ShaderLightDirections;
-
-        bool shouldHide =
-            component != null &&
-            component.isActiveAndEnabled &&
-            showRotation &&
-            Selection.gameObjects.Length == 1 &&
-            Selection.activeGameObject == component.gameObject;
-
-        if (shouldHide && !hidTransformTools)
-        {
-            previousToolsHidden = Tools.hidden;
-            Tools.hidden = true;
-            hidTransformTools = true;
-        }
-        else if (!shouldHide)
-        {
-            RestoreTransformTools();
-        }
-    }
-
-    private void RestoreTransformTools()
-    {
-        if (!hidTransformTools)
-            return;
-
-        Tools.hidden = previousToolsHidden;
-        hidTransformTools = false;
-    }
-
     private void OnSceneGUI()
     {
         var component = (ShaderLightDirections)target;
 
-        UpdateTransformTools();
-
-        if (!component.isActiveAndEnabled)
+        // In Object mode, draw no custom handles at all.
+        if (!ShaderLightDirectionsSceneMode.EditingLights ||
+            ShaderLightDirectionsSceneMode.SelectedComponent() != component)
+        {
+            rotating = false;
+            draggingControl = 0;
             return;
+        }
 
         Vector3 origin = component.transform.position;
 
@@ -284,7 +441,6 @@ public class ShaderLightDirectionsEditor : Editor
             HandleUtility.GetHandleSize(origin) *
             Mathf.Max(0.1f, component.arrowSize);
 
-        // Allocate the same controls in the same order on each event.
         for (int i = 0; i < endpointIds.Length; i++)
         {
             endpointIds[i] = GUIUtility.GetControlID(
@@ -311,8 +467,7 @@ public class ShaderLightDirectionsEditor : Editor
                         radius * (1f + i * 0.25f));
                 }
 
-                if (showRotation)
-                    DrawRotationControl(component, origin);
+                DrawRotationControl(component, origin);
             }
         }
         finally
@@ -346,8 +501,6 @@ public class ShaderLightDirectionsEditor : Editor
             draggingControl == controlId &&
             GUIUtility.hotControl == controlId;
 
-        // Keep the actual dragged point under the cursor.
-        // Normalize only the direction written to the component.
         Vector3 point = isDragging
             ? dragPoint
             : origin + worldDirection * displayLength;
@@ -385,7 +538,6 @@ public class ShaderLightDirectionsEditor : Editor
             {
                 Vector3 offset = movedPoint - origin;
 
-                // There is no valid direction at the origin.
                 if (offset.sqrMagnitude > 0.000001f)
                     WriteWorldDirection(component, index, offset);
 
@@ -405,7 +557,7 @@ public class ShaderLightDirectionsEditor : Editor
 
                 string label = DirectionNames[index];
 
-                if (selectedDirection == index && showRotation)
+                if (selectedDirection == index)
                     label += " [Rotate]";
 
                 Handles.Label(point + labelOffset, label);
@@ -419,9 +571,6 @@ public class ShaderLightDirectionsEditor : Editor
     {
         int index = selectedDirection;
 
-        // Match Inspector edits, endpoint changes, Undo/Redo, and
-        // object rotation without throwing away the handle's roll.
-        // Never rebuild its orientation during a rotation drag.
         if (!rotating)
         {
             Vector3 desiredDirection = component.ToWorldDirection(
@@ -452,7 +601,6 @@ public class ShaderLightDirectionsEditor : Editor
 
         if (changed)
         {
-            // Preserve the complete returned rotation.
             handleRotations[index] = newRotation;
 
             WriteWorldDirection(

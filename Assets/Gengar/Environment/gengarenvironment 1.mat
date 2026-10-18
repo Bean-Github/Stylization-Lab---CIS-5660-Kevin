@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: gengarpillar
+  m_Name: gengarenvironment 1
   m_Shader: {fileID: -6465566751694194690, guid: 721e8c1e26b418f4a8fa26952bc09ed9, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -75,7 +75,7 @@ Material:
     - _Backlit_Fresnel_Power: 0
     - _Backlit_Step_Edge: 0.22
     - _FORWARD_PLUS: 1
-    - _Highlight_Fresnel_Power: 0.69
+    - _Highlight_Fresnel_Power: 0
     - _Highlight_Step_Edge: 0.88
     - _MAIN_LIGHT: 1
     - _MAIN_LIGHT_CALCULATE_SHADOWS: 0
@@ -88,11 +88,12 @@ Material:
     - _Shadow_Smoothness: 1
     - _Shadow_Step_Edge: 0
     - _UseFog: 0
+    - _UseShadows: 1
     - _Use_Custom_Light_Dir: 1
     - _Use_Tex_Threshold: 3.68
     m_Colors:
     - _Additional_Light_Threshold: {r: 0.12, g: 0.21, b: 0, a: 0}
-    - _Backlit_Color: {r: 0.79622644, g: 0.23886785, b: 0.28510028, a: 0}
+    - _Backlit_Color: {r: 0.8490566, g: 0.24190104, b: 0.29180434, a: 0}
     - _Backlit_Threshold: {r: 0.88, g: 0.96, b: 0, a: 0}
     - _CustomBacklitLightDir: {r: -0.59, g: -0.31963417, b: -0.76036036, a: 0}
     - _CustomLightDir: {r: 1, g: 1, b: 0, a: 0}
@@ -106,7 +107,9 @@ Material:
     - _Replace_Color: {r: 4.2370944, g: 4.2370944, b: 4.2370944, a: 0}
     - _Shadow: {r: 0.17927378, g: 0.17927378, b: 0.2905661, a: 0}
     - _ShadowLightDir: {r: 0, g: 0, b: 0, a: 0}
-    - _Shadow_Scale: {r: 1.83, g: -4.32, b: 0, a: 0}
+    - _Shadow_Dark: {r: 0.070252724, g: 0.082324125, b: 0.2603773, a: 0}
+    - _Shadow_Darker: {r: 0.38616577, g: 0.39962187, b: 0.6754716, a: 0}
+    - _Shadow_Scale: {r: 3.15, g: -6.03, b: 0, a: 0}
     - _Shadow_Threshold: {r: 0.74, g: 0.96, b: 0, a: 0}
     - _Thresholds: {r: 0.61, g: 0.78, b: 0, a: 0}
   m_BuildTextureStacks: []
