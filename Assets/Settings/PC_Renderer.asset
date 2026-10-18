@@ -143,12 +143,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ac8727bfe0a0b46b00f38559e63a45, type: 3}
   m_Name: StreakRenderFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   shader: {fileID: 4800000, guid: 535e7b77bcb9a554e9c650fd2f6bf897, type: 3}
   settings:
     enabled: 1
     threshold: 158.06
-    stretch: 0.347
+    stretch: 0.39
     intensity: 0.48
     tint: {r: 0.9312838, g: 1, b: 0.5264151, a: 1}
     showInSceneView: 1

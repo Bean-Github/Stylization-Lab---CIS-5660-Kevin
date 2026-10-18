@@ -1,0 +1,35 @@
+newmtl BodyA
+ illum 2
+ Ka 0.8078431 0.9215686 0.7372549
+ Kd 0.8 0.8 0.8
+ Ks 0.5490196 0.3215686 0.3215686
+ Ns 20
+ d 1
+ Tr 0
+ map_Kd Gangar_BodyCl_ctr.png
+newmtl BodyB
+ illum 2
+ Ka 0.8784314 0.8784314 0.8784314
+ Kd 0.8 0.8 0.8
+ Ks 0.427451 0.2078431 0.2078431
+ Ns 20
+ d 1
+ Tr 0
+ map_Kd Gangar_BodyCl_ctr.png
+newmtl Eye
+ illum 2
+ Ka 0.8078431 0.9215686 0.7372549
+ Kd 0.8 0.8 0.8
+ Ks 0.5490196 0.3215686 0.3215686
+ Ns 20
+ d 1
+ Tr 0
+ map_Kd Gangar_EyeCl_ctr.png
+newmtl shadow_w
+ illum 2
+ Ka 0 0 0
+ Kd 0 0 0
+ Ks 0 0 0
+ Ns 20
+ d 1
+ Tr 0

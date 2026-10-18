@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: mewtwo outline 2
+  m_Shader: {fileID: 4800000, guid: 80a2ff35bcbffdf4eb5e5ca9b1e421a4, type: 3}
+  m_Parent: {fileID: 2100000, guid: b213883d716dea047ac692bb19c94e52, type: 2}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _ALPHATEST_ON
+  - _PULSEENABLED_ON
+  - _SURFACE_TYPE_TRANSPARENT
+  - _USESCENEDEPTH_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _Opacity: 0.485
+    - _OuterSoftness: 0.81
+    - _Outline_Thinkeness: 0.09
+    - _PulsePhase: 0
+    - _RimLimit: 0.537
+    - _RimSoftness: 0.17
+    m_Colors:
+    - _Outline_Color: {r: 0.025890052, g: 0.012709119, b: 0.19245279, a: 0.2509804}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

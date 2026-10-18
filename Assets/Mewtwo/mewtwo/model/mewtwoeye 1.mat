@@ -1,0 +1,193 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7186753454098167451
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 10
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: mewtwoeye 1
+  m_Shader: {fileID: -6465566751694194690, guid: bb8c9af121cb8e446baa8fdb40083767, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _FORWARD_PLUS
+  - _MAIN_LIGHT_SHADOWS_CASCADE
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: _Eye_Color_2_1
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaClipTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Eye_Normal:
+        m_Texture: {fileID: 2800000, guid: 7d645acaf6528d24a9de184d2dbd21f7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LYM_Texture:
+        m_Texture: {fileID: 2800000, guid: 99cb5be36fcf23040a45bc79ee53a6e8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ADDITIONAL_LIGHTS: 0
+    - _ADDITIONAL_LIGHT_SHADOWS: 0
+    - _AddPrecomputedVelocity: 0
+    - _AlphaClip: 0
+    - _AlphaToMask: 0
+    - _Blend: 0
+    - _BlendModePreserveSpecular: 1
+    - _BumpScale: 1
+    - _ClearCoatMask: 0
+    - _ClearCoatSmoothness: 0
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DetailAlbedoMapScale: 1
+    - _DetailNormalMapScale: 1
+    - _Dist_UV_THing: 1.17
+    - _Dist_UV_THing_1: 1.38
+    - _Dither_Size: 1
+    - _DstBlend: 0
+    - _DstBlendAlpha: 0
+    - _EnvironmentReflections: 1
+    - _Eye_Shadow_Dist_Threshold_Bot: 1.25
+    - _Eye_Shadow_Dist_Threshold_Top: 1.21
+    - _Eye_Shadow_Power_Bot: 1.8
+    - _Eye_Shadow_Power_Top: -1.55
+    - _FORWARD_PLUS: 1
+    - _Fresnel_Power: 2.04
+    - _Fresnel_Power_1: -2.67
+    - _GlossMapScale: 0
+    - _Glossiness: 0
+    - _GlossyReflections: 0
+    - _Inner_Eye_Shadow_Dist_Threshold_Top: 2
+    - _Inner_Eye_Shadow_Power_Top: -18.26
+    - _MAIN_LIGHT: 1
+    - _MAIN_LIGHT_CALCULATE_SHADOWS: 0
+    - _Metallic: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.005
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _ReceiveShadows: 1
+    - _SHADOWS_SOFT: 0
+    - _Shadow_Smoothness: 1
+    - _Smoothness: 0.5
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _Specular_Power: 7.72
+    - _SrcBlend: 1
+    - _SrcBlendAlpha: 1
+    - _Surface: 0
+    - _UseFog: 0
+    - _Use_Tex_Threshold: 0.3
+    - _WorkflowMode: 1
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Dither_Color_Alpha: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Eye_Color_1: {r: 0.72156864, g: 0.6313726, b: 0.6901961, a: 1}
+    - _Eye_Color_1_1: {r: 0.81886786, g: 0.3878034, b: 0.67323804, a: 1}
+    - _Eye_Color_2: {r: 0, g: 0, b: 0, a: 1}
+    - _Eye_Color_2_1: {r: 0.13207549, g: 0.014702733, b: 0.05528647, a: 1}
+    - _Eye_Color_3: {r: 0.3372549, g: 0.27450982, b: 0.3529412, a: 1}
+    - _Eye_Color_3_1: {r: 0, g: 0, b: 0, a: 1}
+    - _Highlight: {r: 1.7806879, g: 2.1072109, b: 2.9960785, a: 0}
+    - _Ignore_Tex_Color: {r: 0.937255, g: 0.8588236, b: 0.46666664, a: 1}
+    - _Inner_Color_1: {r: 3.261975, g: 1.3829734, b: 1.224779, a: 1}
+    - _Inner_Color_1_gradient_version: {r: 3.261975, g: 1.3829734, b: 1.224779, a: 1}
+    - _Inner_Color_2: {r: 0.11698109, g: 0.011305738, b: 0.010373789, a: 1}
+    - _Inner_Color_3: {r: 0, g: 0, b: 0, a: 1}
+    - _Midtone: {r: 0.19193979, g: 0.15735842, b: 0.5999999, a: 0}
+    - _Shadow: {r: 0.19215687, g: 0.15686275, b: 0.6, a: 0}
+    - _Shadow_Scale: {r: 3, g: 3, b: 0, a: 0}
+    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _Specular_Color: {r: 2.433572, g: 2.433572, b: 2.433572, a: 0}
+    - _Thresholds: {r: 0.54, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

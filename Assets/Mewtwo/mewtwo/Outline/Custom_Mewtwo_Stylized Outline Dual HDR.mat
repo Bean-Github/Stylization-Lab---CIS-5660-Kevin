@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Custom_Mewtwo_Stylized Outline Dual HDR
+  m_Shader: {fileID: 4800000, guid: 80a2ff35bcbffdf4eb5e5ca9b1e421a4, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _USESCENEDEPTH_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Outline_ColorScrollTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ConcavityBoost: 0.04
+    - _ConcavitySensitivity: 6
+    - _Cull: 1
+    - _DepthBias: 0.95
+    - _DepthTolerance: 0.001
+    - _HasOutlineData: 0
+    - _Noise1_Intencity: 1
+    - _Noise1_Scale: 2
+    - _Noise2_Intencity: 0.5
+    - _Noise2_Scale: 0.75
+    - _NoiseDetail: 0.1
+    - _NoiseSpace: 0
+    - _NoiseStrength: 1
+    - _Outer_Brightness: 24.18
+    - _Outer_TextureInfluence: 0
+    - _Outer_Width: 0.02
+    - _Outline_Brightness: 1
+    - _Outline_Thinkeness: 0.08
+    - _RenderOuterLayer: 0
+    - _UseSceneDepth: 1
+    - _ZTest: 4
+    m_Colors:
+    - _Noise1_Speed: {r: 0.18, g: 0.15, b: 0, a: 0}
+    - _Noise1_Tile: {r: 1, g: 1, b: 0, a: 0}
+    - _Noise2_Speed: {r: -0.08, g: 0.06, b: 0, a: 0}
+    - _Noise2_Tile: {r: 1, g: 1, b: 0, a: 0}
+    - _Outer_Color: {r: 0.15350316, g: 0.010886423, b: 0.5245282, a: 0.41960785}
+    - _Outline_Color: {r: 0.01886791, g: 0.01861871, b: 0.01861871, a: 1}
+    - _Outline_ColorTexScrollSpeed: {r: 1, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

@@ -54,7 +54,7 @@ Material:
     - _OutlineWidth: 0.07
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _StencilRef: 8
+    - _StencilRef: 0
     m_Colors:
     - _Emissive_Color: {r: 1, g: 0.8613208, b: 0.03584892, a: 1}
     - _OutlineColor: {r: 2.4622889, g: 2.4622889, b: 2.4622889, a: 1}

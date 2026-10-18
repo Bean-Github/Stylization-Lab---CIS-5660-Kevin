@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-48789173538059706
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 10
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shader Graphs_Gengar Toon Shader
+  m_Shader: {fileID: -6465566751694194690, guid: 721e8c1e26b418f4a8fa26952bc09ed9, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _FORWARD_PLUS
+  - _MAIN_LIGHT_SHADOWS_CASCADE
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaClipTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LYM_Texture:
+        m_Texture: {fileID: 2800000, guid: bd755c721d9a3b04080f93cb122c2bc8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_c011650b995145bca8a73e2399c4bd85_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 170bf8afe872ad545b6b3b7f88d995be, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2D:
+        m_Texture: {fileID: 2800000, guid: a3e24c596f349bc41a239c73f582d4ae, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ADDITIONAL_LIGHTS: 0
+    - _ADDITIONAL_LIGHT_SHADOWS: 0
+    - _Additional_Light_Step_Edge: 82.85
+    - _Backlit_Fresnel_Power: 1.97
+    - _Backlit_Step_Edge: 0.22
+    - _FORWARD_PLUS: 1
+    - _Highlight_Fresnel_Power: 0.69
+    - _Highlight_Step_Edge: 0.88
+    - _MAIN_LIGHT: 1
+    - _MAIN_LIGHT_CALCULATE_SHADOWS: 0
+    - _Midtone_Fresnel_Power: 0
+    - _Midtone_Step_Edge: 0.42
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _SHADOWS_SOFT: 0
+    - _Shadow_Fresnel_Power: 24.7
+    - _Shadow_Smoothness: 1
+    - _Shadow_Step_Edge: 0
+    - _UseFog: 0
+    - _Use_Custom_Light_Dir: 1
+    - _Use_Tex_Threshold: 3.68
+    m_Colors:
+    - _Additional_Light_Threshold: {r: 0.12, g: 0.21, b: 0, a: 0}
+    - _Backlit_Color: {r: 0.79622644, g: 0.23886785, b: 0.28510028, a: 0}
+    - _Backlit_Threshold: {r: 0.88, g: 0.96, b: 0, a: 0}
+    - _CustomBacklitLightDir: {r: -0.59, g: -0.31963417, b: -0.76036036, a: 0}
+    - _CustomLightDir: {r: 1, g: 1, b: 0, a: 0}
+    - _CustomMidtoneLightDir: {r: 0.46, g: 0, b: 0, a: 0}
+    - _CustomShadowLightDir: {r: 0, g: 0, b: 0, a: 0}
+    - _Darker_Shadow: {r: 0.16407976, g: 0.16407976, b: 0.20754719, a: 0}
+    - _Highlight: {r: 0.8509804, g: 0.8784314, b: 0.9019608, a: 0}
+    - _Ignore_Tex_Color: {r: 0.937255, g: 0.8588236, b: 0.46666664, a: 1}
+    - _Midtone: {r: 0.35496607, g: 0.37617388, b: 0.6377357, a: 0}
+    - _Midtone_Threshold: {r: 0.18, g: 1.61, b: 0, a: 0}
+    - _Replace_Color: {r: 4.2370944, g: 4.2370944, b: 4.2370944, a: 0}
+    - _Shadow: {r: 0.17927378, g: 0.17927378, b: 0.2905661, a: 0}
+    - _ShadowLightDir: {r: 0, g: 0, b: 0, a: 0}
+    - _Shadow_Scale: {r: 1.83, g: -4.32, b: 0, a: 0}
+    - _Shadow_Threshold: {r: 0.74, g: 0.96, b: 0, a: 0}
+    - _Thresholds: {r: 0.61, g: 0.78, b: 0, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

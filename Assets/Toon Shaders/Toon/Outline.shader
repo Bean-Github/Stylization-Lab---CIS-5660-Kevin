@@ -18,11 +18,11 @@ Shader "Custom/Outline"
             Pass Keep
         }
 
-        // PASS 1: Color Pass (Your original code)
+        // PASS 1: Color Pass
         Pass
         {
-            Cull Front
             ZWrite On
+            Cull Front
 
             CGPROGRAM
             #pragma vertex vert
