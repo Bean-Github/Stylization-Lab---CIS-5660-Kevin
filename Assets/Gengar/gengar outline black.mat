@@ -50,7 +50,7 @@ Material:
     - _Opacity: 1
     - _OuterSoftness: 0.5
     - _Outline_Brightness: 5
-    - _Outline_Thinkeness: 0.03
+    - _Outline_Thinkeness: 0.05
     - _PulseDistance: 0.005
     - _PulseEnabled: 1
     - _PulseEndOpacity: 0.765

@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: gengarenvironment 2
+  m_Name: gengarenvironment blue no white
   m_Shader: {fileID: -6465566751694194690, guid: 721e8c1e26b418f4a8fa26952bc09ed9, type: 3}
   m_Parent: {fileID: 2100000, guid: 7e363b37db726d146825803b0ca0f65c, type: 2}
   m_ModifiedSerializedProperties: 0
@@ -40,8 +40,8 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Ints: []
-    m_Floats:
-    - _UseShadows: 0
-    m_Colors: []
+    m_Floats: []
+    m_Colors:
+    - _Highlight: {r: 0.35686275, g: 0.3764706, b: 0.6392157, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

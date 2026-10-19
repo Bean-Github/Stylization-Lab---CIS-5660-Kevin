@@ -2431,7 +2431,7 @@
     "m_RefNameGeneratedByDisplayName": "Shadow Scale",
     "m_DefaultReferenceName": "_Shadow_Scale",
     "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": false,
+    "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
     "m_DismissedVersion": 0,
@@ -6012,7 +6012,7 @@
     "m_ObjectId": "59bb1537cdcf491fb7ee2bfdb1f6004b",
     "m_Title": "Shadows",
     "m_Position": {
-        "x": -5562.40087890625,
+        "x": -5562.39990234375,
         "y": 2160.800048828125
     }
 }
@@ -7359,8 +7359,8 @@
     "m_ObjectId": "78c87a041b32473fbda25d067af00607",
     "m_Title": "N DOT L",
     "m_Position": {
-        "x": -4588.00048828125,
-        "y": 1556.000244140625
+        "x": -4588.0,
+        "y": 1556.0001220703125
     }
 }
 
@@ -7370,8 +7370,8 @@
     "m_ObjectId": "7905f9482af0497793866e4f36042c28",
     "m_Title": "Fog Pass",
     "m_Position": {
-        "x": 677.5989990234375,
-        "y": -155.19989013671876
+        "x": 677.60009765625,
+        "y": -155.199951171875
     }
 }
 
@@ -13842,8 +13842,8 @@
     "m_ObjectId": "f886b078ce4840acb14257db51f61c30",
     "m_Title": "Shadows",
     "m_Position": {
-        "x": -1240.000244140625,
-        "y": 1576.800048828125
+        "x": -1240.0,
+        "y": 1576.7998046875
     }
 }
 
