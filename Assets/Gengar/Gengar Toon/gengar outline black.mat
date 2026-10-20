@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: gengar outline black
-  m_Shader: {fileID: 4800000, guid: 80a2ff35bcbffdf4eb5e5ca9b1e421a4, type: 3}
+  m_Shader: {fileID: 4800000, guid: c660d722912809f498e27413934ee54a, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -49,6 +49,7 @@ Material:
     - _NoiseStrength: 0.15
     - _Opacity: 1
     - _OuterSoftness: 0.5
+    - _OutlineWidth: 0.02
     - _Outline_Brightness: 5
     - _Outline_Thinkeness: 0.05
     - _PulseDistance: 0.005
@@ -63,6 +64,7 @@ Material:
     - _RimLimit: 1
     - _RimSoftness: 0.05
     - _SrcBlend: 5
+    - _StencilRef: 8
     - _UseSceneDepth: 1
     - _ZTest: 4
     - _ZWrite: 0
@@ -72,6 +74,7 @@ Material:
     - _Noise2_Speed: {r: 0, g: 0.2, b: 0, a: 0}
     - _Noise2_Tile: {r: 1, g: 1, b: 0, a: 0}
     - _NoiseSpeed: {r: 0.05, g: 0.15, b: 0, a: 0}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _Outline_Color: {r: 0.014403815, g: 0.008422923, b: 0.04905659, a: 1}
     - _Outline_ColorTexScrollSpeed: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

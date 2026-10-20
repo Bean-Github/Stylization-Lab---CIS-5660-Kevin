@@ -74,6 +74,8 @@ Material:
     - _Additional_Light_Step_Edge: 82.85
     - _Backlit_Fresnel_Power: 1.97
     - _Backlit_Step_Edge: 0.22
+    - _Distance_To_Point_Distortion: 15
+    - _Distortion: 0
     - _FORWARD_PLUS: 1
     - _Highlight_Fresnel_Power: -0.07
     - _Highlight_Step_Edge: 0.88
@@ -83,6 +85,7 @@ Material:
     - _Midtone_Step_Edge: 0.48
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Rotation: 0
     - _SHADOWS_SOFT: 0
     - _Shadow_Fresnel_Power: 0
     - _Shadow_Smoothness: 1
@@ -93,7 +96,7 @@ Material:
     - _Use_Tex_Threshold: 3.68
     m_Colors:
     - _Additional_Light_Threshold: {r: 0.12, g: 0.21, b: 0, a: 0}
-    - _Backlit_Color: {r: 0.8509804, g: 0.24313726, b: 0.2901961, a: 0}
+    - _Backlit_Color: {r: 0.85660374, g: 0.17940192, b: 0.23211844, a: 0}
     - _Backlit_Threshold: {r: 0.88, g: 0.96, b: 0, a: 0}
     - _CustomBacklitLightDir: {r: -0.59, g: -0.31963417, b: -0.76036036, a: 0}
     - _CustomLightDir: {r: 1, g: 1, b: 0, a: 0}
@@ -105,6 +108,8 @@ Material:
     - _Midtone: {r: 0.35496607, g: 0.37617388, b: 0.6377357, a: 0}
     - _Midtone_Threshold: {r: -0.17, g: 1.61, b: 0, a: 0}
     - _Replace_Color: {r: 4.2370944, g: 4.2370944, b: 4.2370944, a: 0}
+    - _Rotation_Line: {r: 0, g: 0, b: 1, a: 0}
+    - _Rotation_Line_Origin: {r: 0, g: 0, b: 0, a: 0}
     - _Shadow: {r: 0.06524027, g: 0.06524027, b: 0.18490559, a: 0}
     - _ShadowLightDir: {r: 0, g: 0, b: 0, a: 0}
     - _Shadow_Dark: {r: 0.070252724, g: 0.082324125, b: 0.2603773, a: 0}
