@@ -583,7 +583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6403501440082123109, guid: 9951633370265af4aa59a5ba719de92c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.25
+      value: 0.28
       objectReference: {fileID: 0}
     - target: {fileID: 6486476352645785941, guid: 9951633370265af4aa59a5ba719de92c, type: 3}
       propertyPath: m_text
@@ -592,6 +592,10 @@ PrefabInstance:
     - target: {fileID: 6524864648561868407, guid: 9951633370265af4aa59a5ba719de92c, type: 3}
       propertyPath: m_Name
       value: Pokemon Card
+      objectReference: {fileID: 0}
+    - target: {fileID: 6688599785125657393, guid: 9951633370265af4aa59a5ba719de92c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.34
       objectReference: {fileID: 0}
     - target: {fileID: 6688599785125657393, guid: 9951633370265af4aa59a5ba719de92c, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -615,7 +619,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7270175225263272969, guid: 9951633370265af4aa59a5ba719de92c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.622
+      value: 0.65200007
       objectReference: {fileID: 0}
     - target: {fileID: 7953873926920116680, guid: 9951633370265af4aa59a5ba719de92c, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -2082,7 +2086,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10
+  m_text: 30
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9671df5259ac505419be052216a5e510, type: 2}
   m_sharedMaterial: {fileID: 7305023963367437280, guid: 9671df5259ac505419be052216a5e510, type: 2}
