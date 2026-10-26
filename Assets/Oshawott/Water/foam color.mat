@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: foam color
+  m_Shader: {fileID: 4800000, guid: 2e1f372fba3d3b64689f5970c62da3e6, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _ColorVariation: 0.25
+    - _DenseCoverage: 0.933
+    - _DensityBreakup: 0.15
+    - _DistortionAmount: 0.02
+    - _EdgeSoftness: 0.366
+    - _FadeAxis: 1
+    - _FadeEnd: 0.669
+    - _FadePower: 1.3
+    - _FadeStart: 0
+    - _FlipFade: 0
+    - _NoiseSeed: 0
+    - _PerlinMix: 0.474
+    - _ReceiveShadowStrength: 0.607
+    - _ShadowCutoff: 0.5
+    - _SparseCoverage: 0.145
+    - _TimeScale: 0.08
+    - _VoronoiMix: 0.453
+    m_Colors:
+    - _FlowDirection: {r: 0.05, g: 0.02, b: 0, a: 0}
+    - _FoamColor: {r: 1.5595245, g: 1.6082597, b: 1.6245048, a: 1}
+    - _GrainTiling: {r: 3599, g: 64, b: 0, a: 0}
+    - _PatchTiling: {r: 12, g: 3, b: 0, a: 0}
+    - _ShadeColor: {r: 0.54999995, g: 0.77, b: 0.82, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

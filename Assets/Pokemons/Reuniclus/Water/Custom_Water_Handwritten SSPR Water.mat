@@ -151,7 +151,7 @@ Material:
     - _NearStartDistance: 0.96
     - _NoiseTime: 102.45
     - _NormalDetailScale: 6.24
-    - _NormalDetailWeight: 0.45
+    - _NormalDetailWeight: 0.714
     - _NormalMapStrengthA: 0.78
     - _NormalMapStrengthB: 1.02
     - _NormalNoiseSize: 7.25
@@ -210,7 +210,7 @@ Material:
     - _TopNormalThreshold: 0.75
     - _TopRimStrength: 0.35
     - _TopRimWidth: 0.1
-    - _UseStencil: 0
+    - _UseStencil: 8
     - _Use_Fog: 1
     - _WaveScale: 1.31
     - _WaveSpeed: 0.8

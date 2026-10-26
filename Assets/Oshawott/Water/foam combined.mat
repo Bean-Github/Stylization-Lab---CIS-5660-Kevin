@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: foam combined
+  m_Shader: {fileID: 4800000, guid: ddea42606f3633146a7cebb9f68421b9, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _Amplitude: 2.15
+    - _BendWidthLimit: 0.75
+    - _ColorVariation: 0.725
+    - _CurveAmount: -0.01
+    - _CurveBend: 75
+    - _CurveHandleLength: 1.2
+    - _DenseCoverage: 1
+    - _DensityBreakup: 0.15
+    - _DistortionAmount: 0.006
+    - _EdgeSoftness: 0.1
+    - _EvolutionSpeed: 0.237
+    - _FadeAxis: 1
+    - _FadeEnd: 0.9
+    - _FadePower: 1.5
+    - _FadeStart: 0
+    - _FlipFade: 0
+    - _Frequency: 0.32
+    - _LongitudinalAmplitude: 0.35
+    - _NoiseSeed: 0
+    - _OverallAlpha: 1
+    - _OverallSizeMult: 1
+    - _PerlinMix: 0.106
+    - _ReceiveShadowStrength: 0.767
+    - _Seed: 0
+    - _ShadowCutoff: 0
+    - _SourceHalfWidth: 5
+    - _SourcePlane: 1
+    - _SparseCoverage: 0.04
+    - _TimeScale: 0.12
+    - _UseStencil: 8
+    - _WidthFrequency: 0.66
+    - _WidthScale: 2
+    - _WidthVariation: 0.62
+    m_Colors:
+    - _FlowDirection: {r: 0.05, g: 0.02, b: 0, a: 0}
+    - _FoamColor: {r: 1.855451, g: 2.4895926, b: 2.4895926, a: 1}
+    - _GrainTiling: {r: 2651.2, g: 64, b: 0, a: 0}
+    - _PatchTiling: {r: 12, g: 3, b: 0, a: 0}
+    - _ShadeColor: {r: 2.4622889, g: 2.4622889, b: 2.4622889, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

@@ -1,38 +1,4 @@
-// Flat URP water: painted gradient boundaries + independent scrolling normals.
-// Built from the newly supplied handwritten shader. Vert() is unchanged.
-// No vertex displacement, Gerstner geometry, or tessellation.
-//
-// COLOR: original per-stop noise shifts the gradient's transition thresholds.
-// Domain warping bends that noise into irregular patches; varying transition
-// softness suggests paint bleeding. This is animated shading, not fluid simulation.
-// _NoiseScroll translates the color pattern. _ColorNoiseEvolution also changes
-// its shape, even when _NoiseScroll is zero. All color controls are independent
-// of the normal controls below. Alpha still interpolates with the four colors.
-//
-// NORMALS: two scrolling procedural height gradients tilt the shading normal.
-// Optional normal maps add texture detail, using the same two independent flows.
-// No texture is required. Import optional maps as Normal Map, Repeat, with mipmaps.
-// XZ mapping follows the existing horizontal-water/ripple convention.
-// Scrolling is samplePosition + velocity*time, matching the supplied shader;
-// visible features travel opposite that sampling velocity.
-//
-// Keep the project's existing ripple renderer and Mobile SSPR renderer.
-// Normal noise affects specular and optionally reflection UVs, not gradient masks
-// or the existing ripple brightness effect. Reflection strength can obscure the
-// color pattern; try 0.3-0.5 if you want the painted bands to dominate.
-//
-// QUICK CONTROLS
-// - More irregular edges: raise each color's Noise Displacement.
-// - More swirled/painted patches: raise Color Noise Warp Strength.
-// - Softer bleeding: raise original Blend Widths + Color Edge Diffusion.
-// - Crisper patches: lower Blend Widths and raise Color Noise Contrast.
-// - Surface movement: adjust Normal Noise Strength and the two Normal Scrolls.
-// - Exact original color logic: Warp Strength=0, Contrast=1, Edge Diffusion=0.
-// - Original shading: Normal Noise Strength=0 and both Normal Map Strengths=0.
-// Keep only one shader asset with the ShaderLab name below in your project.
-// Unity compilation and visual validation must be performed in the target project.
-
-Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
+Shader "Custom/Water/LayeredColorNoise_CorrectUP"
 {
     Properties
     {
@@ -206,7 +172,7 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
             
             Stencil
             {
-                Ref 8
+                Ref [_UseStencil]
                 Comp Equal
                 Pass Keep
             }
@@ -593,30 +559,50 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
                 return 1.0 - smoothstep(0.15, 0.6, footprint);
             }
 
-            float3 GetNormalNoiseTilt(float2 worldXZ)
+            float3 GetNormalNoiseTilt(
+                float2 surfaceUV,
+                float3 tangentWS,
+                float3 bitangentWS)
             {
-                float2 stretch = max(abs(_NormalNoiseStretch.xy), float2(0.01, 0.01));
+                float2 stretch = max(
+                    abs(_NormalNoiseStretch.xy),
+                    float2(0.01, 0.01));
+
                 float size = max(abs(_NormalNoiseSize), 0.01);
                 float frequencyB = max(_NormalDetailScale, 0.01);
-                float2 uvA = (worldXZ + _NormalScrollA.xy * _Time.y) / (size * stretch);
-                float2 uvB = (worldXZ + _NormalScrollB.xy * _Time.y)
-                    / (size * stretch) * frequencyB + float2(17.2, -9.7);
 
-                float2 slopeA = ValueNoiseGradient(uvA) * ProceduralDetailVisibility(uvA);
-                float2 slopeB = ValueNoiseGradient(uvB) * ProceduralDetailVisibility(uvB);
-                // Derivatives of a virtual height field. Height scales with tile size
-                // so the strength remains an angular art control when size changes.
-                float2 slope = (slopeA + slopeB * frequencyB * _NormalDetailWeight)
+                float2 uvA =
+                    (surfaceUV + _NormalScrollA.xy * _Time.y)
+                    / (size * stretch);
+
+                float2 uvB =
+                    (surfaceUV + _NormalScrollB.xy * _Time.y)
+                    / (size * stretch) * frequencyB
+                    + float2(17.2, -9.7);
+
+                float2 slopeA =
+                    ValueNoiseGradient(uvA) * ProceduralDetailVisibility(uvA);
+
+                float2 slopeB =
+                    ValueNoiseGradient(uvB) * ProceduralDetailVisibility(uvB);
+
+                float2 slope =
+                    (slopeA + slopeB * frequencyB * _NormalDetailWeight)
                     / ((1.0 + _NormalDetailWeight) * stretch);
+
                 float2 tilt = -slope * _NormalNoiseStrength;
 
-                // Decode Unity normal-map packing, then combine their tilts.
-                // Flat default maps contribute zero; procedural noise needs no asset.
-                float3 a = UnpackNormal(SAMPLE_TEXTURE2D(_NormalMapA, sampler_NormalMapA, uvA));
-                float3 b = UnpackNormal(SAMPLE_TEXTURE2D(_NormalMapB, sampler_NormalMapB, uvB));
+                float3 a = UnpackNormal(
+                    SAMPLE_TEXTURE2D(_NormalMapA, sampler_NormalMapA, uvA));
+
+                float3 b = UnpackNormal(
+                    SAMPLE_TEXTURE2D(_NormalMapB, sampler_NormalMapB, uvB));
+
                 tilt += a.xy / max(a.z, 0.2) * _NormalMapStrengthA;
                 tilt -= b.xy / max(b.z, 0.2) * _NormalMapStrengthB;
-                return float3(tilt.x, 0.0, tilt.y);
+
+                // Apply perturbations along the surface instead of world X/Z.
+                return tangentWS * tilt.x + bitangentWS * tilt.y;
             }
 
             // Same ripple RT mapping as your existing handwritten water shader.
@@ -652,15 +638,71 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
                 return 0.5 * float2(right - left, up - down) * fade;
             }
 
+            // Surface-aligned coordinates, measured in world units.
+            // For an unrotated XZ plane, tangent = X and bitangent = Z.
+            void GetWaterSurfaceFrame(
+                float3 positionWS,
+                float3 normalWS,
+                out float2 surfaceUV,
+                out float3 tangentWS,
+                out float3 bitangentWS)
+            {
+                float3 n = normalize(normalWS);
+                float3 originWS = TransformObjectToWorld(float3(0, 0, 0));
+
+                float3 objectXWS =
+                    TransformObjectToWorld(float3(1, 0, 0)) - originWS;
+
+                float3 objectZWS =
+                    TransformObjectToWorld(float3(0, 0, 1)) - originWS;
+
+                // Project the object's X axis onto the actual surface.
+                float3 tangent = objectXWS - n * dot(objectXWS, n);
+
+                // Handle meshes whose normal is aligned with object X.
+                if (dot(tangent, tangent) < 0.000001)
+                    tangent = objectZWS - n * dot(objectZWS, n);
+
+                tangentWS = normalize(tangent);
+
+                // This order preserves the existing XZ noise orientation
+                // when the surface normal is (0, 1, 0).
+                bitangentWS = normalize(cross(tangentWS, n));
+
+                float3 relativePosition = positionWS - originWS;
+                surfaceUV = float2(
+                    dot(relativePosition, tangentWS),
+                    dot(relativePosition, bitangentWS));
+            }
+
             half4 Frag(Varyings input) : SV_Target
             {
                 UNITY_SETUP_INSTANCE_ID(input);
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
 
-                float cameraDistance = distance(GetCameraPositionWS(), input.positionWS);
-                float4 gradient = EvaluateGradient(cameraDistance, input.positionWS.xz);
+                float3 baseNormalWS = normalize(input.normalWS);
 
-                float3 normalNoiseTiltWS = GetNormalNoiseTilt(input.positionWS.xz);
+                float2 surfaceUV;
+                float3 tangentWS;
+                float3 bitangentWS;
+
+                GetWaterSurfaceFrame(
+                    input.positionWS,
+                    baseNormalWS,
+                    surfaceUV,
+                    tangentWS,
+                    bitangentWS);
+
+                float cameraDistance =
+                    distance(GetCameraPositionWS(), input.positionWS);
+
+                float4 gradient = EvaluateGradient(cameraDistance, surfaceUV);
+
+                float3 normalNoiseTiltWS = GetNormalNoiseTilt(
+                    surfaceUV,
+                    tangentWS,
+                    bitangentWS);
+
                 float ripplePeakMask;
                 float2 slope = GetRippleSlope(input.positionWS, ripplePeakMask);
                 float3 rippleTiltWS =
@@ -687,8 +729,10 @@ Shader "Custom/Water/CameraDistanceRippleSSPR_4ColorNoiseSpecular"
 
                 // Simple Blinn-Phong highlight. Direction is art-directable and
                 // does not require a particular main light or lighting setup.
-                float3 normalWS = normalize(input.normalWS
-                    + rippleTiltWS * _SpecularRippleInfluence + normalNoiseTiltWS);
+                float3 normalWS = normalize(
+                    baseNormalWS
+                    + rippleTiltWS * _SpecularRippleInfluence
+                    + normalNoiseTiltWS);
 
                 float3 viewDirWS = GetWorldSpaceNormalizeViewDir(input.positionWS);
                 float3 lightDirWS = normalize(_SpecularDirection.xyz + float3(0.0, 0.00001, 0.0));

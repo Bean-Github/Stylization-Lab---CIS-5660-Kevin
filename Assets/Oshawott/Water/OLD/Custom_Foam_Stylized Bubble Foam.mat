@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Custom_Foam_Stylized Bubble Foam
+  m_Shader: {fileID: 4800000, guid: e76cd5f3f8a155a4f92a162481376dac, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BreakupTex:
+        m_Texture: {fileID: 2800000, guid: 80cf5c3fa21b2114586576acb6f8e775, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Aspect: 8
+    - _BreakupStrength: 0.65
+    - _BreakupTiling: 1.7
+    - _BubbleRadius: 0.38
+    - _BubbleScale: 6
+    - _EdgeSoftness: 0.025
+    - _FadeAxis: 1
+    - _FadeEnd: 0.95
+    - _FadePower: 1.1
+    - _FadeStart: 0
+    - _FadedCoverage: 0.07
+    - _FineHoleAmount: 0.72
+    - _FineScale: 3.1
+    - _FineStrength: 0.8
+    - _FlipFade: 0
+    - _GrainRadius: 0.62
+    - _GrainScale: 75
+    - _HalftoneStrength: 1
+    - _HoleAmount: 0.88
+    - _HoleFillEnd: 0.9
+    - _HoleFillStart: 0.45
+    - _Opacity: 1
+    - _RimWidth: 0.035
+    - _Seed: 0
+    - _SizeVariation: 0.65
+    - _WallHighlight: 0.65
+    - _WallWidth: 0.035
+    - _WarpStrength: 0.24
+    m_Colors:
+    - _FoamColor: {r: 0.92, g: 0.97999996, b: 0.96999997, a: 1}
+    - _RimColor: {r: 1, g: 1, b: 0.96, a: 1}
+    - _ShadeColor: {r: 0.27999997, g: 0.56, b: 0.6, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
