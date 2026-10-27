@@ -56,11 +56,11 @@ Material:
     - _TimeScale: 0.12
     - _UseStencil: 8
     - _WidthFrequency: 1.52
-    - _WidthScale: 2
+    - _WidthScale: 1.78
     - _WidthVariation: 0.233
     m_Colors:
     - _FlowDirection: {r: 0.05, g: 0.02, b: 0, a: 0}
-    - _FoamColor: {r: 1.855451, g: 2.4895926, b: 2.4895926, a: 1}
+    - _FoamColor: {r: 1.8137, g: 2.433572, b: 2.433572, a: 1}
     - _GrainTiling: {r: 2651.2, g: 64, b: 0, a: 0}
     - _PatchTiling: {r: 12, g: 3, b: 0, a: 0}
     - _ShadeColor: {r: 2.4622889, g: 2.4622889, b: 2.4622889, a: 1}
