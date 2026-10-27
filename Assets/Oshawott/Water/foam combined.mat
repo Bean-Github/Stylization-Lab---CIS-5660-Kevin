@@ -25,9 +25,9 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _Amplitude: 2.15
+    - _Amplitude: 2
     - _BendWidthLimit: 0.75
-    - _ColorVariation: 0.725
+    - _ColorVariation: 1
     - _CurveAmount: -0.01
     - _CurveBend: 75
     - _CurveHandleLength: 1.2
@@ -35,7 +35,7 @@ Material:
     - _DensityBreakup: 0.15
     - _DistortionAmount: 0.006
     - _EdgeSoftness: 0.1
-    - _EvolutionSpeed: 0.237
+    - _EvolutionSpeed: 0.47
     - _FadeAxis: 1
     - _FadeEnd: 0.9
     - _FadePower: 1.5
@@ -55,9 +55,9 @@ Material:
     - _SparseCoverage: 0.04
     - _TimeScale: 0.12
     - _UseStencil: 8
-    - _WidthFrequency: 0.66
+    - _WidthFrequency: 1.52
     - _WidthScale: 2
-    - _WidthVariation: 0.62
+    - _WidthVariation: 0.233
     m_Colors:
     - _FlowDirection: {r: 0.05, g: 0.02, b: 0, a: 0}
     - _FoamColor: {r: 1.855451, g: 2.4895926, b: 2.4895926, a: 1}

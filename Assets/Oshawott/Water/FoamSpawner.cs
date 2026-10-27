@@ -6,6 +6,9 @@ public class FoamSpawner : MonoBehaviour
     [Tooltip("The prefab with the FoamBehavior script attached")]
     public GameObject foamPrefab;
 
+    [Tooltip("Maximum random offset along the global Y axis.")]
+    public float maxRandomYOffset = 0.001f;
+
     [Header("Spawn Timing Range")]
     public float minSpawnInterval = 0.5f;
     public float maxSpawnInterval = 2.0f;
@@ -27,8 +30,10 @@ public class FoamSpawner : MonoBehaviour
 
     private void SetNextInterval()
     {
-        _currentInterval =
-            Random.Range(minSpawnInterval, maxSpawnInterval);
+        _currentInterval = Random.Range(
+            minSpawnInterval,
+            maxSpawnInterval
+        );
     }
 
     void Update()
@@ -48,9 +53,17 @@ public class FoamSpawner : MonoBehaviour
         if (foamPrefab == null)
             return;
 
+        float randomYOffset = Random.Range(
+            -maxRandomYOffset,
+            maxRandomYOffset
+        );
+
+        Vector3 spawnPosition =
+            transform.position + Vector3.up * randomYOffset;
+
         GameObject spawnedFoam = Instantiate(
             foamPrefab,
-            transform.position,
+            spawnPosition,
             transform.rotation,
             transform
         );

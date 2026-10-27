@@ -31,19 +31,25 @@ public class FoamBehavior : MonoBehaviour
     public bool randomizeSeed = true;
     public float customSeed = 0f;
 
+    [Header("Render Sorting")]
+    public int baseSortingOrder = 0;
+    public int alphaSortingRange = 100;
+
     [HideInInspector]
     public float currentAlpha = 1f;
 
     private float age = 0f;
     private Material mat;
 
+    private Renderer foamRenderer;
+
     void Start()
     {
-        Renderer rnd = GetComponentInChildren<Renderer>();
+        foamRenderer = GetComponentInChildren<Renderer>();
 
-        if (rnd != null)
+        if (foamRenderer != null)
         {
-            mat = rnd.material;
+            mat = foamRenderer.material;
 
             float seed = randomizeSeed
                 ? Random.Range(0f, 1000f)
@@ -71,6 +77,13 @@ public class FoamBehavior : MonoBehaviour
         {
             Destroy(gameObject);
             return;
+        }
+
+        if (foamRenderer != null)
+        {
+            foamRenderer.sortingOrder =
+                baseSortingOrder +
+                Mathf.RoundToInt(currentAlpha * alphaSortingRange);
         }
 
         float normalizedTime =

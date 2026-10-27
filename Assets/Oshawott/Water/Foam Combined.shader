@@ -256,7 +256,7 @@ Shader "Custom/Foam/Foam Combined"
             Tags { "LightMode" = "UniversalForward" }
             
             Cull Off
-            ZWrite On
+            ZWrite Off
             ZTest LEqual
             Blend SrcAlpha OneMinusSrcAlpha
 

@@ -123,7 +123,7 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _Base_Brightness: 0
+    - _Base_Brightness: 0.1
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
@@ -141,22 +141,22 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Hatching_Scale: 137.12
+    - _Hatching_Scale: 136.71
     - _Hatching_Strength: 0.09
     - _MAIN_LIGHT: 1
     - _Max_Brightness: 1.66
     - _Metallic: 0
-    - _Min_Brightness: 0.12
+    - _Min_Brightness: 0.1
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _PencilSize: 29.4
-    - _Pencil_Intensity: 0.56
+    - _PencilSize: 29.83
+    - _Pencil_Intensity: 0.95
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SHADOWS_SOFT: 0
-    - _Shade_Size: 0.47
-    - _ShadowPencilSize: 6
+    - _Shade_Size: 0.38
+    - _ShadowPencilSize: 0
     - _Shadow_Weakness: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0

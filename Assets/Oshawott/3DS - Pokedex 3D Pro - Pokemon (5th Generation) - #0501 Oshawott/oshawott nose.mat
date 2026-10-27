@@ -96,20 +96,21 @@ Material:
     - _SpecThreshold: 0.45
     - _Thickness: 1.5
     - _UseFog: 0
+    - _Use_Shadows: 0
     - _Use_Tex_Threshold: 2.27
     m_Colors:
     - _Absorption: {r: 2.5, g: 0.25, b: 1.8, a: 0}
     - _Backlit_Color: {r: 0.4716981, g: 0.41269073, b: 0.34798858, a: 0}
-    - _Backlit_Threshold: {r: -0.06, g: 0.96, b: 0, a: 0}
+    - _Backlit_Threshold: {r: 0.14, g: 1.85, b: 0, a: 0}
     - _BodyColor: {r: 0.86368036, g: 7.75849, b: 2.059312, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FlowA: {r: 0.06, g: 0.02, b: 0, a: 0}
     - _FlowB: {r: -0.04, g: 0.05, b: 0, a: 0}
-    - _Highlight: {r: 0.735849, g: 0.52171147, b: 0.42068347, a: 0}
+    - _Highlight: {r: 0.4188679, g: 0.32281026, b: 0.27740118, a: 0}
     - _Ignore_Tex_Color: {r: 0.937255, g: 0.8588236, b: 0.46666664, a: 1}
     - _LitColor: {r: 1.15, g: 1.1, b: 0.8, a: 1}
     - _MidColor: {r: 0.65, g: 0.95, b: 0.65, a: 1}
-    - _Midtone: {r: 0.3660378, g: 0.27785116, b: 0.23688859, a: 0}
+    - _Midtone: {r: 0.3207547, g: 0.20818795, b: 0.15190457, a: 0}
     - _RimColor: {r: 0.05, g: 1.4, b: 0.35, a: 1}
     - _ScatterLightColor: {r: 0.5, g: 1.5, b: 0.35, a: 1}
     - _Shadow: {r: 0.3056603, g: 0.16312115, b: 0.11938052, a: 0}

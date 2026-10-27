@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1.62
-  speedMultiplier: 0.44
+  speedMultiplier: 0.18
   speedCurve:
     serializedVersion: 2
     m_Curve:
@@ -69,17 +69,17 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.7854597
     - serializedVersion: 3
-      time: 0.58365285
-      value: 0.58300006
-      inSlope: -4.499384
-      outSlope: -4.499384
+      time: 0.65104663
+      value: 0.7184017
+      inSlope: -0.7489264
+      outSlope: -0.7489264
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.054149665
+      outWeight: 0.1453137
     - serializedVersion: 3
-      time: 1.0062342
-      value: 0.002676472
+      time: 1.0039148
+      value: 0.515677
       inSlope: 0.048482303
       outSlope: 0.048482303
       tangentMode: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  lifetime: 6.69
+  lifetime: 11.93
   alphaCurve:
     serializedVersion: 2
     m_Curve:
@@ -178,6 +178,8 @@ MonoBehaviour:
   overallSizeMultiplier: 1
   randomizeSeed: 1
   customSeed: 0
+  baseSortingOrder: 0
+  alphaSortingRange: 100
   currentAlpha: 0
 --- !u!1001 &4655650370436227382
 PrefabInstance:

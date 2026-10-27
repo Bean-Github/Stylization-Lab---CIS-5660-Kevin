@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: oshawott_mouth
-  m_Shader: {fileID: -6465566751694194690, guid: 96f24dea42733e542ade4ff73e4b0ece, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 42d6657e8ab26c84fb58644589dce08f, type: 3}
   m_Parent: {fileID: 2100000, guid: 05d5a6a959cc5df439e45de25c282f3f, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -27,7 +27,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Texture2D:
-        m_Texture: {fileID: 2800000, guid: dbaf02eee581dc14596300235e52f1e5, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8c5777597993aea41829283f0cc5332a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []

@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: oshawott_yellow
-  m_Shader: {fileID: -6465566751694194690, guid: 96f24dea42733e542ade4ff73e4b0ece, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 42d6657e8ab26c84fb58644589dce08f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -130,19 +130,20 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _UseFog: 0
+    - _Use_Shadows: 0
     - _Use_Tex_Threshold: 1.27
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - _Backlit_Color: {r: 0.7981132, g: 0.814374, b: 1, a: 0}
-    - _Backlit_Threshold: {r: 0.88, g: 0.96, b: 0, a: 0}
+    - _Backlit_Threshold: {r: 0.88, g: 1.32, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Highlight: {r: 0.8037735, g: 0.65459514, b: 0.45951578, a: 0}
+    - _Highlight: {r: 0.645283, g: 0.47031814, b: 0.23254539, a: 0}
     - _Ignore_Tex_Color: {r: 0.937255, g: 0.8588236, b: 0.46666664, a: 1}
-    - _Midtone: {r: 1, g: 0.88124657, b: 0.64716977, a: 0}
-    - _Shadow: {r: 0.6528301, g: 0.29733998, b: 0.08252757, a: 0}
+    - _Midtone: {r: 0.7056604, g: 0.64929634, b: 0.53656816, a: 0}
+    - _Shadow: {r: 0.5245282, g: 0.23520157, b: 0.058390833, a: 0}
     - _Shadow_Scale: {r: 3, g: 3, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Thresholds: {r: -0.1, g: 1.33, b: 0, a: 0}

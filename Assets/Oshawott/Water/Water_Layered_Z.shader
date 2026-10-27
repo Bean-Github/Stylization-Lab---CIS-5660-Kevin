@@ -291,7 +291,6 @@ Shader "Custom/Water/LayeredColorNoiseLocalZ"
                 float3 positionWS : TEXCOORD0;
                 float3 normalWS : TEXCOORD1;
                 float2 localXZ : TEXCOORD2;
-                float4 shadowCoord : TEXCOORD3;
                 UNITY_VERTEX_INPUT_INSTANCE_ID
                 UNITY_VERTEX_OUTPUT_STEREO
             };
@@ -306,7 +305,6 @@ Shader "Custom/Water/LayeredColorNoiseLocalZ"
                 output.positionWS = TransformObjectToWorld(input.positionOS);
                 output.positionCS = TransformWorldToHClip(output.positionWS);
                 output.normalWS = TransformObjectToWorldNormal(input.normalOS);
-                output.shadowCoord = TransformWorldToShadowCoord(output.positionWS);
                 return output;
             }
 
@@ -728,7 +726,8 @@ Shader "Custom/Water/LayeredColorNoiseLocalZ"
 
                 // Main-light shadow attenuation and received shadow tint.
                 // ShadowColor alpha controls how strongly the tint is applied.
-                half mainLightShadow = MainLightRealtimeShadow(input.shadowCoord);
+                half4 shadowCoord = TransformWorldToShadowCoord(input.positionWS);
+                half mainLightShadow = MainLightRealtimeShadow(shadowCoord);
                 half shadowDarkening = lerp(1.0h, mainLightShadow, saturate(_ShadowStrength));
                 gradient.rgb *= shadowDarkening;
 

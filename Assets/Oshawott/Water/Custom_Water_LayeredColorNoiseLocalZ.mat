@@ -19,7 +19,7 @@ Material:
   m_CustomRenderQueue: 2000
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: 
+  m_LockedProperties: _AfterFarColor _AfterNearStartDistance _SuperSpecularColor
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -51,14 +51,14 @@ Material:
     - _BeyondFarEndDistance: 10000
     - _BeyondFarNoiseScale: 53.38
     - _BeyondFarNoiseStrength: 0.83
-    - _BeyondFarStartDistance: 13.17
+    - _BeyondFarStartDistance: 5
     - _ColorEdgeDiffusion: 0.62
     - _ColorNoiseContrast: 1.19
     - _ColorNoiseEvolution: 0.324
     - _ColorNoiseWarpSize: -0.28
     - _ColorNoiseWarpStrength: 3.41
-    - _DarkSpotPower: 572
-    - _DarkSpotStrength: 12
+    - _DarkSpotPower: 36.38
+    - _DarkSpotStrength: 12.61
     - _FarEdgeWidth: 1.86
     - _FarEndDistance: 9.28
     - _FarNoiseScale: 20.72
@@ -113,15 +113,15 @@ Material:
     - _AfterFarNoiseStretch: {r: 5, g: 1, b: 0, a: 0}
     - _AfterNearColor: {r: 0, g: 0.87169814, b: 0.41021088, a: 0.61960787}
     - _AfterNearNoiseStretch: {r: 5, g: 1, b: 0, a: 0}
-    - _BeyondFarColor: {r: 0, g: 0.6603774, b: 0.39622638, a: 1}
+    - _BeyondFarColor: {r: 0.017487846, g: 0.0047774944, b: 0.23018861, a: 1}
     - _BeyondFarNoiseStretch: {r: 5, g: 1, b: 0, a: 0}
-    - _DarkSpotColor: {r: 0.22397271, g: 0.7108117, b: 0.59742135, a: 1}
-    - _DarkSpotDirection: {r: 0.89, g: 1.32, b: 0.49, a: 0}
+    - _DarkSpotColor: {r: 229.34805, g: 727.87115, b: 611.75946, a: 1}
+    - _DarkSpotDirection: {r: -0.3, g: 1.15, b: 1.54, a: 0}
     - _FarColor: {r: 0, g: 0.05628585, b: 0.4113207, a: 0.69411767}
     - _FarNoiseStretch: {r: 5, g: 1, b: 0, a: 0}
     - _Mid1Color: {r: 0, g: 0.9245283, b: 0.8037565, a: 0.7254902}
     - _Mid1NoiseStretch: {r: 5, g: 1, b: 0, a: 0}
-    - _Mid2Color: {r: 0.07194728, g: 0.165525, b: 0.8113208, a: 0.43137255}
+    - _Mid2Color: {r: 0, g: 0.060856543, b: 0.4792453, a: 0.43137255}
     - _Mid2NoiseStretch: {r: 79.52, g: 1, b: 0, a: 0}
     - _NearColor: {r: 0.3886792, g: 0.21476881, b: 0.084336, a: 0.16078432}
     - _NearNoiseStretch: {r: 5, g: 1, b: 0, a: 0}
@@ -133,10 +133,10 @@ Material:
     - _RippleCameraRight: {r: 1, g: 0, b: 0, a: 0}
     - _RippleCameraUp: {r: 0, g: 0, b: 1, a: 0}
     - _RipplePeakColor: {r: 0.7411765, g: 0.83137256, b: 0.84313726, a: 1}
-    - _ShadowColor: {r: 0.06259162, g: 0.10283747, b: 0.5622641, a: 1}
-    - _SpecularColor: {r: 0, g: 0.684035, b: 1.126299, a: 1}
+    - _ShadowColor: {r: 0.0090067545, g: 0.042467803, b: 0.4339623, a: 1}
+    - _SpecularColor: {r: 0, g: 1.4596345, b: 5.992157, a: 1}
     - _SpecularDirection: {r: -2.23, g: 1.15, b: 1.69, a: 0}
     - _SuperSpecularColor: {r: 98.4328, g: 131.83112, b: 145.31862, a: 1}
-    - _SuperSpecularDir: {r: -1.9, g: 1.33, b: 2.19, a: 0}
+    - _SuperSpecularDir: {r: -2.2, g: 1.96, b: 2.19, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
