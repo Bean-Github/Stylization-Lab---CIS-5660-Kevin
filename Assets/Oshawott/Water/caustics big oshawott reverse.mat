@@ -25,6 +25,7 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
+    - _CausticsShadowStrength: 0.43
     - _CausticsSpeed: -0.03
     m_Colors: []
   m_BuildTextureStacks: []

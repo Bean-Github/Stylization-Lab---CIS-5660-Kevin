@@ -32,9 +32,9 @@ Material:
     - _CausticsEdgeFade: 0.384
     - _CausticsFadeRadius: 0.4
     - _CausticsFadeStrength: 0.1
-    - _CausticsLuminanceMaskStrength: 1
+    - _CausticsLuminanceMaskStrength: 0.787
     - _CausticsScale: 42.88
-    - _CausticsShadowStrength: 1
+    - _CausticsShadowStrength: 0.58
     - _CausticsSpeed: 0.03
     - _CausticsSplit: 0.0028
     - _CausticsStrength: 10

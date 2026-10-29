@@ -18,7 +18,7 @@ MonoBehaviour:
     m_Value: 0.87
   tintColor:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    m_Value: {r: 0.5113207, g: 0.7616714, b: 1, a: 1}
   bloomMip:
     m_OverrideState: 0
     m_Value: 1
@@ -97,7 +97,7 @@ MonoBehaviour:
     m_Value: 65472
   tint:
     m_OverrideState: 1
-    m_Value: {r: 0.10188681, g: 0.086726524, b: 0.045945186, a: 1}
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
   highQualityFiltering:
     m_OverrideState: 0
     m_Value: 0

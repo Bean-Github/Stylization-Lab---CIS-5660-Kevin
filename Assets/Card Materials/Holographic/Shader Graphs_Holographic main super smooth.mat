@@ -69,9 +69,9 @@ Material:
     m_Floats:
     - _Heightmap_Strength: 0
     - _Holo_Anim_Speed: 0.59
-    - _Holo_Density: 2
+    - _Holo_Density: 1.5
     - _Holo_Noise_Scale: 250
-    - _Holo_Offset: 0.17
+    - _Holo_Offset: 0.102
     - _Holo_Rotation_Scroll_Speed: 30
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -79,7 +79,7 @@ Material:
     - _USE_COLOR_RAMP: 0
     m_Colors:
     - _Base_Color: {r: 1, g: 1, b: 1, a: 0.2901961}
-    - _Holo_Color: {r: 27.857622, g: 27.857622, b: 27.857622, a: 1}
+    - _Holo_Color: {r: 1.3041192, g: 1.3041192, b: 1.3041192, a: 1}
     - _Holo_Direction: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

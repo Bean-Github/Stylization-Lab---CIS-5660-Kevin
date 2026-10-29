@@ -54,7 +54,7 @@ Material:
     - _SourcePlane: 1
     - _SparseCoverage: 0.04
     - _TimeScale: 0.12
-    - _UseStencil: 8
+    - _UseStencil: 0
     - _WidthFrequency: 1.52
     - _WidthScale: 1.78
     - _WidthVariation: 0.233

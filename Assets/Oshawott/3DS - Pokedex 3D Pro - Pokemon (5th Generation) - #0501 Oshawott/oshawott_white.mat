@@ -135,15 +135,15 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _Backlit_Color: {r: 0.5320754, g: 0.2947192, b: 0.2479672, a: 0}
+    - _Backlit_Color: {r: 0.5849056, g: 0.28084496, b: 0.15781413, a: 0}
     - _Backlit_Threshold: {r: -0.23, g: 0.87, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Highlight: {r: 0.84941965, g: 0.9188505, b: 0.93207544, a: 0}
     - _Ignore_Tex_Color: {r: 0.937255, g: 0.8588236, b: 0.46666664, a: 1}
-    - _Midtone: {r: 0.3368529, g: 0.40050298, b: 0.4566037, a: 0}
-    - _Shadow: {r: 0.3181559, g: 0.41688007, b: 0.509434, a: 0}
+    - _Midtone: {r: 0.27462438, g: 0.38778064, b: 0.4867924, a: 0}
+    - _Shadow: {r: 0.24511917, g: 0.45289496, b: 0.6528301, a: 0}
     - _Shadow_Scale: {r: 3, g: 3, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Thresholds: {r: 0.12, g: 0.94, b: 0, a: 0}

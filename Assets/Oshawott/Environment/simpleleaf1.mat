@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: simpleleaf1
-  m_Shader: {fileID: -6465566751694194690, guid: 9d1678eff822d5048a058ae04ca233c1, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 90ac228339e55c340a3df2e8ad71ba58, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -145,6 +145,8 @@ Material:
     - _CutoutEnabled: 0
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
+    - _DisplaceHeight: 0.1
+    - _DisplaceScale: 10
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
@@ -160,6 +162,7 @@ Material:
     - _Max_Brightness: 1.66
     - _Metallic: 0
     - _Min_Brightness: 0.2
+    - _MoveSpeed: 0.62
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _PencilSize: 29.4
@@ -187,6 +190,7 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Base_Color: {r: 0.15187785, g: 0.4641509, b: 0.1462513, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DisplaceDir: {r: 1, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Highlight: {r: 0.14449978, g: 0.6226415, b: 0.16542979, a: 0}
     - _Ignore_Tex_Color: {r: 0.937255, g: 0.8588236, b: 0.46666664, a: 1}
