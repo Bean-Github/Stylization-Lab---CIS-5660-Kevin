@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_c011650b995145bca8a73e2399c4bd85_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: 170bf8afe872ad545b6b3b7f88d995be, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D:

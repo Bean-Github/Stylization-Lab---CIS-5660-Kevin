@@ -1,7 +1,10 @@
 fileFormatVersion: 2
 guid: 4d9144206fc9f5540bfc2270b7e41bad
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -2914853493168095054
+    second: reunicluscardtopcutout_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -108,7 +111,29 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: reunicluscardtopcutout_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 460
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b0c867013c5c87d0800000000000000
+      internalID: -2914853493168095054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
