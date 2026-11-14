@@ -9,6 +9,8 @@ Shader "Custom/MiniorOuterGlow"
         [HDR] _Glow("Glow", Color) = (1, 1, 1, 1)
 
         _Power("Fresnel Power", Range(0, 15)) = 0.5
+
+        [IntRange] _UseStencil ("Stencil Reference", Range(0, 10)) = 0
     }
 
     SubShader
@@ -24,6 +26,13 @@ Shader "Custom/MiniorOuterGlow"
         {
             Cull [_Cull]
             Blend SrcAlpha OneMinusSrcAlpha
+
+            Stencil
+            {
+                Ref [_UseStencil]
+                Comp Equal
+                Pass Keep
+            }
 
             HLSLPROGRAM
             #pragma target 3.5
