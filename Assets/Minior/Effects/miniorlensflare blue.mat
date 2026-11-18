@@ -75,7 +75,7 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
-    - _Color: {r: 0.63975674, g: 4.37802, b: 10.432951, a: 0.0627451}
+    - _Color: {r: 0, g: 0.5711779, b: 1.9047896, a: 0.56078434}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
