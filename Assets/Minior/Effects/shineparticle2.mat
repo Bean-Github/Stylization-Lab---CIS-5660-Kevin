@@ -142,7 +142,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 5
     - _SrcBlendAlpha: 1
-    - _StencilRef: 8
+    - _StencilRef: 0
     - _Surface: 1
     - _WorkflowMode: 1
     - _ZWrite: 0
